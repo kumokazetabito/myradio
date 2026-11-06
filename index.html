@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ニュースラジオ｜航空ニュース</title>
+<title>Tabito Radio｜航空ニュース</title>
 <meta name="description" content="11月6日、今朝チェックした航空ニュース5件。男女のナレーションでお届けします。">
 <link rel="icon" id="favicon" href="data:,">
 <script>if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add("embed")</script>
@@ -438,8 +438,8 @@ html.v #cardSources{gap:10px}html.v #cardSources a{padding:14px 16px}html.v #car
   <aside class="trial-note"><b>航空ニュース</b><span>11月6日朝の5件。発表日・運航開始日を区別し、出典を掲載しています。</span></aside>
   <div id="frame">
     <div id="stage">
-      <div class="brand"><i class="logo" id="slogo" hidden></i><b id="sname">ニュースラジオ</b><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
-      <div class="onair"><i></i>MORNING BRIEF</div>
+      <div class="brand"><i class="logo" id="slogo" hidden></i><b id="sname">Tabito Radio</b><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
+      <div class="onair"><i></i>AVIATION NEWS</div>
       <nav id="toc" aria-label="目次"></nav>
       <div id="panel"></div>
       <section id="card" aria-label="出典リンク"><div class="site">出典リンク</div><nav id="cardSources" aria-label="このニュースの出典"></nav><span class="open" id="cardOpen">記事をひらく ↗</span></section>
@@ -475,7 +475,7 @@ html.v #cardSources{gap:10px}html.v #cardSources a{padding:14px 16px}html.v #car
     <button id="share" hidden aria-haspopup="menu"><svg viewBox="0 0 24 24"><path d="M18 16.1c-.8 0-1.5.3-2 .8l-7.1-4.2c.1-.2.1-.5.1-.7s0-.5-.1-.7L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .5.1.7L8 9.8C7.5 9.3 6.8 9 6 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.1 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9-1.2-2.9-2.8-2.9z"/></svg><span></span></button></div>
   </div>
   <div class="mnav" id="mnav"></div>
-  <div class="chan"><span class="av"><i class="logo"></i><b id="avch"></b></span><div class="nm"><b id="cname"></b><small id="ctag"></small></div>
+  <div class="chan"><span class="av"><i class="logo"></i><b id="avch"></b></span><div class="nm"><b id="cname"></b><small id="ctag"></small><small id="cowner" hidden></small></div>
   </div>
   <div id="now"></div>
   <details id="talkBox" hidden><summary id="talkSum">コメント</summary><p class="talkNote" id="talkNote"></p><div id="talk"></div></details>
@@ -1166,7 +1166,7 @@ function talkShow() {
 $("talkBox").addEventListener("toggle", talkShow);
 // the station describes itself in station.json (name, what it broadcasts, logo, credits): this page and, later,
 // a channel guide read it
-let STATION = { name: "ニュースラジオ", credits: [] };
+let STATION = { name: "Tabito Radio", credits: [] };
 // a station field in the current language: station.json may give "i18n": {"en": {"name", "tagline", "credits", ...}}
 const st = k => STATION.i18n?.[LANG]?.[k] ?? STATION[k];
 function setLang(l) {
@@ -1179,6 +1179,7 @@ function setLang(l) {
   $("mutedTxt").textContent = tr("muted"); $("rate").title = $("rate").ariaLabel = tr("rate");
   $("share").querySelector("span").textContent = tr("share");
   $("cname").textContent = st("name"); $("ctag").textContent = st("tagline") || "";
+  $("cowner").textContent = st("creator") ? `by ${st("creator")}` : ""; $("cowner").hidden = !st("creator");
   $("avch").textContent = STATION.logo ? "" : [...(st("name") || "")][0] || "";
   document.querySelector(".chan .av .logo").hidden = !STATION.logo;
   for (const [act, k] of [["native", "native"], ["link", "copyLink"], ["embed", "copyEmbed"]]) $("shareMenu").querySelector(`[data-act=${act}]`).textContent = tr(k);
