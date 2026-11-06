@@ -446,6 +446,7 @@ html:not(.v) #cam,html:not(.v) .has-card #cam{left:1218px;top:253px;width:670px;
 
 /* Program information sits above the caster on desktop; only the station stays at the top. */
 #maleVoice{z-index:2}
+#cam .rec,#cam .credit,#cam .corner{z-index:3}
 #programMeta{left:1218px;top:145px;width:670px;display:grid;grid-template-columns:max-content 1fr;grid-template-rows:44px 64px 54px;align-items:center;gap:12px 18px;z-index:5}
 #programGenre{grid-column:1 / -1;width:100%;font:800 32px var(--jp);color:var(--text)}
 #programMeta .epsel{grid-column:1 / -1;margin:0;width:100%;max-width:100%;gap:12px}
@@ -666,10 +667,15 @@ async function initSprites() {
   SP.comp = Object.assign(document.createElement("canvas"), { width: w, height: h });
   SP.cx = SP.comp.getContext("2d");
   const cv = $("charcv"); cv.width = w; cv.height = h; cv.hidden = false;
-  const gl = SP.gl = cv.getContext("webgl", { alpha: false, antialias: false });
+  Object.assign(SP, createSpriteRenderer(cv, SP.depth, CHAR.background));
+  SP.ready = true;
+}
+function createSpriteRenderer(cv, depth, background) {
+  const state = {};
+  const gl = state.gl = cv.getContext("webgl", { alpha: false, antialias: false });
   if (gl) {
     const sh = (type, src) => { const o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return o; };
-    const pr = SP.prog = gl.createProgram();
+    const pr = state.prog = gl.createProgram();
     gl.attachShader(pr, sh(gl.VERTEX_SHADER, VERT)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FRAG)); gl.linkProgram(pr); gl.useProgram(pr);
     gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
@@ -681,14 +687,14 @@ async function initSprites() {
       return t;
     };
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
-    SP.colTex = tex(0, null); SP.depTex = tex(1, SP.depth);
+    state.colTex = tex(0, null); state.depTex = tex(1, depth);
     gl.uniform1i(gl.getUniformLocation(pr, "col"), 0); gl.uniform1i(gl.getUniformLocation(pr, "dep"), 1);
-    gl.uniform1f(gl.getUniformLocation(pr, "hasDep"), SP.depth ? 1 : 0);
-    const bg = CHAR.background.match(/\w\w/g).map(x => parseInt(x, 16) / 255);
+    gl.uniform1f(gl.getUniformLocation(pr, "hasDep"), depth ? 1 : 0);
+    const bg = background.match(/\w\w/g).map(x => parseInt(x, 16) / 255);
     gl.uniform3f(gl.getUniformLocation(pr, "bg"), ...bg);
-    SP.u = { look: gl.getUniformLocation(pr, "look"), t: gl.getUniformLocation(pr, "t") };
+    state.u = { look: gl.getUniformLocation(pr, "look"), t: gl.getUniformLocation(pr, "t") };
   }
-  SP.ready = true;
+  return state;
 }
 // which small images lie on the base right now
 function compose(layers) {
@@ -891,9 +897,29 @@ async function loadMaleCharacter() {
   const base = await img(pack.base);
   const parts = Object.fromEntries(await Promise.all(Object.entries(pack.parts).map(async ([name, part]) => [name, { ...part, img: await img(part.src) }])));
   const canvas = $("maleCanvas"); [canvas.width, canvas.height] = pack.size;
-  Object.assign(MALE, { base, parts, pack, canvas, ctx: canvas.getContext("2d"), ready: true });
+  const comp = Object.assign(document.createElement("canvas"), { width: pack.size[0], height: pack.size[1] });
+  const depth = maleDepthMap();
+  Object.assign(MALE, { base, parts, pack, canvas, comp, ctx: comp.getContext("2d"), look: [0, 0], ready: true },
+    createSpriteRenderer(canvas, depth, CHAR.background || "#161a26"));
+  if (!MALE.gl) MALE.output = canvas.getContext("2d");
   maleFrame(performance.now(), false);
   canvas.hidden = false; $("maleFallback").hidden = true;
+}
+// Smooth depth fields follow the approved illustration's head, face and torso.
+// The artwork itself is unchanged; mouth and eye overlays are warped together with it.
+function maleDepthMap() {
+  const map = Object.assign(document.createElement("canvas"), { width: 256, height: 256 });
+  const c = map.getContext("2d"); c.fillStyle = "#525252"; c.fillRect(0, 0, 256, 256);
+  function ellipsoid(x, y, rx, ry, near) {
+    c.save(); c.translate(x * 256, y * 256); c.scale(rx * 256, ry * 256);
+    const g = c.createRadialGradient(0, 0, 0, 0, 0, 1);
+    g.addColorStop(0, `rgba(255,255,255,${near})`); g.addColorStop(1, "rgba(255,255,255,0)");
+    c.fillStyle = g; c.fillRect(-1, -1, 2, 2); c.restore();
+  }
+  ellipsoid(.51, .78, .30, .48, .34);
+  ellipsoid(.51, .29, .28, .29, .58);
+  ellipsoid(.52, .41, .17, .14, .46);
+  return map;
 }
 function maleFrame(now, speaking) {
   if (!MALE.ready) return;
@@ -909,13 +935,33 @@ function maleFrame(now, speaking) {
   if (now > MALE.nextBlink) { MALE.blinkAt = now; MALE.nextBlink = now + 2500 + Math.random() * 3500; }
   const blink = now - MALE.blinkAt < 140;
   const key = `${MALE.mouth}:${blink}`;
-  if (key === MALE.key) return;
-  MALE.key = key;
   const c = MALE.ctx, canvas = MALE.canvas;
-  c.clearRect(0, 0, canvas.width, canvas.height); c.drawImage(MALE.base, 0, 0, canvas.width, canvas.height);
-  const layers = [blink ? "blink" : null, MALE.pack.mouth[MALE.mouth]].filter(Boolean);
-  for (const name of layers) { const part = MALE.parts[name]; if (part) c.drawImage(part.img, part.x, part.y); }
+  if (key !== MALE.key) {
+    MALE.key = key;
+    c.clearRect(0, 0, canvas.width, canvas.height); c.drawImage(MALE.base, 0, 0, canvas.width, canvas.height);
+    const layers = [blink ? "blink" : null, MALE.pack.mouth[MALE.mouth]].filter(Boolean);
+    for (const name of layers) { const part = MALE.parts[name]; if (part) c.drawImage(part.img, part.x, part.y); }
+    if (MALE.gl) {
+      const gl = MALE.gl; gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, MALE.colTex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, MALE.comp);
+    }
+  }
+  const target = now - SP.pointerAt < 4000 && SP.pointer ? SP.pointer
+    : [Math.sin(now / 2300) * .25, Math.sin(now / 3100) * .15];
+  MALE.look = MALE.look.map((v, i) => v + (target[i] - v) * .07);
+  if (MALE.gl) {
+    const gl = MALE.gl;
+    gl.uniform2f(MALE.u.look, MALE.look[0], MALE.look[1] * .6); gl.uniform1f(MALE.u.t, now / 1000);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  } else {
+    const out = MALE.output, [x, y] = MALE.look;
+    out.setTransform(1, 0, 0, 1, 0, 0); out.clearRect(0, 0, canvas.width, canvas.height);
+    out.setTransform(1 - Math.abs(x) * .008, y * .002, x * .004, 1, x * 4, Math.sin(now / 1000 * 1.7) * 2);
+    out.drawImage(MALE.comp, 0, 0);
+  }
   canvas.dataset.mouth = String(MALE.mouth); canvas.dataset.blink = String(blink);
+  canvas.dataset.lookX = MALE.look[0].toFixed(3); canvas.dataset.lookY = MALE.look[1].toFixed(3);
+  canvas.dataset.renderer = MALE.gl ? "webgl" : "2d";
 }
 let activeSpeakerKey = null;
 function showSpeaker(key) {
