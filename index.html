@@ -22,7 +22,8 @@ main{max-width:1280px;margin:0 auto;padding:16px}
     repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 64px),
     repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 64px),var(--ink)}
 #stage>*{position:absolute}
-.brand{left:72px;top:40px;font:800 34px var(--jp);color:var(--yellow);letter-spacing:2px;display:flex;gap:22px;align-items:baseline}
+.brand{left:72px;top:40px;font:800 34px var(--jp);color:var(--yellow);letter-spacing:normal;display:flex;gap:22px;align-items:baseline}
+.brand #sname{font-weight:800;letter-spacing:normal}
 /* the station's logo (one-colour shapes): painted in the station's yellow through a mask, so any logo fits the dark stage */
 .logo{display:inline-block;background:var(--yellow);-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat}
 .logo[hidden]{display:none}
