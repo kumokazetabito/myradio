@@ -230,7 +230,7 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 /* caption and progress */
 #cap{left:60px;right:60px;top:952px;height:84px;display:flex;align-items:center;justify-content:center;text-align:center}
 #cap span{font-size:46px;font-weight:800;line-height:1.3;padding:8px 26px;border-radius:10px;background:rgba(0,0,0,.5);
-  text-shadow:0 2px 0 #000;max-width:1800px;transition:opacity .15s}
+  text-shadow:0 2px 0 #000;white-space:nowrap;max-width:1800px;transition:opacity .15s}
 #cap span:empty{opacity:0}
 #bar{left:0;right:0;bottom:0;height:8px;background:rgba(255,255,255,.08)}
 #bar b{display:block;height:100%;width:0;background:var(--yellow)}
@@ -1060,7 +1060,7 @@ async function load(date, lang = LANG, at = 0) {
   setLang(L || ep.lang || STATION.language || LANG);
   // speech intervals; short pauses inside a part count as speaking, so her mouth does not flicker shut
   speech = [];
-  for (const l of ep.lines_timed) {
+  for (const l of ep.speech_timed || ep.lines_timed) {
     const last = speech[speech.length - 1];
     if (last && l.start - last[1] < 0.45) last[1] = l.end; else speech.push([l.start, l.end]);
   }
