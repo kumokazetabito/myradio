@@ -2,7 +2,7 @@
 
 航空ニュースを男女のナレーションで届けるWeb番組です。
 
-[番組を聴く](https://kumokazetabito.github.io/myradio/) / [11月6日の記事を読む](docs/aviation-2026-11-06.md)
+[番組を聴く](https://kumokazetabito.github.io/myradio/#aviation/2026-11-06/ja) / [11月6日の記事を読む](docs/aviation-2026-11-06.md)
 
 ## 11月6日の5件
 - ポーター：オタワから南国へ4路線
@@ -20,3 +20,7 @@
 
 ## 配信
 mainはソースと台本。音声はmainに保存せず、公開用gh-pagesにのみ配置します。設定はstation.json、番組はepisodes/とepisodes.jsonを参照します。
+
+## 番組URL
+
+航空ニュースは `#aviation/YYYY-MM-DD/ja`。以前の `#YYYY-MM-DD/ja` も開け、正規URLへ切り替わります。番組IDはstation.jsonのprogram.idで設定します。他ジャンルの番組一覧・切り替え画面は今後の拡張です。

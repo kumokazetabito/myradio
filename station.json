@@ -29,5 +29,9 @@
     "keep_days": 30
   },
   "weather": true,
-  "repo": "https://github.com/kumokazetabito/myradio"
+  "repo": "https://github.com/kumokazetabito/myradio",
+  "program": {
+    "id": "aviation",
+    "name": "航空ニュース"
+  }
 }
