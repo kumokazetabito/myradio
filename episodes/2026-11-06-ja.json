@@ -1,376 +1,546 @@
 {
- "title": "画像生成も触覚ロボも進化の一日",
- "opening": [
-  {
-   "say": "ものラジオです。十一月六日金曜日、おはようございます。",
-   "show": "ものラジオです。11月6日金曜日、おはようございます。"
-  },
-  {
-   "say": "今日は五本のニュースをお届けします。",
-   "show": "今日は5本のニュースをお届けします。"
-  }
- ],
- "news": [
-  {
-   "label": "Images 2.6 公開",
-   "points": [
-    "生成が50%高速化",
-    "GIF生成・SVG出力に対応",
-    "FlareとSunburstを選択"
-   ],
-   "url": "https://openai.com/index/introducing-images-2-6/",
-   "lines": [
+  "format": "monoradio/news-1",
+  "date": "2026-11-06",
+  "lang": "ja",
+  "title": "冬の新路線と250機発注 — 今朝の航空ニュース5件",
+  "made_at": "2026-11-06T10:30:00+09:00",
+  "audio": "audio/2026-11-06-aviation-ja.m4a",
+  "opening": [
     {
-     "say": "まずはオープンエーアイの新しい画像生成、イメージズ二・六です。",
-     "show": "まずはOpenAIの新しい画像生成、Images 2.6です。"
+      "show": "おはようございます。11月6日、今朝チェックした航空ニュースを5件お届けします。",
+      "say": "おはようございます。11月6日、今朝チェックした航空ニュースを5件お届けします。",
+      "speaker": "metan"
     },
     {
-     "say": "生成が五十パーセント速くなって、ジフ動画やエスブイジーの出力にも対応しました。",
-     "show": "生成が50%速くなり、GIFやSVG出力にも対応しました。"
-    },
-    {
-     "say": "表現の幅が広がりますね。",
-     "show": "表現の幅が広がりますね。"
+      "show": "冬の新路線から、大型の機材発注、季節便の見直しまで。男女のナレーションで順番に見ていきましょう。",
+      "say": "冬の新路線から、大型の機材発注、季節便の見直しまで。男女のナレーションで順番に見ていきましょう。",
+      "speaker": "takehiro"
     }
-   ],
-   "details": [
-    "従来より画像生成が50%高速化しました。最短6秒はFlareの低品質設定での、メーカー公称値です。",
-    "静止画やスケッチからアニメーションGIFを作れ、画像上のマークアップ編集やSVG出力も加わりました。",
-    "APIでは速度重視のFlareと、品質重視のSunburstを選べます。"
-   ],
-   "link": {
-    "url": "https://www.heise.de/en/news/ChatGPT-Images-2-6-adds-GIFs-SVGs-and-speed-11512895.html",
-    "title": "ChatGPT Images 2.6 adds GIFs, SVGs and speed",
-    "site": "heise online",
-    "description": "OpenAI adds animated GIFs and saved reference images to ChatGPT. Images 2.6 is also faster and enables more precise image editing.",
-    "image": "https://heise.cloudimg.io/v7/_www-heise-de_/imgs/18/5/1/9/5/3/9/1/ChatGPT-Images-2.6_overlay_verlauf_schwarz-fd569e59c0aa2dbc.jpg?func=bound&height=1200&org_if_sml=1&q=85&width=1200",
-    "icon": "https://www.heise.de/icons/ho/touch-icons/apple-touch-icon-180x180.png",
-    "found_by": "search"
-   },
-   "source_link": {
-    "url": "https://openai.com/index/introducing-images-2-6/",
-    "error": "HTTPError",
-    "status": 403
-   }
-  },
-  {
-   "label": "触覚ロボAI T-Rex",
-   "points": [
-    "10本の指先の触覚を統合",
-    "触覚補正は約20Hz",
-    "12作業で成功率65%"
-   ],
-   "url": "https://news.panasonic.com/jp/press/jn261105-1",
-   "lines": [
+  ],
+  "closing": [
     {
-     "say": "続いては日本から、パナソニックなどのロボット研究、ティーレックスです。",
-     "show": "続いては日本から、パナソニックなどのT-Rexです。"
+      "show": "今朝の航空ニュースは、新路線の拡大、大型発注、そして季節便の見直しをお伝えしました。",
+      "say": "今朝の航空ニュースは、新路線の拡大、大型発注、そして季節便の見直しをお伝えしました。",
+      "speaker": "takehiro"
     },
     {
-     "say": "指先の触覚を使って、卵の移し替えのような細かい作業をこなします。",
-     "show": "指先の触覚で、卵の移し替えもこなします。"
-    },
-    {
-     "say": "大まかな動きと素早い補正を分けているのが面白いところです。",
-     "show": "大まかな動きと素早い補正を分けるのが面白い。"
+      "show": "詳しい日程と出典は、画面下の各ニュースから確認できます。運航予定は変更される場合があります。それでは、また次の放送で。",
+      "say": "詳しい日程と出典は、画面下の各ニュースから確認できます。運航予定は変更される場合があります。それでは、また次の放送で。",
+      "speaker": "metan"
     }
-   ],
-   "details": [
-    "視覚・言語のVLAモデルに、10本の指先の触覚情報を加えました。",
-    "動作の大枠は約5Hz、触覚に基づく細かな修正は約20Hzで行います。",
-    "卵の移し替えや鍵開けなど12種類で平均65%、比較対象は35%でした。研究チームの評価です。"
-   ],
-   "link": {
-    "url": "https://news.panasonic.com/jp/press/jn261105-1",
-    "title": "パナソニックHD、指先の触覚に即応して器用な両手作業を行うロボット操作AIを共同開発 | 技術・研究開発 | 技術・研究開発 | プレスリリース",
-    "site": "Panasonic Newsroom Japan : パナソニック ニュースルーム ジャパン",
-    "description": "パナソニックHDは、カリフォルニア大学バークレー校、NVIDIA、スタンフォード大学、ローマ・ラ・サピエンツァ大学、ItalAIの研究者らと共同で、器用な両手作業を行うロボット操作AI「Tactile-Reactive Dexterous Manipulation（T-Rex）」を開発しました。",
-    "image": "https://news.panasonic.com/uploads/tmg_block_page/ogp_image/19135/l-jn261105-1-1.jpg",
-    "icon": null
-   }
-  },
-  {
-   "label": "Hacadly AIエージェント",
-   "points": [
-    "2D図面からSTEPを作成",
-    "編集可能な履歴を再構築",
-    "図面23件すべて再現"
-   ],
-   "url": "https://www.wogo.ai/release/hacadly-ai-agent-launch/",
-   "lines": [
+  ],
+  "news": [
     {
-     "say": "次は設計の話題、ウォゴのハカドリーエーアイエージェントです。",
-     "show": "次は設計の話題、WOGOのHacadlyです。"
+      "label": "ポーター、オタワから南国へ4路線",
+      "speaker": "metan",
+      "points": [
+        "アルバ 11/7・モンテゴベイ 11/25",
+        "プロビデンシアレス 12/17・ロスカボス 12/18",
+        "132席のE195-E2で運航"
+      ],
+      "details": [
+        "2026年11月7日にアルバ（AUA）、11月25日にモンテゴベイ（MBJ）へ就航予定。",
+        "2026年12月17日にプロビデンシアレス（PLS）、12月18日にロスカボス（SJD）へ就航予定。",
+        "航空会社の11月5日発表。2席ずつの配列のエンブラエルE195-E2。"
+      ],
+      "lines": [
+        {
+          "show": "最初はカナダのポーター航空です。オタワから、冬の休暇に向けた4つの路線を展開します。",
+          "say": "最初はカナダのポーター航空です。オタワから、冬の休暇に向けた4つの路線を展開します。",
+          "speaker": "metan"
+        },
+        {
+          "show": "アルバは11月7日、モンテゴベイは11月25日に就航予定です。",
+          "say": "アルバは11月7日、モンテゴベイは11月25日に就航予定です。",
+          "speaker": "metan"
+        },
+        {
+          "show": "続いて、プロビデンシアレスは12月17日、ロスカボスは12月18日。機材は132席のエンブラエルE195-E2です。",
+          "say": "続いて、プロビデンシアレスは12月17日、ロスカボスは12月18日。機材は132席のエンブラエル、イーいちきゅうご、イーツーです。",
+          "speaker": "metan"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Porter Airlines｜2026年11月5日発表",
+          "url": "https://www.flyporter.com/en-us/about-porter/media-centre/news-details?title=Porter+celebrates+the+start+of+four+sun+routes+from+Ottawa+2026+11",
+          "type": "航空会社発表"
+        }
+      ],
+      "url": "https://www.flyporter.com/en-us/about-porter/media-centre/news-details?title=Porter+celebrates+the+start+of+four+sun+routes+from+Ottawa+2026+11",
+      "link": {
+        "url": "https://www.flyporter.com/en-us/about-porter/media-centre/news-details?title=Porter+celebrates+the+start+of+four+sun+routes+from+Ottawa+2026+11",
+        "title": "Porter Airlines｜2026年11月5日発表",
+        "site": "航空会社発表",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
     },
     {
-     "say": "二次元の図面から、編集できるシーエーディーデータを作り直してくれます。",
-     "show": "2D図面から、編集できるCADを作り直します。"
+      "label": "モルドバのポラリス、路線展開を開始",
+      "speaker": "takehiro",
+      "points": [
+        "キシナウを拠点に欧州・トルコへ",
+        "初期7路線、計11路線の計画と報道",
+        "A321で開始・運航許可取得と報道"
+      ],
+      "details": [
+        "イスタンブールを皮切りに、ボローニャ、ダブリン、プラハ、ローマなどへ。",
+        "AeroRoutesの11月4日記事は初期7路線を列挙。11月5日の現地報道は11〜12月の計11路線計画と説明しているため、全11路線が11月に始まるとは表現していません。",
+        "NewsMakerは航空当局への取材に基づき10月26日のAOC発行を報道。航空当局の公開事業者一覧は更新が古く、今回は報道に基づく情報として扱います。"
+      ],
+      "lines": [
+        {
+          "show": "2つ目は、モルドバの新しい航空会社、ポラリスです。首都キシナウを拠点に、定期便の展開を進めています。",
+          "say": "2つ目は、モルドバの新しい航空会社、ポラリスです。首都キシナウを拠点に、定期便の展開を進めています。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "イスタンブールに加え、ボローニャ、ダブリン、プラハ、ローマなどへ就航する計画です。",
+          "say": "イスタンブールに加え、ボローニャ、ダブリン、プラハ、ローマなどへ就航する計画です。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "初期の7路線に加え、11月から12月にかけて計11路線を展開すると報じられています。",
+          "say": "初期の7路線に加え、11月から12月にかけて計11路線を展開すると報じられています。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "運航許可の取得も報じられており、最初の商業便にはエアバスA321を使用します。",
+          "say": "運航許可の取得も報じられており、最初の商業便にはエアバス、エーさんにいいちを使用します。",
+          "speaker": "takehiro"
+        }
+      ],
+      "sources": [
+        {
+          "title": "AeroRoutes｜初期路線計画（11月4日）",
+          "url": "https://www.aeroroutes.com/eng/261104-z9nw26",
+          "type": "運航計画報道"
+        },
+        {
+          "title": "Telex｜11路線への展開（11月5日）",
+          "url": "https://telex.md/2026/11/05/de-la-chisinau-spre-istanbul-si-spre-roma-cu-39-de-euro-noua-companie-aeriana-polaris-si-a-inceput-zborurile/",
+          "type": "現地報道"
+        },
+        {
+          "title": "NewsMaker｜航空当局への取材・AOC取得",
+          "url": "https://newsmaker.md/ru/podtverjdeno-polaris-poluchila-sertifikat-ekspluatanta-na-kakom-samolete-kompaniya-vypolnit-pervye-reisy",
+          "type": "当局取材報道"
+        }
+      ],
+      "url": "https://www.aeroroutes.com/eng/261104-z9nw26",
+      "link": {
+        "url": "https://www.aeroroutes.com/eng/261104-z9nw26",
+        "title": "AeroRoutes｜初期路線計画（11月4日）",
+        "site": "運航計画報道",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
     },
     {
-     "say": "見た目だけでなく、寸法を変えられるのがポイントです。",
-     "show": "寸法を変えられるのがポイントです。"
+      "label": "ブリーズ、米国内とカリブ海方面を拡大",
+      "speaker": "metan",
+      "points": [
+        "ラトローブ発 2027年2月・5月に新路線",
+        "タンパ発 12月からカリブ海方面へ",
+        "バッファロー発3路線は2027年6〜7月"
+      ],
+      "details": [
+        "ラトローブ〜マートルビーチ：2027年2月9日。ラトローブ〜オーランド：2027年5月26日。スピリット撤退後の直行便を補う動きとして報じられています。",
+        "タンパ〜セントトーマス：2026年12月16日。モンテゴベイ／カンクン：12月19日。サントドミンゴ：2027年6月18日。複数の時期の発表をまとめています。",
+        "バッファロー〜ローリー・ダーラム：2027年6月29日、マートルビーチ：7月1日、チャールストン：7月2日。"
+      ],
+      "lines": [
+        {
+          "show": "3つ目はアメリカのブリーズ航空。スピリット撤退後の直行便を補う動きと、リゾート路線の拡大です。",
+          "say": "3つ目はアメリカのブリーズ航空。スピリット撤退後の直行便を補う動きと、リゾート路線の拡大です。",
+          "speaker": "metan"
+        },
+        {
+          "show": "ラトローブからマートルビーチへは2027年2月9日、オーランドへは5月26日に就航する予定です。",
+          "say": "ラトローブからマートルビーチへは2027年2月9日、オーランドへは5月26日に就航する予定です。",
+          "speaker": "metan"
+        },
+        {
+          "show": "タンパからは、セントトーマスへ今年12月16日、モンテゴベイとカンクンへ12月19日に就航予定。",
+          "say": "タンパからは、セントトーマスへ今年12月16日、モンテゴベイとカンクンへ12月19日に就航予定。",
+          "speaker": "metan"
+        },
+        {
+          "show": "サントドミンゴへは来年6月18日から。さらに、バッファロー発の3路線も、来年6月から7月に順次始まる計画です。",
+          "say": "サントドミンゴへは来年6月18日から。さらに、バッファロー発の3路線も、来年6月から7月に順次始まる計画です。",
+          "speaker": "metan"
+        }
+      ],
+      "sources": [
+        {
+          "title": "AeroRoutes｜2027年の新路線と就航日",
+          "url": "https://aeroroutes.squarespace.com/eng/261027-mxns27",
+          "type": "運航計画報道"
+        },
+        {
+          "title": "Tampa Airport｜サントドミンゴ線",
+          "url": "https://news.tampaairport.com/tpa-and-breeze-announce-nonstop-flights-to-santo-domingo/",
+          "type": "空港発表"
+        },
+        {
+          "title": "Quintana Roo州政府｜タンパ〜カンクン就航日",
+          "url": "https://qroo.gob.mx/anuncia-mara-lezama-10-nuevas-rutas-aereas-para-fortalecer-la-conectividad-de-cancun/",
+          "type": "政府発表"
+        },
+        {
+          "title": "Aviacionline｜カンクン・セントトーマス線",
+          "url": "https://www.aviacionline.com/espanol/aviacion-comercial/estados-unidos/cancun-y-st-thomas-son-los-nuevos-destinos-de-breeze-airways-desde-tampa_a69fa5a53fd0ce16cd3a996c8",
+          "type": "航空報道"
+        },
+        {
+          "title": "AirMedia24｜モンテゴベイなどの就航予定",
+          "url": "https://airmedia24.com/news/breeze-airways-route-cuts",
+          "type": "航空報道"
+        }
+      ],
+      "url": "https://aeroroutes.squarespace.com/eng/261027-mxns27",
+      "link": {
+        "url": "https://aeroroutes.squarespace.com/eng/261027-mxns27",
+        "title": "AeroRoutes｜2027年の新路線と就航日",
+        "site": "運航計画報道",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
+    },
+    {
+      "label": "アボロン、250機の発注計画が具体化",
+      "speaker": "takehiro",
+      "points": [
+        "737 MAX 10を140機、11/4に確定発表",
+        "A320neo系75機・A330neo 35機",
+        "エアバス機100機の追加オプション"
+      ],
+      "details": [
+        "10月に公表された250機の発注パッケージのうち、ボーイング140機がすべて737-10であることを11月4日に確定発表。",
+        "エアバス分は計110機。A320neoファミリー75機とA330neoファミリー35機です。",
+        "オプション100機は確定発注250機とは別枠。10月9日の発表時点では主要株主の承認条件が付いていました。"
+      ],
+      "lines": [
+        {
+          "show": "4つ目は、航空機リース会社アボロンの大型発注です。",
+          "say": "4つ目は、航空機リース会社アボロンの大型発注です。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "10月に公表された合計250機の発注パッケージのうち、ボーイング140機は、すべて737 MAX 10となることが11月4日に確定発表されました。",
+          "say": "10月に公表された合計250機の発注パッケージのうち、ボーイング140機は、すべて、ななさんなな、マックステンとなることが、11月4日に確定発表されました。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "エアバス分は、A320neoファミリーが75機、A330neoが35機。さらに100機分の追加オプションも設けています。",
+          "say": "エアバス分は、エーさんにいまるネオ、ファミリーが75機、エーさんさんまるネオが35機。さらに100機分の追加オプションも設けています。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "なお、追加オプションは、確定発注の250機とは別の枠です。",
+          "say": "なお、追加オプションは、確定発注の250機とは別の枠です。",
+          "speaker": "takehiro"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Boeing｜737-10を140機、11月4日に確定",
+          "url": "https://boeing.mediaroom.com/2026-11-04-Avolon-Finalizes-Order-for-140-Boeing-737-10-Jets",
+          "type": "メーカー発表"
+        },
+        {
+          "title": "Avolon｜250機発注パッケージ（10月9日）",
+          "url": "https://avolon.aero/newsrooms/q3-2026-update",
+          "type": "発注元発表"
+        }
+      ],
+      "url": "https://boeing.mediaroom.com/2026-11-04-Avolon-Finalizes-Order-for-140-Boeing-737-10-Jets",
+      "link": {
+        "url": "https://boeing.mediaroom.com/2026-11-04-Avolon-Finalizes-Order-for-140-Boeing-737-10-Jets",
+        "title": "Boeing｜737-10を140機、11月4日に確定",
+        "site": "メーカー発表",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
+    },
+    {
+      "label": "ユナイテッド、アデレード季節便を縮小",
+      "speaker": "metan",
+      "points": [
+        "2026/27年シーズン 49往復→23往復と報道",
+        "運航期間 2026/12/17〜2027/2/8",
+        "サンフランシスコ発・787-9で運航"
+      ],
+      "details": [
+        "運航スケジュールに関する報道に基づく数字です。今回、航空会社の一次発表では同じ数字を確認できていません。",
+        "報道に記載された季節運航の期間。出発地・到着地の現地日付に注意し、予約時は航空会社の最新時刻表を確認してください。",
+        "機材はボーイング787-9。減便の理由について、今回の番組では推測を加えていません。"
+      ],
+      "lines": [
+        {
+          "show": "最後は、ユナイテッド航空のサンフランシスコ、アデレード線です。",
+          "say": "最後は、ユナイテッド航空のサンフランシスコ、アデレード線です。",
+          "speaker": "metan"
+        },
+        {
+          "show": "運航計画に関する報道では、2026年から27年のシーズンは、当初の49往復から23往復へ縮小します。",
+          "say": "運航計画に関する報道では、2026年から27年のシーズンは、当初の49往復から23往復へ縮小します。",
+          "speaker": "metan"
+        },
+        {
+          "show": "運航期間は12月17日から翌年2月8日まで。機材はボーイング787-9です。",
+          "say": "運航期間は12月17日から翌年2月8日まで。機材はボーイング、ななはちなな、ダッシュナインです。",
+          "speaker": "metan"
+        },
+        {
+          "show": "季節便を利用する方は、旅行日程に合う便があるか、予約前に最新の運航予定を確認したいところです。",
+          "say": "季節便を利用する方は、旅行日程に合う便があるか、予約前に最新の運航予定を確認したいところです。",
+          "speaker": "metan"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Aviation Shop｜季節運航の短縮（10月17日報道）",
+          "url": "https://www.aviationshop.com/blogs/news/united-cuts-its-san-francisco-adelaide-787-9-season-to-23-round-trips-for-winter-2026-27",
+          "type": "航空報道・一次発表未確認"
+        },
+        {
+          "title": "Andrew Curran｜当該記事の取材記者による説明",
+          "url": "https://www.linkedin.com/posts/andrew-curran-sydney_airlinenews-aviation-southaustralia-activity-7483685498935345152-NK7L",
+          "type": "記者説明"
+        }
+      ],
+      "url": "https://www.aviationshop.com/blogs/news/united-cuts-its-san-francisco-adelaide-787-9-season-to-23-round-trips-for-winter-2026-27",
+      "link": {
+        "url": "https://www.aviationshop.com/blogs/news/united-cuts-its-san-francisco-adelaide-787-9-season-to-23-round-trips-for-winter-2026-27",
+        "title": "Aviation Shop｜季節運航の短縮（10月17日報道）",
+        "site": "航空報道・一次発表未確認",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
     }
-   ],
-   "details": [
-    "DXFやベクトルPDFの2D図面から、STEPを作れます。",
-    "履歴のない3Dデータから、スケッチ・押し出し・穴などの履歴を構成し直します。",
-    "自社評価で2D図面23件の形状再現に成功しました。少数の自社ベンチマークで、一般的な精度保証ではありません。"
-   ],
-   "link": {
-    "url": "https://www.wogo.ai/release/hacadly-ai-agent-launch/",
-    "title": "「Hacadly AIエージェント」を提供開始 | 株式会社WOGO",
-    "site": "株式会社WOGO",
-    "description": "会話の指示で2D図面の3D化や履歴のないCADの再構築を行う「Hacadly AIエージェント」の提供を開始しました。WOGOの最新情報はこちら。",
-    "image": "https://www.wogo.ai/wp-content/uploads/2026/11/news-th-hacadly-ai-agent-launch.jpg",
-    "icon": "https://www.wogo.ai/wp-content/uploads/2026/06/wogo-site-icon.png"
-   }
-  },
-  {
-   "label": "金属3Dプリントで単結晶",
-   "points": [
-    "高さ約1mの単結晶",
-    "交互の熱入力で造形",
-    "高温でのクリープ耐性"
-   ],
-   "url": "https://www.nature.com/articles/s41586-026-11185-0",
-   "lines": [
-    {
-     "say": "そして海外から、金属三ディープリントの研究です。",
-     "show": "そして海外から、金属3Dプリントの研究です。"
+  ],
+  "speakers": {
+    "metan": {
+      "id": 2,
+      "name": "四国めたん",
+      "credit": "VOICEVOX:四国めたん",
+      "role": "女性ナレーター"
     },
-    {
-     "say": "ネイチャーに載った方法で、高さ約一メートルの単結晶構造を作りました。",
-     "show": "Nature掲載の方法で、高さ約1mの単結晶を作成。"
-    },
-    {
-     "say": "形だけでなく、中の結晶まで操る技術なんですね。",
-     "show": "形だけでなく、中の結晶まで操る技術です。"
+    "takehiro": {
+      "id": 11,
+      "name": "玄野武宏",
+      "credit": "VOICEVOX:玄野武宏",
+      "role": "男性ナレーター"
     }
-   ],
-   "details": [
-    "Ti-6Al-4Vで、高さ約1m・直径cm級の単結晶を造形しました。",
-    "熱入力を交互に切り替える、ワイヤーアーク積層造形法です。",
-    "結晶粒界を減らし、高温でのクリープ耐性を改善できる可能性があります。研究段階の技術です。"
-   ],
-   "link": {
-    "url": "https://www.nature.com/articles/s41586-026-11185-0",
-    "title": "Additive manufacturing of ultralong and architected single crystals - Nature",
-    "site": "Nature",
-    "description": "A free-form additive manufacturing method that uses alternating and pulsed heat inputs is described for fabricating metre-tall, centimetre-diameter single crystals of Ti-6Al-4V, as well as hard-to-pro",
-    "image": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41586-026-11185-0/MediaObjects/41586_2026_11185_Fig1_HTML.png",
-    "icon": "https://www.nature.com/oscar-static/images/favicons/nature/apple-touch-icon-f39cb19454.png"
-   }
   },
-  {
-   "label": "楽園追放 メカ変形",
-   "points": [
-    "16秒のワンカット",
-    "既存パーツを複製",
-    "モデルを切り替え"
-   ],
-   "url": "https://cgworld.jp/article/202611-rakuen-1.html",
-   "lines": [
+  "lines_timed": [
     {
-     "say": "最後はアニメの制作現場の話です。",
-     "show": "最後はアニメの制作現場の話です。"
+      "start": 0.0,
+      "end": 5.824,
+      "show": "おはようございます。11月6日、今朝チェックした航空ニュースを5件お届けします。",
+      "speaker": "metan",
+      "part": 0
     },
     {
-     "say": "楽園追放の十六秒ワンカットのメカ変形を、制作工程から紹介しています。",
-     "show": "楽園追放の16秒ワンカット変形の制作工程です。"
+      "start": 5.984,
+      "end": 13.088,
+      "show": "冬の新路線から、大型の機材発注、季節便の見直しまで。男女のナレーションで順番に見ていきましょう。",
+      "speaker": "takehiro",
+      "part": 0
     },
     {
-     "say": "見える角度を優先する割り切りが参考になります。",
-     "show": "見える角度を優先する割り切りが参考に。"
+      "start": 13.248,
+      "end": 19.477,
+      "show": "最初はカナダのポーター航空です。オタワから、冬の休暇に向けた4つの路線を展開します。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 19.637,
+      "end": 24.981,
+      "show": "アルバは11月7日、モンテゴベイは11月25日に就航予定です。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 25.141,
+      "end": 35.957,
+      "show": "続いて、プロビデンシアレスは12月17日、ロスカボスは12月18日。機材は132席のエンブラエルE195-E2です。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 36.117,
+      "end": 43.659,
+      "show": "2つ目は、モルドバの新しい航空会社、ポラリスです。首都キシナウを拠点に、定期便の展開を進めています。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 43.819,
+      "end": 49.835,
+      "show": "イスタンブールに加え、ボローニャ、ダブリン、プラハ、ローマなどへ就航する計画です。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 49.995,
+      "end": 56.267,
+      "show": "初期の7路線に加え、11月から12月にかけて計11路線を展開すると報じられています。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 56.427,
+      "end": 62.485,
+      "show": "運航許可の取得も報じられており、最初の商業便にはエアバスA321を使用します。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 62.645,
+      "end": 70.027,
+      "show": "3つ目はアメリカのブリーズ航空。スピリット撤退後の直行便を補う動きと、リゾート路線の拡大です。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 70.187,
+      "end": 77.589,
+      "show": "ラトローブからマートルビーチへは2027年2月9日、オーランドへは5月26日に就航する予定です。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 77.749,
+      "end": 85.152,
+      "show": "タンパからは、セントトーマスへ今年12月16日、モンテゴベイとカンクンへ12月19日に就航予定。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 85.312,
+      "end": 94.4,
+      "show": "サントドミンゴへは来年6月18日から。さらに、バッファロー発の3路線も、来年6月から7月に順次始まる計画です。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 94.56,
+      "end": 98.165,
+      "show": "4つ目は、航空機リース会社アボロンの大型発注です。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 98.325,
+      "end": 109.867,
+      "show": "10月に公表された合計250機の発注パッケージのうち、ボーイング140機は、すべて737 MAX 10となることが11月4日に確定発表されました。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 110.027,
+      "end": 118.837,
+      "show": "エアバス分は、A320neoファミリーが75機、A330neoが35機。さらに100機分の追加オプションも設けています。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 118.997,
+      "end": 123.616,
+      "show": "なお、追加オプションは、確定発注の250機とは別の枠です。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 123.776,
+      "end": 128.203,
+      "show": "最後は、ユナイテッド航空のサンフランシスコ、アデレード線です。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 128.363,
+      "end": 137.6,
+      "show": "運航計画に関する報道では、2026年から27年のシーズンは、当初の49往復から23往復へ縮小します。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 137.76,
+      "end": 145.621,
+      "show": "運航期間は12月17日から翌年2月8日まで。機材はボーイング787-9です。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 145.781,
+      "end": 153.419,
+      "show": "季節便を利用する方は、旅行日程に合う便があるか、予約前に最新の運航予定を確認したいところです。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 153.579,
+      "end": 160.011,
+      "show": "今朝の航空ニュースは、新路線の拡大、大型発注、そして季節便の見直しをお伝えしました。",
+      "speaker": "takehiro",
+      "part": 6
+    },
+    {
+      "start": 160.171,
+      "end": 169.632,
+      "show": "詳しい日程と出典は、画面下の各ニュースから確認できます。運航予定は変更される場合があります。それでは、また次の放送で。",
+      "speaker": "metan",
+      "part": 6
     }
-   ],
-   "details": [
-    "当初は複数カットの変形でしたが、約16秒の連続カメラワークに変更しました。",
-    "アニメーターがパーツを複製し、ヒンジやトゲ、内部機構を追加しています。",
-    "球体変形シーンでは、人型用と球体用のモデルを切り替えて自然な動きにしています。"
-   ],
-   "link": {
-    "url": "https://cgworld.jp/article/202611-rakuen-1.html",
-    "title": "『楽園追放 心のレゾナンス』ティザーPV制作の舞台裏【前編】巨大メカの変形を16秒のワンカットで魅せる",
-    "site": "CG・映像の専門情報サイト | CGWORLD.jp",
-    "description": "『楽園追放』の公開から12年。正統続編となる『楽園追放 心のレゾナンス』が、2026年11月13日（金）に劇場公開される。公開に先駆け、5つのティザーPVを手がかりに、東映アニメーションの新チーム・NOISEによる画づくりを前後編で紹介。前編では、PVの制作背景と、巨大メカの変形に迫力を生む工夫に迫る。",
-    "image": "https://cgworld.jp/article/assets_c/2026/09/202611-rakuen_a1-thumb-1000x563-89425.jpg",
-    "icon": null
-   }
-  }
- ],
- "closing": [
-  {
-   "say": "今日はロボットも画像も、役割を分けて賢く使う工夫が光っていましたね。",
-   "show": "役割を分けて賢く使う工夫が光る一日でした。"
-  },
-  {
-   "say": "それでは今日も、いってらっしゃい。ものラジオでした。",
-   "show": "それでは今日も、いってらっしゃい。"
-  }
- ],
- "format": "monoradio/news-1",
- "date": "2026-11-06",
- "lang": "ja",
- "seconds": 89.61,
- "lines_timed": [
-  {
-   "start": 0.6,
-   "end": 4.961,
-   "show": "ものラジオです。11月6日金曜日、おはようございます。",
-   "part": 0
-  },
-  {
-   "start": 5.211,
-   "end": 7.39,
-   "show": "今日は5本のニュースをお届けします。",
-   "part": 0
-  },
-  {
-   "start": 8.44,
-   "end": 13.15,
-   "show": "まずはOpenAIの新しい画像生成、Images 2.6です。",
-   "part": 1
-  },
-  {
-   "start": 13.4,
-   "end": 19.189,
-   "show": "生成が50%速くなり、GIFやSVG出力にも対応しました。",
-   "part": 1
-  },
-  {
-   "start": 19.439,
-   "end": 21.351,
-   "show": "表現の幅が広がりますね。",
-   "part": 1
-  },
-  {
-   "start": 22.401,
-   "end": 27.145,
-   "show": "続いては日本から、パナソニックなどのT-Rexです。",
-   "part": 2
-  },
-  {
-   "start": 27.395,
-   "end": 32.465,
-   "show": "指先の触覚で、卵の移し替えもこなします。",
-   "part": 2
-  },
-  {
-   "start": 32.715,
-   "end": 36.705,
-   "show": "大まかな動きと素早い補正を分けるのが面白い。",
-   "part": 2
-  },
-  {
-   "start": 37.755,
-   "end": 41.338,
-   "show": "次は設計の話題、WOGOのHacadlyです。",
-   "part": 3
-  },
-  {
-   "start": 41.588,
-   "end": 46.193,
-   "show": "2D図面から、編集できるCADを作り直します。",
-   "part": 3
-  },
-  {
-   "start": 46.443,
-   "end": 49.945,
-   "show": "寸法を変えられるのがポイントです。",
-   "part": 3
-  },
-  {
-   "start": 50.995,
-   "end": 54.637,
-   "show": "そして海外から、金属3Dプリントの研究です。",
-   "part": 4
-  },
-  {
-   "start": 54.887,
-   "end": 60.142,
-   "show": "Nature掲載の方法で、高さ約1mの単結晶を作成。",
-   "part": 4
-  },
-  {
-   "start": 60.392,
-   "end": 64.51,
-   "show": "形だけでなく、中の結晶まで操る技術です。",
-   "part": 4
-  },
-  {
-   "start": 65.56,
-   "end": 68.052,
-   "show": "最後はアニメの制作現場の話です。",
-   "part": 5
-  },
-  {
-   "start": 68.302,
-   "end": 74.184,
-   "show": "楽園追放の16秒ワンカット変形の制作工程です。",
-   "part": 5
-  },
-  {
-   "start": 74.434,
-   "end": 77.75,
-   "show": "見える角度を優先する割り切りが参考に。",
-   "part": 5
-  },
-  {
-   "start": 78.8,
-   "end": 84.148,
-   "show": "役割を分けて賢く使う工夫が光る一日でした。",
-   "part": 6
-  },
-  {
-   "start": 84.398,
-   "end": 87.564,
-   "show": "それでは今日も、いってらっしゃい。",
-   "part": 6
-  }
- ],
- "segments": [
-  {
-   "kind": "opening",
-   "index": null,
-   "start": 0.6,
-   "end": 8.44
-  },
-  {
-   "kind": "news",
-   "index": 0,
-   "start": 8.44,
-   "end": 22.401
-  },
-  {
-   "kind": "news",
-   "index": 1,
-   "start": 22.401,
-   "end": 37.755
-  },
-  {
-   "kind": "news",
-   "index": 2,
-   "start": 37.755,
-   "end": 50.995
-  },
-  {
-   "kind": "news",
-   "index": 3,
-   "start": 50.995,
-   "end": 65.56
-  },
-  {
-   "kind": "news",
-   "index": 4,
-   "start": 65.56,
-   "end": 78.8
-  },
-  {
-   "kind": "closing",
-   "index": null,
-   "start": 78.8,
-   "end": 89.614
-  }
- ],
- "made_at": "2026-11-06T06:52:19"
+  ],
+  "segments": [
+    {
+      "kind": "opening",
+      "start": 0.0,
+      "end": 13.248,
+      "speaker": "metan"
+    },
+    {
+      "kind": "news",
+      "index": 0,
+      "start": 13.248,
+      "end": 36.117,
+      "speaker": "metan"
+    },
+    {
+      "kind": "news",
+      "index": 1,
+      "start": 36.117,
+      "end": 62.645,
+      "speaker": "takehiro"
+    },
+    {
+      "kind": "news",
+      "index": 2,
+      "start": 62.645,
+      "end": 94.56,
+      "speaker": "metan"
+    },
+    {
+      "kind": "news",
+      "index": 3,
+      "start": 94.56,
+      "end": 123.776,
+      "speaker": "takehiro"
+    },
+    {
+      "kind": "news",
+      "index": 4,
+      "start": 123.776,
+      "end": 153.579,
+      "speaker": "metan"
+    },
+    {
+      "kind": "closing",
+      "start": 153.579,
+      "end": 169.792,
+      "speaker": "takehiro"
+    }
+  ],
+  "seconds": 169.792
 }

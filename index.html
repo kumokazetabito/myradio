@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ものラジオ</title>
+<title>ニュースラジオ｜航空ニュース</title>
+<meta name="description" content="11月6日、今朝チェックした航空ニュース5件。男女のナレーションでお届けします。">
 <link rel="icon" id="favicon" href="data:,">
 <script>if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add("embed")</script>
 <style>
-:root{--yellow:#ffd028;--red:#ff4468;--teal:#3fe0dc;--ink:#0c0e14;--cam:#161a26;--text:#f2f3f7;--muted:#8d93a8;--line:rgba(255,255,255,.13);
+:root{--yellow:#79e5cc;--red:#ff4468;--teal:#3fe0dc;--ink:#0c0e14;--cam:#161a26;--text:#f2f3f7;--muted:#8d93a8;--line:rgba(255,255,255,.13);
   --jp:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;--mono:"SF Mono",Menlo,Consolas,monospace}
 *{box-sizing:border-box}
 /* no blue tap flash on phones (the stage and its buttons show their own state) */
@@ -425,14 +426,22 @@ html.phone .sound input{display:none}
 html.phone .controls .time{font-size:12px}
 html.phone #share{padding:0 9px}
 html.phone #share span{display:none}
+.trial-note{display:flex;gap:12px;align-items:center;padding:14px 18px;margin-bottom:14px;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:13px;line-height:1.7}.trial-note b{white-space:nowrap;color:var(--yellow)}html.embed .trial-note{display:none}@media(max-width:600px){.trial-note{align-items:flex-start;font-size:12px;padding:12px}}
+#panel .big{font-size:76px}#panel .big .logo{width:64px;height:64px;margin-right:14px;vertical-align:-5px}html.v #panel .big{font-size:86px}
+
+#maleVoice{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(ellipse at 50% 40%,#183646,#121b29 75%);color:#9ed5ff}
+#maleVoice[hidden]{display:none}#maleVoice svg{width:44%;height:auto}#maleVoice b{font-size:42px;letter-spacing:4px}#maleVoice>span{font-size:22px}#maleVoice .voice-label{font:16px var(--mono);letter-spacing:5px}.voice-bars{display:flex;height:34px;align-items:center;gap:9px}.voice-bars i{width:7px;height:12px;border-radius:8px;background:currentColor}.playing .voice-bars i{animation:voicebar .8s ease-in-out infinite alternate}.voice-bars i:nth-child(2){animation-delay:-.3s}.voice-bars i:nth-child(3){animation-delay:-.6s}.voice-bars i:nth-child(4){animation-delay:-.1s}.voice-bars i:nth-child(5){animation-delay:-.5s}@keyframes voicebar{to{height:32px}}
+#cam.male #charcv{visibility:hidden}.speaker-label{display:inline-block;font-size:11px;font-weight:600;color:var(--teal);margin:8px 0}.source-note{color:var(--muted);font-size:12px;line-height:1.7}#camCredit{background:rgba(0,0,0,.65);padding:7px 12px;border-radius:6px}
+#maleVoice{background:var(--cam);gap:0}#maleVoice img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
 </style>
 </head>
 <body>
 <main>
+  <aside class="trial-note"><b>航空ニュース</b><span>11月6日朝の5件。発表日・運航開始日を区別し、出典を掲載しています。</span></aside>
   <div id="frame">
     <div id="stage">
-      <div class="brand"><i class="logo" id="slogo" hidden></i><b id="sname">ものラジオ</b><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
-      <div class="onair"><i></i>ON AIR</div>
+      <div class="brand"><i class="logo" id="slogo" hidden></i><b id="sname">ニュースラジオ</b><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
+      <div class="onair"><i></i>MORNING BRIEF</div>
       <nav id="toc" aria-label="目次"></nav>
       <div id="panel"></div>
       <a id="card" target="_blank" rel="noopener noreferrer"><img alt="" referrerpolicy="no-referrer"><div class="txt"><div class="site"></div><div class="ttl"></div><div class="desc"></div><div class="open" id="cardOpen">記事をひらく ↗</div></div></a>
@@ -440,9 +449,10 @@ html.phone #share span{display:none}
       <div id="cam">
         <img id="idle" alt="">
         <canvas id="charcv" hidden></canvas>
+        <div id="maleVoice" hidden aria-label="男性キャスター"><img src="character/male/base.png" alt="番組オリジナルの男性キャスター"></div>
         <video id="va" muted playsinline preload="auto"></video>
         <video id="vb" muted playsinline preload="auto"></video>
-        <div class="rec"><i></i>LIVE</div>
+        <div class="rec"><i></i>VOICE</div>
         <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
         <div class="credit" id="camCredit" hidden></div>
       </div>
@@ -487,9 +497,9 @@ const WEEK = "日月火水木金土";
 // says per date which exist ({date, ja: {title, seconds}, en: {...}}). The older one-language list ({date, title,
 // seconds} with episodes/<date>.json) still works. The words of the page itself are below.
 const UI = {
-  ja: { share: "共有", copied: "コピーしました", resumeAt: t => `${t} から続きを再生`, from0: "最初から", heard: "聞いた", partway: t => `途中 ${t}`, rate: "再生速度", wxHere: "現在地", wxCredit: "天気：Open-Meteo（CC BY 4.0）", wxNoGeo: "位置情報が使えませんでした", wxPrompt: "右上から場所を選ぶと、天気が出ます", wxChoose: "場所を選ぶ", wxUseHere: "現在地にする", wxJapan: "日本", wxWorld: "世界", wxHi: "最高", wxLo: "最低", wxRain: "降水", copyHint: "押すとコピー", native: "共有…", copyLink: "リンクをコピー", copyEmbed: "埋め込みコードをコピー", openPage: "ページを開く", news: "ニュース", none: "詳細なし", jump: "この話題へ", bye: "またあした！", related: "関連記事", open: "記事をひらく ↗",
+  ja: { share: "共有", copied: "コピーしました", resumeAt: t => `${t} から続きを再生`, from0: "最初から", heard: "聞いた", partway: t => `途中 ${t}`, rate: "再生速度", wxHere: "現在地", wxCredit: "天気：Open-Meteo（CC BY 4.0）", wxNoGeo: "位置情報が使えませんでした", wxPrompt: "右上から場所を選ぶと、天気が出ます", wxChoose: "場所を選ぶ", wxUseHere: "現在地にする", wxJapan: "日本", wxWorld: "世界", wxHi: "最高", wxLo: "最低", wxRain: "降水", copyHint: "押すとコピー", native: "共有…", copyLink: "リンクをコピー", copyEmbed: "埋め込みコードをコピー", openPage: "ページを開く", news: "ニュース", none: "詳細なし", jump: "この話題へ", bye: "またお会いしましょう", related: "関連記事", open: "記事をひらく ↗",
         notFound: c => `リンク先が見つかりませんでした（${c}）`, source: "出典", script: "台本を読む", past: "これまでの放送", talk: "コメント", talkNote: "書きこむには GitHub のアカウントが要ります。コメントは GitHub Discussions に保存され、ここは giscus.app から読みこんでいます。",
-        expired: "この回の音声は公開が終わりました（台本は下で読めます）", loading: "読み込み中…", empty: "まだ放送がありません",
+        expired: "音声を読み込めませんでした。通信状態をご確認ください。台本は下で読めます。", loading: "読み込み中…", empty: "まだ放送がありません",
         muted: "音声オフ・クリックでオン", sep: "・", colon: "：" },
   en: { share: "Share", copied: "Copied", resumeAt: t => `Resume from ${t}`, from0: "Start over", heard: "Heard", partway: t => `Stopped at ${t}`, rate: "Playback speed", wxHere: "Your area", wxCredit: "Weather: Open-Meteo (CC BY 4.0)", wxNoGeo: "Location not available", wxPrompt: "Choose a place (top right) to see its weather", wxChoose: "Choose", wxUseHere: "Use my location", wxJapan: "Japan", wxWorld: "World", wxHi: "H", wxLo: "L", wxRain: "Rain", copyHint: "Click to copy", native: "Share…", copyLink: "Copy link", copyEmbed: "Copy embed code", openPage: "Open the page", news: "News", none: "No details", jump: "Go to this story", bye: "See you tomorrow!", related: "Related", open: "Open article ↗",
         notFound: c => `Link not found (${c})`, source: "Source", script: "Read the script", past: "Past episodes", talk: "Comments", talkNote: "You need a GitHub account to comment. Comments are kept in GitHub Discussions, and this part loads from giscus.app.",
@@ -550,13 +560,13 @@ new ResizeObserver(([e]) => { $("stage").style.transform = `scale(${e.contentRec
 //   "sprites" a base image with small mouth / eye images laid on it, drawn through WebGL: a depth map turns the head a
 //             little toward the pointer, the body breathes and the back hair sways (a pseudo Live2D)
 let CHAR = { type: "clips", idle: "idle.webp", talk: [], background: "#161a26" };
-const charUrl = f => `character/${f}`;
+const charUrl = f => new URL(f, new URL(STATION.character?.pack || "character/character.json", location.href)).href;
 const vids = [$("va"), $("vb")];
 let active = 0, talking = false, lastUnit = "";
 const pickUnit = () => { const c = CHAR.talk.filter(u => u !== lastUnit); lastUnit = c[Math.floor(Math.random() * c.length)] ?? CHAR.talk[0]; return charUrl(lastUnit); };
 function prime(v) { if (CHAR.talk.length) { v.src = pickUnit(); v.load(); } }
 async function loadCharacter() {
-  try { CHAR = { ...CHAR, ...(await (await fetch("character/character.json", { cache: "no-store" })).json()) }; } catch {}
+  try { CHAR = { ...CHAR, ...(await (await fetch(STATION.character?.pack || "character/character.json", { cache: "no-store" })).json()) }; } catch {}
   document.documentElement.style.setProperty("--cam", CHAR.background);
   if (CHAR.type === "sprites") { $("idle").hidden = true; vids.forEach(v => v.hidden = true); await initSprites(); }
   else { $("idle").src = charUrl(CHAR.idle); vids.forEach(prime); }
@@ -839,15 +849,27 @@ function showCard(link) {
 }
 $("card").addEventListener("click", () => audio.pause());
 
+let activeSpeakerKey = null;
+function showSpeaker(key) {
+  if (key === activeSpeakerKey) return;
+  activeSpeakerKey = key;
+  const speaker = ep?.speakers?.[key];
+  const male = key === "takehiro";
+  $("cam").classList.toggle("male", male);
+  $("maleVoice").hidden = !male;
+  $("camCredit").textContent = speaker ? speaker.credit : st("caster") || "";
+  $("camCredit").hidden = !$("camCredit").textContent;
+}
 // ---------- the clock: everything follows the audio position ----------
 function tick(now) {
   const speakingAt = t => !audio.paused && speech.some(([a, b]) => t >= a && t < b);
-  if (CHAR.type === "sprites") spriteFrame(audio.currentTime, now, ep && speakingAt(audio.currentTime), ep?.segments[curPart]?.kind);
+  if (CHAR.type === "sprites") spriteFrame(audio.currentTime, now, ep && speakingAt(audio.currentTime) && activeSpeakerKey !== "takehiro", ep?.segments[curPart]?.kind);
   if (ep) {
     const t = audio.currentTime, dur = ep.seconds;
     const part = Math.max(0, ep.segments.findIndex(s => t >= s.start && t < s.end));
     showPart(t >= dur - 0.05 ? ep.segments.length - 1 : part);
-    const line = ep.lines_timed.find(l => t >= l.start && t < l.end + 0.3);
+    const line = ep.lines_timed.find(l => t >= l.start && t < l.end);
+    showSpeaker(line?.speaker || ep.segments[curPart]?.speaker || "metan");
     const cap = line ? line.show : "";
     if ($("cap").firstChild.textContent !== cap) { $("cap").firstChild.textContent = cap; $("now").textContent = cap; }
     if (CHAR.type !== "sprites") setTalking(speakingAt(t));
@@ -861,7 +883,7 @@ requestAnimationFrame(tick);
 
 // ---------- controls ----------
 let seeking = false;
-function toggle() { audio.paused ? audio.play() : audio.pause(); }
+function toggle() { if (!ep) return; audio.paused ? audio.play().catch(() => { $("loading").textContent = "音声を再生できませんでした。もう一度再生を押してください。"; }) : audio.pause(); }
 $("cover").querySelector(".play").onclick = toggle; $("pp").onclick = toggle;
 audio.addEventListener("play", () => { $("cover").hidden = true; $("resume").hidden = true; $("frame").classList.add("playing"); $("ppIcon").innerHTML = PAUSE; });
 audio.addEventListener("pause", () => { $("frame").classList.remove("playing"); $("ppIcon").innerHTML = PLAY; });
@@ -875,11 +897,11 @@ const RATES = [1, 1.25, 1.5, 0.75];
 function setRate(r) {
   audio.playbackRate = audio.defaultPlaybackRate = r;
   $("rate").textContent = r + "×"; $("rate").classList.toggle("on", r !== 1);
-  try { localStorage.setItem("rate", r); } catch {}
+  try { localStorage.setItem("aviation-rate", r); } catch {}
 }
 $("rate").onclick = () => setRate(RATES[(RATES.indexOf(audio.playbackRate) + 1) % RATES.length] || 1);
 // where the viewer stopped, per episode and language, and the episodes heard to the end (in this browser only)
-const store = (k, v) => { try { if (v === undefined) return JSON.parse(localStorage.getItem(k) || "{}"); localStorage.setItem(k, JSON.stringify(v)); } catch { return {}; } };
+const store = (k, v) => { try { if (v === undefined) return JSON.parse(localStorage.getItem("news-radio:" + k) || "{}"); localStorage.setItem("news-radio:" + k, JSON.stringify(v)); } catch { return {}; } };
 let curName = null, savedAt = 0;
 function savePos(force) {
   if (!ep || !curName || (!force && performance.now() - savedAt < 2000)) return;
@@ -972,12 +994,27 @@ try { const s = JSON.parse(localStorage.getItem(SOUND_KEY) || "null"); if (s) { 
 showSound();
 
 // ---------- episodes ----------
+let loadSerial = 0;
 async function load(date, lang = LANG, at = 0) {
+  const serial = ++loadSerial;
+  audio.pause();
+  $("loading").textContent = tr("loading");
   const entry = EPS.find(e => e.date === date), langs = langsOf(entry);
   const L = langs.length ? (langs.includes(lang) ? lang : langs[0]) : null;
   const name = L ? `${date}-${L}` : date;
   savePos(true);   // the episode being left: where it stopped
-  ep = await (await fetch(`episodes/${name}.json`, { cache: "no-store" })).json();
+  try {
+    const response = await fetch(`episodes/${name}.json`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Episode HTTP ${response.status}`);
+    const next = await response.json();
+    if (!Array.isArray(next.lines_timed) || !Array.isArray(next.segments) || !next.segments.length || !Array.isArray(next.news) || !(next.seconds > 0)) throw new Error("Invalid episode");
+    if (serial !== loadSerial) return;
+    ep = next;
+  } catch (error) {
+    if (serial !== loadSerial) return;
+    $("loading").textContent = "番組を読み込めませんでした。ページを再読み込みしてください。";
+    console.warn(error); return;
+  }
   setLang(L || ep.lang || STATION.language || LANG);
   // speech intervals; short pauses inside a part count as speaking, so her mouth does not flicker shut
   speech = [];
@@ -985,10 +1022,12 @@ async function load(date, lang = LANG, at = 0) {
     const last = speech[speech.length - 1];
     if (last && l.start - last[1] < 0.45) last[1] = l.end; else speech.push([l.start, l.end]);
   }
-  curPart = -1;
+  curPart = -1; activeSpeakerKey = null;
   // an episode can be remade under the same name: the made_at stamp keeps the browser from playing a cached older voice
   curName = name;
-  audio.src = (ep.audio || `audio/${name}.mp3`) + `?v=${encodeURIComponent(ep.made_at || "")}`;
+  const audioUrl = new URL(ep.audio || `${STATION.audio?.dir || "audio"}/${name}.mp3`, location.href);
+  if (!audioUrl.search) audioUrl.searchParams.set("v", ep.made_at || "");
+  audio.src = audioUrl.href;
   $("sdate").querySelector("span").textContent = dateFmt(date);
   $("langsw").hidden = langs.length < 2;
   $("langsw").innerHTML = langs.map(l => `<button data-lang="${l}" aria-pressed="${l === L}" title="${NAMES[l] || l}">${l.toUpperCase()}</button>`).join("");
@@ -996,18 +1035,19 @@ async function load(date, lang = LANG, at = 0) {
   const k = EPS.findIndex(e => e.date === date);   // EPS is newest first
   $("epPrev").disabled = k < 0 || k >= EPS.length - 1; $("epNext").disabled = k <= 0;
   talkShow();
-  $("scriptText").textContent = [...ep.opening, ...ep.news.flatMap(n => [`\n■ ${n.label}`, ...n.lines]), "", ...ep.closing].map(l => typeof l === "string" ? l : l.show).join("\n");
+  $("scriptText").textContent = [...ep.opening, ...ep.news.flatMap(n => [`\n■ ${n.label}`, ...n.lines]), "", ...ep.closing].map(l => typeof l === "string" ? l : `${ep.speakers?.[l.speaker]?.name ? "【" + ep.speakers[l.speaker].name + "】" : ""}${l.show}`).join("\n");
   // sources: the briefing's own URL (flagged when it does not open), and the related article the card shows instead
   const srcOf = n => n.source_link || (n.link && !n.link.found_by ? n.link : n.url ? { url: n.url } : null);
   const linkLine = (l, label) => { const bad = l.status === 404 || l.status === 410, host = (() => { try { return new URL(l.url).hostname; } catch { return l.url; } })();
     return `<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer"><small>${label}${esc(l.site || host)}${bad ? tr("sep") + "⚠ " + tr("notFound")(l.status) : l.title ? tr("sep") + esc(l.title) : ""}</small></a>`; };
   // the news to read: headline (jumps the player there), the points with their details, the sources, the share image
-  $("links").innerHTML = `<h1>${tr("news")}</h1>` + ep.news.map((n, j) => {
+  $("links").innerHTML = `<h1>${tr("news")}</h1><p class="source-note">11月6日朝の編集版です。すべてが当日発表の情報ではありません。就航日・便数は今後変更される場合があります。</p>` + ep.news.map((n, j) => {
     const src = srcOf(n), img = n.link?.image && n.link.status !== 404;
     return `<article class="item"><button class="jump" data-seg="${newsSeg(j)}" title="${tr("jump")}"><span class="d">${String(j + 1).padStart(2, "0")}</span><b>${esc(n.label)}</b><i>${mmss(ep.segments[newsSeg(j)]?.start || 0)}</i></button>`
       + (img ? `<a class="pic" href="${esc(n.link.url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(n.link.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></a>` : "")
+      + `<span class="speaker-label">${esc(ep.speakers?.[n.speaker]?.credit || "")}</span>`
       + `<ul class="pts">${n.points.map((x, k) => `<li><b>${esc(x)}</b>${n.details?.[k] ? `<span>${esc(n.details[k])}</span>` : ""}</li>`).join("")}</ul>`
-      + `<div class="srcs">${src ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div></article>`;
+      + `<div class="srcs">${n.sources?.length ? n.sources.map(x => linkLine(x, (x.type || tr("source")) + tr("colon"))).join("<br>") : src ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div></article>`;
   }).join("");
   $("toc").innerHTML = ep.news.map((n, j) =>
     `<button data-seg="${newsSeg(j)}">${String(j + 1).padStart(2, "0")}<span>${esc(n.label)}</span></button>`).join("");
@@ -1084,7 +1124,7 @@ function talkShow() {
 $("talkBox").addEventListener("toggle", talkShow);
 // the station describes itself in station.json (name, what it broadcasts, logo, credits): this page and, later,
 // a channel guide read it
-let STATION = { name: "ものラジオ", credits: [] };
+let STATION = { name: "ニュースラジオ", credits: [] };
 // a station field in the current language: station.json may give "i18n": {"en": {"name", "tagline", "credits", ...}}
 const st = k => STATION.i18n?.[LANG]?.[k] ?? STATION[k];
 function setLang(l) {
@@ -1245,13 +1285,14 @@ async function loadStation() {
 }
 async function init() {
   // the show plays even if the character cannot be drawn
-  await Promise.all([loadStation(), loadCharacter().catch(e => console.warn("character", e))]);
+  await loadStation();
+  await loadCharacter().catch(e => console.warn("character", e));
   wxLoad();
-  let r = 1; try { r = +localStorage.getItem("rate") || 1; } catch {}
+  let r = 1; try { r = +localStorage.getItem("aviation-rate") || 1; } catch {}
   setRate(RATES.includes(r) ? r : 1);
   $("loading").textContent = tr("loading");
   let eps = [];
-  try { eps = await (await fetch("episodes.json", { cache: "no-store" })).json(); } catch {}
+  try { eps = await (await fetch(STATION.episodes || "episodes.json", { cache: "no-store" })).json(); } catch {}
   if (!eps.length) { $("loading").textContent = tr("empty"); $("cover").hidden = true; return; }
   $("sdate").disabled = eps.length < 2;
   EPS = eps; $("epPrev").hidden = $("epNext").hidden = eps.length < 2;
