@@ -1,7 +1,7 @@
 {
   "format": "myradio/station-1",
   "name": "Tabito Radio",
-  "description": "今朝チェックした航空ニュース5件を、女性・男性のナレーションで。",
+  "description": "航空ニュースを男女のナレーションで届けるTabito Radio。放送回ごとの音声・台本・記事・出典を掲載しています。",
   "tagline": "航空ニュース / AVIATION NEWS",
   "logo": "logo.svg?v=radio-2",
   "url": "https://kumokazetabito.github.io/myradio/",
