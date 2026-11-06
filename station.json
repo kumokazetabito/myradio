@@ -1,8 +1,8 @@
 {
   "format": "myradio/station-1",
-  "name": "ニュースラジオ",
+  "name": "Tabito Radio",
   "description": "今朝チェックした航空ニュース5件を、女性・男性のナレーションで。",
-  "tagline": "航空ニュース / MORNING BRIEF",
+  "tagline": "航空ニュース / AVIATION NEWS",
   "logo": "logo.svg",
   "url": "https://kumokazetabito.github.io/myradio/",
   "language": "ja",
@@ -33,5 +33,6 @@
   "program": {
     "id": "aviation",
     "name": "航空ニュース"
-  }
+  },
+  "creator": "雲風旅人"
 }
