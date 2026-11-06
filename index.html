@@ -433,6 +433,7 @@ html.phone #share span{display:none}
 #maleVoice[hidden]{display:none}#maleVoice svg{width:44%;height:auto}#maleVoice b{font-size:42px;letter-spacing:4px}#maleVoice>span{font-size:22px}#maleVoice .voice-label{font:16px var(--mono);letter-spacing:5px}.voice-bars{display:flex;height:34px;align-items:center;gap:9px}.voice-bars i{width:7px;height:12px;border-radius:8px;background:currentColor}.playing .voice-bars i{animation:voicebar .8s ease-in-out infinite alternate}.voice-bars i:nth-child(2){animation-delay:-.3s}.voice-bars i:nth-child(3){animation-delay:-.6s}.voice-bars i:nth-child(4){animation-delay:-.1s}.voice-bars i:nth-child(5){animation-delay:-.5s}@keyframes voicebar{to{height:32px}}
 #cam.male #charcv{visibility:hidden}.speaker-label{display:inline-block;font-size:11px;font-weight:600;color:var(--teal);margin:8px 0}.source-note{color:var(--muted);font-size:12px;line-height:1.7}#camCredit{background:rgba(0,0,0,.65);padding:7px 12px;border-radius:6px}
 #maleVoice{background:var(--cam);gap:0}#maleVoice img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+#maleVoice canvas{width:100%;height:100%;object-fit:contain;object-position:center bottom}#maleVoice canvas[hidden],#maleVoice img[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -449,7 +450,7 @@ html.phone #share span{display:none}
       <div id="cam">
         <img id="idle" alt="">
         <canvas id="charcv" hidden></canvas>
-        <div id="maleVoice" hidden aria-label="男性キャスター"><img src="character/male/base.png" alt="番組オリジナルの男性キャスター"></div>
+        <div id="maleVoice" hidden aria-label="男性キャスター"><img id="maleFallback" src="character/male/base.png" alt="番組オリジナルの男性キャスター"><canvas id="maleCanvas" role="img" aria-label="口とまばたきが動く男性キャスター" hidden></canvas></div>
         <video id="va" muted playsinline preload="auto"></video>
         <video id="vb" muted playsinline preload="auto"></video>
         <div class="rec"><i></i>VOICE</div>
@@ -849,6 +850,46 @@ function showCard(link) {
 }
 $("card").addEventListener("click", () => audio.pause());
 
+// Male sprites are composed from the approved base and small localized overlays.
+const MALE = { ready: false, mouth: 0, mouthAt: 0, blinkAt: -1e9, nextBlink: 0, key: null };
+async function loadMaleCharacter() {
+  const packUrl = new URL(STATION.character?.male_pack || "character/male/character.json", location.href);
+  const response = await fetch(packUrl, { cache: "no-store" });
+  if (!response.ok) throw new Error("Male character pack unavailable");
+  const pack = await response.json();
+  const img = path => new Promise((resolve, reject) => {
+    const image = new Image(); image.onload = () => resolve(image); image.onerror = reject;
+    image.src = new URL(path, packUrl).href;
+  });
+  const base = await img(pack.base);
+  const parts = Object.fromEntries(await Promise.all(Object.entries(pack.parts).map(async ([name, part]) => [name, { ...part, img: await img(part.src) }])));
+  const canvas = $("maleCanvas"); [canvas.width, canvas.height] = pack.size;
+  Object.assign(MALE, { base, parts, pack, canvas, ctx: canvas.getContext("2d"), ready: true });
+  maleFrame(performance.now(), false);
+  canvas.hidden = false; $("maleFallback").hidden = true;
+}
+function maleFrame(now, speaking) {
+  if (!MALE.ready) return;
+  let want = 0;
+  if (speaking) {
+    const level = voiceLevel();
+    want = level !== null ? level : (Math.floor(now / 160) % 3 === 0 ? 1 : 2);
+  }
+  if (!speaking) MALE.mouth = 0;
+  else if (want !== MALE.mouth && now - MALE.mouthAt >= MOUTH_HOLD) {
+    MALE.mouth += Math.sign(want - MALE.mouth); MALE.mouthAt = now;
+  }
+  if (now > MALE.nextBlink) { MALE.blinkAt = now; MALE.nextBlink = now + 2500 + Math.random() * 3500; }
+  const blink = now - MALE.blinkAt < 140;
+  const key = `${MALE.mouth}:${blink}`;
+  if (key === MALE.key) return;
+  MALE.key = key;
+  const c = MALE.ctx, canvas = MALE.canvas;
+  c.clearRect(0, 0, canvas.width, canvas.height); c.drawImage(MALE.base, 0, 0, canvas.width, canvas.height);
+  const layers = [blink ? "blink" : null, MALE.pack.mouth[MALE.mouth]].filter(Boolean);
+  for (const name of layers) { const part = MALE.parts[name]; if (part) c.drawImage(part.img, part.x, part.y); }
+  canvas.dataset.mouth = String(MALE.mouth); canvas.dataset.blink = String(blink);
+}
 let activeSpeakerKey = null;
 function showSpeaker(key) {
   if (key === activeSpeakerKey) return;
@@ -870,6 +911,7 @@ function tick(now) {
     showPart(t >= dur - 0.05 ? ep.segments.length - 1 : part);
     const line = ep.lines_timed.find(l => t >= l.start && t < l.end);
     showSpeaker(line?.speaker || ep.segments[curPart]?.speaker || "metan");
+    if (activeSpeakerKey === "takehiro") maleFrame(now, speakingAt(t));
     const cap = line ? line.show : "";
     if ($("cap").firstChild.textContent !== cap) { $("cap").firstChild.textContent = cap; $("now").textContent = cap; }
     if (CHAR.type !== "sprites") setTalking(speakingAt(t));
@@ -1286,7 +1328,7 @@ async function loadStation() {
 async function init() {
   // the show plays even if the character cannot be drawn
   await loadStation();
-  await loadCharacter().catch(e => console.warn("character", e));
+  await Promise.all([loadCharacter().catch(e => console.warn("character", e)), loadMaleCharacter().catch(e => console.warn("male character", e))]);
   wxLoad();
   let r = 1; try { r = +localStorage.getItem("aviation-rate") || 1; } catch {}
   setRate(RATES.includes(r) ? r : 1);
