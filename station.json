@@ -3,7 +3,7 @@
   "name": "Tabito Radio",
   "description": "今朝チェックした航空ニュース5件を、女性・男性のナレーションで。",
   "tagline": "航空ニュース / AVIATION NEWS",
-  "logo": "logo.svg",
+  "logo": "logo.svg?v=radio-2",
   "url": "https://kumokazetabito.github.io/myradio/",
   "language": "ja",
   "languages": [
