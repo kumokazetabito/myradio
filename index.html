@@ -430,6 +430,15 @@ html.phone #share span{display:none}
 
 #card{flex-direction:column;gap:10px}#cardSources{display:flex;flex-direction:column;gap:3px;flex:1;min-height:0;overflow-y:auto}#cardSources a{display:block;padding:4px 10px;flex:none;border-radius:7px;border:1px solid var(--line);text-decoration:none;color:var(--text);background:rgba(255,255,255,.025)}#cardSources a:hover,#cardSources a:focus-visible{border-color:var(--yellow);background:rgba(121,229,204,.08)}#cardSources b{display:block;font-size:20px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#cardSources small{display:block;font:12px/1.2 var(--mono);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#card .open{font-size:12px;margin-top:0}
 html.v #cardSources{gap:10px}html.v #cardSources a{padding:14px 16px}html.v #cardSources b{font-size:28px}html.v #cardSources small{font-size:21px}
+/* Phone playback keeps the opening's article and character frames throughout every story. */
+html.phone #card,html.phone #wx{display:none !important}
+html.phone #stage #panel{transform:none !important;transition:none;animation:none}
+html.phone.v #panel,html.phone.v .has-card #panel{left:48px;top:256px;width:984px;height:744px;padding:44px 52px 32px}
+html.phone.v #panel h2,html.phone.v .has-card #panel h2{font-size:78px;margin:22px 0 34px}
+html.phone.v #panel li,html.phone.v .has-card #panel li{font-size:50px}
+html.phone.v #panel ul,html.phone.v .has-card #panel ul{gap:24px}
+html.phone.v #cam,html.phone.v .has-card #cam{left:150px;top:1024px;width:780px;height:668px;transition:none}
+html.phone:not(.v) #cam,html.phone:not(.v) .has-card #cam{left:992px;top:150px;width:896px;height:768px;transition:none}
 </style>
 </head>
 <body>
