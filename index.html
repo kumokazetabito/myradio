@@ -468,6 +468,22 @@ html:not(.phone) .links .item .jump{font-size:20px}
 .chan .av svg{width:30px;height:30px;fill:none;stroke:var(--yellow);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 html.phone #programMeta{display:none}
 html.phone .langsw.single-language{display:none}
+
+/* Chapter controls stay within the stage as episodes grow. */
+html:not(.v) #toc{width:88px;height:780px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--muted) transparent}
+html:not(.v) #toc button{width:68px;min-height:68px;flex:none}
+html.v #toc{width:984px;height:92px;overflow-x:auto;overflow-y:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--muted) transparent}
+html.v #toc button{flex:0 0 100px}
+#panel .opening-fit{height:100%;display:flex;flex-direction:column;gap:12px}
+#panel .opening-title{font-size:54px;font-weight:800;line-height:1.2}
+#panel .opening-fit .date{font-size:26px;margin:0}
+#panel .opening-fit ol{flex:1;min-height:0;overflow-y:auto;gap:8px;overscroll-behavior:contain}
+#panel .opening-fit ol li,html.phone.v #panel .opening-fit ol li{font-size:36px;line-height:1.3;flex:none;padding-left:68px;animation:none;opacity:1;cursor:pointer}
+#panel .opening-fit ol li:focus-visible{outline:2px solid var(--yellow);outline-offset:-2px}
+#panel .opening-pages{display:flex;align-items:center;justify-content:space-between;gap:16px;flex:none;font:600 24px var(--jp);color:var(--muted)}
+#panel .opening-pages button{font:inherit;color:var(--text);background:rgba(121,229,204,.06);border:1px solid var(--line);border-radius:10px;padding:8px 16px;cursor:pointer}
+#panel .opening-pages button:disabled{opacity:.3;cursor:default}
+#panel .opening-pages button:focus-visible{outline:2px solid var(--yellow)}
 </style>
 </head>
 <body>
@@ -584,9 +600,9 @@ function dockCheck() {
   root.classList.add("swap");   // the other stage at once: no gliding from the old places
   root.classList.toggle("dock", docked);
   root.classList.toggle("v", !docked);
-  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("swap")));
+  requestAnimationFrame(() => { keepChapterVisible(); requestAnimationFrame(() => root.classList.remove("swap")); });
 }
-PHONE.addEventListener("change", () => { phoneLayout(); dockCheck(); });
+PHONE.addEventListener("change", () => { phoneLayout(); dockCheck(); requestAnimationFrame(keepChapterVisible); });
 addEventListener("scroll", dockCheck, { passive: true });
 phoneLayout();
 new ResizeObserver(([e]) => { $("stage").style.transform = `scale(${e.contentRect.width / $("stage").offsetWidth})`; }).observe($("frame"));
@@ -750,10 +766,39 @@ function spriteFrame(t, now, speaking, kind) {
 }
 
 // ---------- slides ----------
+const OPENING_PAGE_SIZE = 5;
+let openingPage = 0, openingManual = false;
+const openingPages = () => Math.ceil((ep?.news.length || 0) / OPENING_PAGE_SIZE);
+function openingItems() {
+  return ep.news.slice(openingPage * OPENING_PAGE_SIZE, (openingPage + 1) * OPENING_PAGE_SIZE).map((n, k) => {
+    const j = openingPage * OPENING_PAGE_SIZE + k;
+    return `<li tabindex="0" role="button" title="${esc(n.label)}" data-n="${String(j + 1).padStart(2, "0")}" data-seg="${newsSeg(j)}">${esc(n.label)}</li>`;
+  }).join("");
+}
+function setOpeningPage(page, manual = false) {
+  const list = $("openingItems"); if (!list) return;
+  if (manual) openingManual = true;
+  const next = Math.max(0, Math.min(page, openingPages() - 1));
+  if (next === openingPage) return;
+  openingPage = next; list.innerHTML = openingItems();
+  $("openingPageLabel").textContent = `${openingPage + 1} / ${openingPages()}`;
+  $("openingPrev").disabled = openingPage === 0;
+  $("openingNext").disabled = openingPage === openingPages() - 1;
+}
+function keepChapterVisible() {
+  const toc = $("toc"), button = toc.querySelector(".cur"); if (!button) return;
+  const horizontal = document.documentElement.classList.contains("v");
+  const start = horizontal ? button.offsetLeft : button.offsetTop;
+  const size = horizontal ? button.offsetWidth : button.offsetHeight;
+  const scroll = horizontal ? toc.scrollLeft : toc.scrollTop;
+  const view = horizontal ? toc.clientWidth : toc.clientHeight;
+  if (start < scroll || start + size > scroll + view)
+    toc.scrollTo({ [horizontal ? "left" : "top"]: Math.max(0, start - (view - size) / 2), behavior: "auto" });
+}
 function partHtml(p) {
   if (p.kind === "opening")
-    return `<div class="tag">TODAY</div><div class="big">${headCopy(/^https:\/\//.test(STATION.repo || "") ? STATION.repo : "", (STATION.logo ? '<i class="logo"></i>' : "") + esc(st("name")))}</div><div class="sub">${esc(st("tagline") || "")}</div><div class="date">${esc(dateFmt(ep.date))}</div>
-      <ol>${ep.news.map((n, j) => `<li data-n="${String(j + 1).padStart(2, "0")}" data-seg="${newsSeg(j)}" style="animation-delay:${0.25 + j * 0.12}s">${esc(n.label)}</li>`).join("")}</ol>`;
+    return `<div class="tag">TODAY · ${ep.news.length} NEWS</div><div class="opening-title">今日のニュース</div><div class="date">${esc(dateFmt(ep.date))}</div>
+      <ol id="openingItems" aria-label="記事一覧">${openingItems()}</ol>${openingPages() > 1 ? `<nav class="opening-pages" aria-label="記事一覧のページ"><button id="openingPrev" data-opening-step="-1" disabled aria-label="前の5件">‹ 前の5件</button><span id="openingPageLabel" role="status">1 / ${openingPages()}</span><button id="openingNext" data-opening-step="1" aria-label="次の5件">次の5件 ›</button></nav>` : ""}`;
   if (p.kind === "closing")
     return `<div class="tag">SEE YOU</div><div class="big">${tr("bye")}</div><div class="closing-title">${esc(ep.title)}</div>${pickHtml()}`;
   const n = ep.news[p.index];
@@ -789,7 +834,7 @@ $("panel").addEventListener("click", async e => {
 // open one point's detail under it, closing any other (a new part on screen starts with all closed)
 // the panel's words shrink a little when they do not fit (a longer language, an opened detail)
 function fitPanel() {
-  const el = $("panel"), f = el.querySelector(".fit"); if (!f) return;
+  const el = $("panel"), f = el.querySelector(".fit"); if (!f || f.classList.contains("opening-fit")) return;
   let z = 1; f.style.zoom = z;
   while (el.scrollHeight > el.clientHeight + 1 && z > .6) { z -= .04; f.style.zoom = z; }
 }
@@ -801,21 +846,29 @@ function showDetail(j) {
   clearTimeout(showDetail.fit); showDetail.fit = setTimeout(fitPanel, 380);   // after the detail has opened
 }
 $("panel").addEventListener("click", e => {
+  const page = e.target.closest("[data-opening-step]");
+  if (page) { setOpeningPage(openingPage + +page.dataset.openingStep, true); return; }
   const li = e.target.closest("li.more"); if (!li) return;
   showDetail(li.classList.contains("open") ? null : +li.dataset.point);
 });
 $("panel").addEventListener("keydown", e => {
-  if (e.target.matches("li.more") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.stopPropagation(); e.target.click(); }
+  if (e.target.matches("li.more, li[data-seg]") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.stopPropagation(); e.target.click(); }
 });
 function showPart(i) {
   if (i === curPart) return;
   curPart = i;
   showDetail(null);
-  const el = $("panel"); el.innerHTML = `<div class="fit">${partHtml(ep.segments[i])}</div>`;
-  fitPanel();
+  const opening = ep.segments[i].kind === "opening";
+  openingPage = 0; openingManual = false;
+  const el = $("panel"); el.innerHTML = `<div class="fit${opening ? " opening-fit" : ""}">${partHtml(ep.segments[i])}</div>`;
+  if (!opening) fitPanel();
   el.classList.remove("enter"); void el.offsetWidth; el.classList.add("enter");
   showCard(ep.segments[i].kind === "news" ? ep.news[ep.segments[i].index] : null);
-  document.querySelectorAll("#toc button").forEach(b => b.classList.toggle("cur", +b.dataset.seg === i));
+  document.querySelectorAll("#toc button").forEach(b => {
+    const current = +b.dataset.seg === i; b.classList.toggle("cur", current);
+    if (current) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+  });
+  keepChapterVisible();
 }
 // jump to a part of the show (a topic)
 const newsSeg = j => ep.segments.findIndex(s => s.kind === "news" && s.index === j);
@@ -983,6 +1036,9 @@ function tick(now) {
     const t = seeking ? +$("seek").value / 1000 * ep.seconds : pendingSeek ?? audio.currentTime, dur = ep.seconds;
     const part = Math.max(0, ep.segments.findIndex(s => t >= s.start && t < s.end));
     showPart(t >= dur - 0.05 ? ep.segments.length - 1 : part);
+    const section = ep.segments[curPart];
+    if (section.kind === "opening" && !openingManual && openingPages() > 1)
+      setOpeningPage(Math.floor((t - section.start) / Math.max(.01, section.end - section.start) * openingPages()));
     const line = ep.lines_timed.find(l => t >= l.start && t < l.end);
     showSpeaker(line?.speaker || ep.segments[curPart]?.speaker || "metan");
     if (activeSpeakerKey === "takehiro") maleFrame(now, speakingAt(t));
@@ -1214,7 +1270,8 @@ async function load(date, lang = LANG, at = 0) {
       + `<div class="srcs">${n.sources?.length ? n.sources.map(x => linkLine(x, (x.type || tr("source")) + tr("colon"))).join("") : src ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div></article>`;
   }).join("");
   $("toc").innerHTML = ep.news.map((n, j) =>
-    `<button data-seg="${newsSeg(j)}">${String(j + 1).padStart(2, "0")}<span>${esc(n.label)}</span></button>`).join("");
+    `<button title="${esc(n.label)}" data-seg="${newsSeg(j)}">${String(j + 1).padStart(2, "0")}<span>${esc(n.label)}</span></button>`).join("");
+  curPart = -1; // Reapply the active chapter after rebuilding its buttons.
   document.querySelectorAll("#eps a").forEach(a => a.classList.toggle("cur", a.dataset.date === date));
   $("loading").textContent = "";
   // switching the language keeps the place in the show: the same part, from its start
