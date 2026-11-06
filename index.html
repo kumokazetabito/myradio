@@ -318,9 +318,9 @@ h1{font-size:15px;margin:22px 0 8px;color:var(--muted);font-weight:600}
 #eplist .ln small{display:block;text-align:right;font:700 15px var(--jp);color:var(--teal);margin-top:4px}
 #eplist .ln small.part{color:var(--muted)}
 /* the news below the player, to read: headline, the points with their details, the sources, and the share image */
-.links .item{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "pts" "srcs";align-content:start;
+.links .item{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "pts" "srcs" "speaker";align-content:start;
   column-gap:22px;padding:14px 10px;border-top:1px solid var(--line)}
-.links .item:has(.pic){grid-template-columns:minmax(0,1fr) 260px;grid-template-rows:auto auto 1fr;grid-template-areas:"head pic" "pts pic" "srcs pic"}
+.links .item:has(.pic){grid-template-columns:minmax(0,1fr) 260px;grid-template-rows:auto auto auto 1fr;grid-template-areas:"head pic" "pts pic" "srcs pic" "speaker pic"}
 .links .item .jump{grid-area:head;font-size:17px;font-weight:700}
 .links .pic{grid-area:pic;align-self:start}
 .links .pic img{display:block;width:100%;aspect-ratio:1.91;object-fit:cover;border-radius:8px;background:#0f1219}
@@ -330,7 +330,7 @@ h1{font-size:15px;margin:22px 0 8px;color:var(--muted);font-weight:600}
 .links .srcs{grid-area:srcs}
 .links .srcs a{display:block;color:inherit;text-decoration:none}
 .links .srcs a:hover small{color:var(--yellow)}
-@media (max-width:560px){ .links .item:has(.pic){grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-template-areas:"head" "pic" "pts" "srcs"}
+@media (max-width:560px){ .links .item:has(.pic){grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-template-areas:"head" "pic" "pts" "srcs" "speaker"}
   .links .pic{margin-top:10px} }
 .links .d{font:700 13px var(--mono);color:var(--yellow)}
 .links .jump{display:flex;gap:10px;align-items:baseline;border:0;background:none;color:inherit;font:inherit;padding:0;cursor:pointer;text-align:left}
@@ -420,12 +420,11 @@ html.phone .sound input{display:none}
 html.phone .controls .time{font-size:12px}
 html.phone #share{padding:0 9px}
 html.phone #share span{display:none}
-.trial-note{display:flex;gap:12px;align-items:center;padding:14px 18px;margin-bottom:14px;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:13px;line-height:1.7}.trial-note b{white-space:nowrap;color:var(--yellow)}html.embed .trial-note{display:none}@media(max-width:600px){.trial-note{align-items:flex-start;font-size:12px;padding:12px}}
 #panel .big{font-size:76px}#panel .big .logo{width:64px;height:64px;margin-right:14px;vertical-align:-5px}html.v #panel .big{font-size:86px}
 
 #maleVoice{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(ellipse at 50% 40%,#183646,#121b29 75%);color:#9ed5ff}
 #maleVoice[hidden]{display:none}#maleVoice svg{width:44%;height:auto}#maleVoice b{font-size:42px;letter-spacing:4px}#maleVoice>span{font-size:22px}#maleVoice .voice-label{font:16px var(--mono);letter-spacing:5px}.voice-bars{display:flex;height:34px;align-items:center;gap:9px}.voice-bars i{width:7px;height:12px;border-radius:8px;background:currentColor}.playing .voice-bars i{animation:voicebar .8s ease-in-out infinite alternate}.voice-bars i:nth-child(2){animation-delay:-.3s}.voice-bars i:nth-child(3){animation-delay:-.6s}.voice-bars i:nth-child(4){animation-delay:-.1s}.voice-bars i:nth-child(5){animation-delay:-.5s}@keyframes voicebar{to{height:32px}}
-#cam.male #charcv{visibility:hidden}.speaker-label{display:inline-block;font-size:11px;font-weight:600;color:var(--teal);margin:8px 0}.source-note{color:var(--muted);font-size:12px;line-height:1.7}#camCredit{background:rgba(0,0,0,.65);padding:7px 12px;border-radius:6px}
+#cam.male #charcv{visibility:hidden}.speaker-label{grid-area:speaker;padding-left:28px;display:block;font-size:11px;font-weight:600;color:var(--teal);margin:8px 0}.source-note{color:var(--muted);font-size:12px;line-height:1.7}#camCredit{background:rgba(0,0,0,.65);padding:7px 12px;border-radius:6px}
 #maleVoice{background:var(--cam);gap:0}#maleVoice img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
 #maleVoice canvas{width:100%;height:100%;object-fit:contain;object-position:center bottom}#maleVoice canvas[hidden],#maleVoice img[hidden]{display:none}
 
@@ -435,7 +434,6 @@ html.v #cardSources{gap:10px}html.v #cardSources a{padding:14px 16px}html.v #car
 </head>
 <body>
 <main>
-  <aside class="trial-note"><b>航空ニュース</b><span>11月6日朝の5件。発表日・運航開始日を区別し、出典を掲載しています。</span></aside>
   <div id="frame">
     <div id="stage">
       <div class="brand"><i class="logo" id="slogo" hidden></i><b id="sname">Tabito Radio</b><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
