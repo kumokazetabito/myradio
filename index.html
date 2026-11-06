@@ -104,11 +104,7 @@ main{max-width:1280px;margin:0 auto;padding:16px}
    - link card (hover): the card grows a little where it is, the panel and she shrink in place */
 #panel{transform-origin:0 0;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
 #card img{transition:width .45s cubic-bezier(.2,.8,.2,1),height .45s cubic-bezier(.2,.8,.2,1)}
-@media (hover:hover){
-#stage:has(#toc:hover) #toc{width:440px}
-#stage:has(#toc:hover) #toc button span{opacity:1}
-#stage:has(#toc:hover) #panel{transform:translateX(352px) scale(.58)}
-}
+
 #panel{left:130px;top:150px;width:830px;height:780px;overflow:hidden;background:rgba(22,25,35,.82);border:1px solid var(--line);border-radius:18px;padding:56px 56px 40px}
 #panel .tag{font:700 28px var(--mono);color:var(--yellow);letter-spacing:4px;display:flex;align-items:center;gap:16px}
 #panel .tag::before{content:"";width:8px;height:34px;background:var(--red)}
@@ -438,7 +434,14 @@ html.phone.v #panel h2,html.phone.v .has-card #panel h2{font-size:78px;margin:22
 html.phone.v #panel li,html.phone.v .has-card #panel li{font-size:50px}
 html.phone.v #panel ul,html.phone.v .has-card #panel ul{gap:24px}
 html.phone.v #cam,html.phone.v .has-card #cam{left:150px;top:1024px;width:780px;height:668px;transition:none}
-html.phone:not(.v) #cam,html.phone:not(.v) .has-card #cam{left:992px;top:150px;width:896px;height:768px;transition:none}
+/* Desktop: wider article, fixed character frame, and sources in the article list below. */
+#card,#wx,#now{display:none !important}
+html:not(.v) #panel{left:130px;top:150px;width:1056px;height:780px;padding:56px 56px 40px}
+html:not(.v) #panel h2{font-size:72px}
+html:not(.v) #panel li{font-size:44px}
+html:not(.v) #cam,html:not(.v) .has-card #cam{left:1218px;top:253px;width:670px;height:574px;transition:none}
+#stage #panel{transform:none !important;transition:none;animation:none}
+#cam .credit,.has-card #cam .credit{right:14px;bottom:10px;font-size:21px}
 </style>
 </head>
 <body>
@@ -683,8 +686,7 @@ function spriteFrame(t, now, speaking, kind) {
   // she watches what the viewer is looking at (the link card, an opened detail), wherever the layout has put it: her eyes
   // go there, and so does her body unless the pointer moved lately (then the body turns to the pointer); else she sways a little
   const st = $("stage").classList, opened = $("panel").querySelector("li.open .detail");
-  const watch = st.contains("has-card") && $("card").matches(":hover") ? $("card")
-    : opened || (st.contains("has-card") ? $("card") : null);
+  const watch = opened;
   let gaze = null;
   if (watch) {
     const a = watch.getBoundingClientRect(), c = $("cam").getBoundingClientRect();

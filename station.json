@@ -28,7 +28,7 @@
     "dir": "audio",
     "keep_days": 30
   },
-  "weather": true,
+  "weather": false,
   "repo": "https://github.com/kumokazetabito/myradio",
   "program": {
     "id": "aviation",
