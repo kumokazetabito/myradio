@@ -1,0 +1,20 @@
+{
+  "format": "tabito-pages/1",
+  "audio": [
+    "audio/2026-11-06-aviation-ja.m4a"
+  ],
+  "files": [
+    "index.html",
+    "sitemap.xml",
+    "aviation/2026-11-06/ja/index.html",
+    "share/aviation-2026-11-06-ja.png"
+  ],
+  "episodes": [
+    {
+      "date": "2026-11-06",
+      "lang": "ja",
+      "program": "aviation",
+      "path": "aviation/2026-11-06/ja/"
+    }
+  ]
+}
