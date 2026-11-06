@@ -977,7 +977,7 @@ function showSpeaker(key) {
 // ---------- the clock: everything follows the audio position ----------
 function tick(now) {
   const speakingAt = t => !audio.paused && speech.some(([a, b]) => t >= a && t < b);
-  if (CHAR.type === "sprites") spriteFrame(audio.currentTime, now, ep && speakingAt(audio.currentTime) && activeSpeakerKey !== "takehiro", ep?.segments[curPart]?.kind);
+  if (CHAR.type === "sprites" && activeSpeakerKey !== "takehiro") spriteFrame(audio.currentTime, now, ep && speakingAt(audio.currentTime) && activeSpeakerKey !== "takehiro", ep?.segments[curPart]?.kind);
   if (ep) {
     const t = seeking ? +$("seek").value / 1000 * ep.seconds : pendingSeek ?? audio.currentTime, dur = ep.seconds;
     const part = Math.max(0, ep.segments.findIndex(s => t >= s.start && t < s.end));
