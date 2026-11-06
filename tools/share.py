@@ -214,7 +214,9 @@ def main():
             st = lambda k: station.get("i18n", {}).get(L, {}).get(k, station.get(k))
             logo = logo_image(os.path.join(root, station["logo"]) if station.get("logo") else None, 40)
             card(station, st, ep, L, char, logo, fpath).save(os.path.join(root, "share", f"{stem}.jpg"), quality=88, optimize=True)
-            target = f"../#{date}/{lang}" if lang else f"../#{date}"
+            program = station.get("program", {}).get("id")
+            route = f"{program}/{date}" if program else date
+            target = f"../#{route}/{lang}" if lang else f"../#{route}"
             open(os.path.join(root, "share", f"{stem}.html"), "w").write(page(st, ep, L, stem, target, base))
             made += 1
         if newest is None:

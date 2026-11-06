@@ -1028,6 +1028,15 @@ try { const s = JSON.parse(localStorage.getItem(SOUND_KEY) || "null"); if (s) { 
 showSound();
 
 // ---------- episodes ----------
+// Public URLs include the program slug; legacy date-only links still resolve.
+const programId = () => STATION.program?.id || "aviation";
+const episodeHash = (date, lang = LANG) => `#${programId()}/${date}/${lang || STATION.language || "ja"}`;
+function parseEpisodeHash(hash) {
+  const parts = hash.replace(/^#/, "").split("/").filter(Boolean);
+  const legacy = /^\d{4}-\d{2}-\d{2}$/.test(parts[0] || "");
+  return legacy ? { program: programId(), date: parts[0], lang: parts[1] }
+    : { program: parts[0] || programId(), date: parts[1], lang: parts[2] };
+}
 let loadSerial = 0;
 async function load(date, lang = LANG, at = 0) {
   const serial = ++loadSerial;
@@ -1103,11 +1112,10 @@ async function load(date, lang = LANG, at = 0) {
   }
   if (at > 0) $("resume").hidden = true;
   if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: ep.title, artist: st("name"), album: dateFmt(ep.date) });
-  history.replaceState(null, "", L ? `#${date}/${L}` : `#${date}`);
-  // the share button shows when this episode has a share page
-  SHARE = new URL(`share/${name}.html`, location.href).href;
-  $("share").hidden = true;
-  fetch(SHARE, { method: "HEAD", cache: "no-store" }).then(r => { if (r.ok && SHARE.includes(name)) $("share").hidden = false; }).catch(() => {});
+  history.replaceState(null, "", episodeHash(date, L));
+  // Share the canonical program/date/language URL directly.
+  SHARE = new URL(episodeHash(date, L), location.href).href;
+  $("share").hidden = false;
 }
 // share: a small menu - the phone's share sheet (where there is one), copy the link, copy the code to embed the player
 let SHARE = "";
@@ -1183,7 +1191,7 @@ function listEpisodes() {
   const seen = e => heard[e.date] ? [tr("heard"), "done"] : (() => { const t = pos[`${e.date}-${LANG}`] ?? Object.entries(pos).find(([k]) => k.startsWith(e.date))?.[1];
     return t ? [tr("partway")(mmss(t)), "part"] : null; })();
   $("eps").innerHTML = EPS.map(e => { const s = seen(e);
-    return `<a href="#${e.date}" data-date="${e.date}"><span class="d">${esc(dateFmt(e.date))}</span><span>${esc(info(e).title)}</span>${s ? `<span class="seen ${s[1]}">${s[0]}</span>` : ""}<span class="len">${mmss(info(e).seconds)}</span></a>`; }).join("");
+    return `<a href="${esc(episodeHash(e.date))}" data-date="${e.date}"><span class="d">${esc(dateFmt(e.date))}</span><span>${esc(info(e).title)}</span>${s ? `<span class="seen ${s[1]}">${s[0]}</span>` : ""}<span class="len">${mmss(info(e).seconds)}</span></a>`; }).join("");
   $("eps").querySelectorAll("a").forEach(a => a.onclick = ev => { ev.preventDefault(); audio.pause(); load(a.dataset.date); scrollTo({ top: 0, behavior: "smooth" }); });
   $("eplist").innerHTML = `<div class="hd">EPISODES</div>` + EPS.map(e => { const d = new Date(e.date + "T00:00:00");
     return `<button role="option" data-date="${e.date}" aria-selected="${e.date === ep?.date}"><span class="dt">${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}<small>${"SUN MON TUE WED THU FRI SAT".split(" ")[d.getDay()]}</small></span><span class="tt">${esc(info(e).title)}</span><span class="ln">${mmss(info(e).seconds)}${(s => s ? `<small class="${s[1]}">${s[0]}</small>` : "")(seen(e))}</span></button>`; }).join("");
@@ -1330,12 +1338,29 @@ async function init() {
   if (!eps.length) { $("loading").textContent = tr("empty"); $("cover").hidden = true; return; }
   $("sdate").disabled = eps.length < 2;
   EPS = eps; $("epPrev").hidden = $("epNext").hidden = eps.length < 2;
-  // #<date>/<lang> in the address, else the last language chosen here, else the browser's
-  const [want, wantLang] = location.hash.slice(1).split("/");
+  // Accept both #program/date/lang and old #date/lang links.
+  const route = parseEpisodeHash(location.hash);
+  if (route.program !== programId()) {
+    $("loading").textContent = "このジャンルの番組はまだありません。";
+    $("cover").hidden = true; return;
+  }
+  const want = route.date, wantLang = route.lang;
   let saved = null; try { saved = localStorage.getItem("lang"); } catch {}
   const pref = wantLang || saved || ((navigator.language || "").toLowerCase().startsWith("ja") ? "ja" : "en");
   load(eps.some(e => e.date === want) ? want : eps[0].date, pref);
 }
+window.addEventListener("hashchange", () => {
+  if (!EPS.length) return;
+  const route = parseEpisodeHash(location.hash);
+  if (route.program !== programId()) {
+    audio.pause(); $("loading").textContent = "このジャンルの番組はまだありません。"; return;
+  }
+  const date = EPS.some(e => e.date === route.date) ? route.date : EPS[0].date;
+  const lang = route.lang || LANG;
+  if (ep?.date === date && LANG === lang) {
+    $("loading").textContent = ""; history.replaceState(null, "", episodeHash(date, lang));
+  } else load(date, lang);
+});
 init();
 </script>
 </body>
