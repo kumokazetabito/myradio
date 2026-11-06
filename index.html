@@ -442,6 +442,23 @@ html:not(.v) #panel li{font-size:44px}
 html:not(.v) #cam,html:not(.v) .has-card #cam{left:1218px;top:253px;width:670px;height:574px;transition:none}
 #stage #panel{transform:none !important;transition:none;animation:none}
 #cam .credit,.has-card #cam .credit{right:14px;bottom:10px;font-size:21px}
+
+/* Program information sits above the caster on desktop; only the station stays at the top. */
+#maleVoice{z-index:2}
+#programMeta{left:1218px;top:145px;width:670px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px}
+#programGenre{width:100%;font:800 32px var(--jp);color:var(--text)}
+#programMeta .epsel{margin:0;max-width:100%}
+#programMeta #sdate{font-size:26px;margin:0}
+#programMeta .langsw{margin:0}
+#programMeta .onair{position:static;font-size:20px;letter-spacing:2px}
+.langsw button:disabled{opacity:.35;cursor:default}
+html:not(.v) #cam,html:not(.v) .has-card #cam{top:350px}
+html:not(.v) #panel li{font-size:40px}
+html:not(.v) #panel button.head{font-size:54px}
+html:not(.phone) .links .item .jump{font-size:20px}
+.chan .av svg{width:30px;height:30px;fill:none;stroke:var(--yellow);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+html.phone #programMeta{display:none}
+html.phone .langsw.single-language{display:none}
 </style>
 </head>
 <body>
@@ -449,7 +466,8 @@ html:not(.v) #cam,html:not(.v) .has-card #cam{left:1218px;top:253px;width:670px;
   <div id="frame">
     <div id="stage">
       <div class="brand"><i class="logo" id="slogo" hidden></i><b id="sname">Tabito Radio</b><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
-      <div class="onair"><i></i>AVIATION NEWS</div>
+      <div id="programMeta"><b id="programGenre">航空ニュース</b></div>
+      <div class="onair" id="onair"><i></i>AVIATION NEWS</div>
       <nav id="toc" aria-label="目次"></nav>
       <div id="panel"></div>
       <section id="card" aria-label="出典リンク"><div class="site">出典リンク</div><nav id="cardSources" aria-label="このニュースの出典"></nav><span class="open" id="cardOpen">記事をひらく ↗</span></section>
@@ -485,7 +503,7 @@ html:not(.v) #cam,html:not(.v) .has-card #cam{left:1218px;top:253px;width:670px;
     <button id="share" hidden aria-haspopup="menu"><svg viewBox="0 0 24 24"><path d="M18 16.1c-.8 0-1.5.3-2 .8l-7.1-4.2c.1-.2.1-.5.1-.7s0-.5-.1-.7L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .5.1.7L8 9.8C7.5 9.3 6.8 9 6 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.1 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9-1.2-2.9-2.8-2.9z"/></svg><span></span></button></div>
   </div>
   <div class="mnav" id="mnav"></div>
-  <div class="chan"><span class="av"><i class="logo"></i><b id="avch"></b></span><div class="nm"><b id="cname"></b><small id="ctag"></small><small id="cowner" hidden></small></div>
+  <div class="chan"><span class="av" role="img" aria-label="ラジオ"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 10 24 4M5 11h22v17H5zM8 15h16"/><circle cx="12" cy="22" r="3"/><path d="M20 20h3m-3 4h3"/></svg></span><div class="nm"><b id="cname"></b><small id="ctag"></small><small id="cowner" hidden></small></div>
   </div>
   <div id="now"></div>
   <details id="talkBox" hidden><summary id="talkSum">コメント</summary><p class="talkNote" id="talkNote"></p><div id="talk"></div></details>
@@ -526,6 +544,7 @@ const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2
 const PLAY = '<path d="M0 0v12l10-6z"/>', PAUSE = '<path d="M0 0h3.5v12H0zM6.5 0H10v12H6.5z"/>';
 const audio = $("audio");
 let ep = null, speech = [], curPart = -1;
+let pendingSeek = null, audioObjectUrl = null;
 
 // ---------- the stage follows the page width ----------
 // a phone held upright: the upright stage (html.v), the date and language under the player, and, scrolled down past
@@ -540,7 +559,8 @@ function phoneLayout() {
   // the episode picker and the language: under the player on a phone (the language at the end of the station's row),
   // in the stage's header otherwise
   if (PHONE.matches && !root.classList.contains("embed")) { $("mnav").append($("epsel")); document.querySelector(".chan").append($("langsw")); }
-  else if ($("epsel").parentNode !== document.querySelector(".brand")) document.querySelector(".brand").append($("epsel"), $("langsw"));
+  else $("programMeta").append($("epsel"), $("langsw"));
+  if (PHONE.matches) $("stage").append($("onair")); else $("programMeta").append($("onair"));
 }
 function dockCheck() {
   if (!PHONE.matches || document.documentElement.classList.contains("embed")) return;
@@ -788,8 +808,7 @@ const newsSeg = j => ep.segments.findIndex(s => s.kind === "news" && s.index ===
 // while it plays it plays on from there; while it is stopped it only moves there, so the show reads like an article too
 function jumpTo(i) {
   const s = ep?.segments[i]; if (!s) return;
-  const go = () => { audio.currentTime = s.start; };
-  if (audio.readyState >= 1) go(); else audio.addEventListener("loadedmetadata", go, { once: true });
+  seekTo(s.start);
   $("cover").hidden = true;
 }
 document.addEventListener("click", e => {
@@ -893,13 +912,13 @@ function maleFrame(now, speaking) {
 }
 let activeSpeakerKey = null;
 function showSpeaker(key) {
-  if (key === activeSpeakerKey) return;
   activeSpeakerKey = key;
   const speaker = ep?.speakers?.[key];
   const male = key === "takehiro";
   $("cam").classList.toggle("male", male);
   $("maleVoice").hidden = !male;
-  $("camCredit").textContent = speaker ? speaker.credit : st("caster") || "";
+  const credit = speaker ? speaker.credit : st("caster") || "";
+  if ($("camCredit").textContent !== credit) $("camCredit").textContent = credit;
   $("camCredit").hidden = !$("camCredit").textContent;
 }
 // ---------- the clock: everything follows the audio position ----------
@@ -907,7 +926,7 @@ function tick(now) {
   const speakingAt = t => !audio.paused && speech.some(([a, b]) => t >= a && t < b);
   if (CHAR.type === "sprites") spriteFrame(audio.currentTime, now, ep && speakingAt(audio.currentTime) && activeSpeakerKey !== "takehiro", ep?.segments[curPart]?.kind);
   if (ep) {
-    const t = audio.currentTime, dur = ep.seconds;
+    const t = seeking ? +$("seek").value / 1000 * ep.seconds : pendingSeek ?? audio.currentTime, dur = ep.seconds;
     const part = Math.max(0, ep.segments.findIndex(s => t >= s.start && t < s.end));
     showPart(t >= dur - 0.05 ? ep.segments.length - 1 : part);
     const line = ep.lines_timed.find(l => t >= l.start && t < l.end);
@@ -933,8 +952,31 @@ audio.addEventListener("pause", () => { $("frame").classList.remove("playing"); 
 audio.addEventListener("ended", () => { $("cover").hidden = false; });
 // audio is kept for a while only (the script stays): tell the viewer instead of failing silently
 audio.addEventListener("error", () => { if (ep) $("loading").textContent = tr("expired"); });
-$("seek").addEventListener("input", () => { seeking = true; audio.currentTime = $("seek").value / 1000 * ep.seconds; });
-$("seek").addEventListener("change", () => { seeking = false; });
+function applyPendingSeek() {
+  if (pendingSeek === null || audio.readyState < 1 || !Number.isFinite(audio.duration)) return;
+  const target = Math.min(pendingSeek, Math.max(0, audio.duration - .01));
+  try {
+    if (Math.abs(audio.currentTime - target) < .05) { pendingSeek = null; return; }
+    audio.currentTime = target;
+  } catch { /* Metadata may be available before iOS permits the first seek. Retry on canplay. */ }
+}
+function seekTo(seconds, userAction = true) {
+  if (!ep) return;
+  pendingSeek = Math.max(0, Math.min(seconds, ep.seconds - .01));
+  applyPendingSeek();
+  if (userAction) $("resume").hidden = true;
+}
+for (const event of ["loadedmetadata", "durationchange", "canplay"]) audio.addEventListener(event, applyPendingSeek);
+audio.addEventListener("seeked", () => {
+  if (pendingSeek !== null && Math.abs(audio.currentTime - pendingSeek) < .3) pendingSeek = null;
+});
+$("seek").addEventListener("input", () => { if (ep) seeking = true; });
+function commitScrub() {
+  if (!seeking || !ep) return;
+  const target = +$("seek").value / 1000 * ep.seconds;
+  seeking = false; seekTo(target);
+}
+for (const event of ["change", "pointerup", "touchend", "pointercancel"]) $("seek").addEventListener(event, commitScrub);
 // playback speed (kept in this browser); the browser keeps the voice's pitch
 const RATES = [1, 1.25, 1.5, 0.75];
 function setRate(r) {
@@ -958,7 +1000,7 @@ function savePos(force) {
 audio.addEventListener("timeupdate", () => { if (!audio.paused) savePos(); });
 audio.addEventListener("pause", () => { savePos(true); listEpisodes(); });
 audio.addEventListener("ended", () => { savePos(true); listEpisodes(); });
-$("from0").onclick = () => { audio.currentTime = 0; $("resume").hidden = true; audio.play(); };
+$("from0").onclick = () => { seekTo(0); $("resume").hidden = true; audio.play(); };
 // the lock screen, a headset's buttons, a car: previous / next go by topic
 function stepPart(d) {
   if (!ep) return;
@@ -970,9 +1012,9 @@ function stepPart(d) {
 if ("mediaSession" in navigator) {
   const ms = navigator.mediaSession, on = (a, f) => { try { ms.setActionHandler(a, f); } catch {} };
   on("previoustrack", () => stepPart(-1)); on("nexttrack", () => stepPart(1));
-  on("seekbackward", e => { audio.currentTime = Math.max(0, audio.currentTime - (e.seekOffset || 10)); });
-  on("seekforward", e => { audio.currentTime = Math.min(audio.duration || 1e9, audio.currentTime + (e.seekOffset || 10)); });
-  on("seekto", e => { audio.currentTime = e.seekTime; });
+  on("seekbackward", e => { seekTo(Math.max(0, audio.currentTime - (e.seekOffset || 10))); });
+  on("seekforward", e => { seekTo(Math.min(audio.duration || 1e9, audio.currentTime + (e.seekOffset || 10))); });
+  on("seekto", e => { seekTo(e.seekTime); });
   const pos = () => { try { if (audio.duration) ms.setPositionState({ duration: audio.duration, position: Math.min(audio.currentTime, audio.duration), playbackRate: audio.playbackRate }); } catch {} };
   ["loadedmetadata", "seeked", "ratechange", "play", "pause"].forEach(ev => audio.addEventListener(ev, pos));
 }
@@ -1079,10 +1121,26 @@ async function load(date, lang = LANG, at = 0) {
   curName = name;
   const audioUrl = new URL(ep.audio || `${STATION.audio?.dir || "audio"}/${name}.mp3`, location.href);
   if (!audioUrl.search) audioUrl.searchParams.set("v", ep.made_at || "");
-  audio.src = audioUrl.href;
+  pendingSeek = null; seeking = false;
+  let source = audioUrl.href, nextObjectUrl = null;
+  // A complete local media resource makes seeking reliable in iPhone in-app browsers.
+  if (PHONE.matches) {
+    try {
+      const response = await fetch(source);
+      if (!response.ok) throw new Error(`Audio HTTP ${response.status}`);
+      const blob = await response.blob();
+      if (serial !== loadSerial) return;
+      nextObjectUrl = URL.createObjectURL(blob); source = nextObjectUrl;
+    } catch (error) { console.warn("Audio preload; using direct playback", error); }
+  }
+  if (serial !== loadSerial) { if (nextObjectUrl) URL.revokeObjectURL(nextObjectUrl); return; }
+  const previousObjectUrl = audioObjectUrl; audioObjectUrl = nextObjectUrl;
+  audio.src = source; audio.load();
+  if (previousObjectUrl) URL.revokeObjectURL(previousObjectUrl);
   $("sdate").querySelector("span").textContent = dateFmt(date);
-  $("langsw").hidden = langs.length < 2;
-  $("langsw").innerHTML = langs.map(l => `<button data-lang="${l}" aria-pressed="${l === L}" title="${NAMES[l] || l}">${l.toUpperCase()}</button>`).join("");
+  $("langsw").hidden = false;
+  $("langsw").classList.toggle("single-language", langs.length < 2);
+  $("langsw").innerHTML = [...new Set(["ja", "en", ...langs])].map(l => `<button data-lang="${l}" aria-pressed="${l === L}" ${langs.includes(l) ? "" : "disabled"} title="${langs.includes(l) ? NAMES[l] || l : "英語版は準備中"}">${l === "ja" ? "JP" : l.toUpperCase()}</button>`).join("");
   $("eplist").querySelectorAll("[data-date]").forEach(b => b.setAttribute("aria-selected", b.dataset.date === date));
   const k = EPS.findIndex(e => e.date === date);   // EPS is newest first
   $("epPrev").disabled = k < 0 || k >= EPS.length - 1; $("epNext").disabled = k <= 0;
@@ -1106,8 +1164,7 @@ async function load(date, lang = LANG, at = 0) {
   document.querySelectorAll("#eps a").forEach(a => a.classList.toggle("cur", a.dataset.date === date));
   $("loading").textContent = "";
   // switching the language keeps the place in the show: the same part, from its start
-  if (at > 0 && ep.segments[at]) { const go = () => { audio.currentTime = ep.segments[at].start; };
-    if (audio.readyState >= 1) go(); else audio.addEventListener("loadedmetadata", go, { once: true }); $("cover").hidden = true; }
+  if (at > 0 && ep.segments[at]) { seekTo(ep.segments[at].start); $("cover").hidden = true; }
   else {
     $("cover").hidden = false;
     // stopped partway last time: the play button goes on from there
@@ -1115,8 +1172,7 @@ async function load(date, lang = LANG, at = 0) {
     $("resume").hidden = !(back > 3 && back < ep.seconds - 3);
     if (!$("resume").hidden) {
       $("resume").querySelector("span").textContent = tr("resumeAt")(mmss(back)); $("from0").textContent = tr("from0");
-      const go = () => { audio.currentTime = back; };
-      if (audio.readyState >= 1) go(); else audio.addEventListener("loadedmetadata", go, { once: true });
+      seekTo(back, false);
     }
   }
   if (at > 0) $("resume").hidden = true;
@@ -1189,8 +1245,7 @@ function setLang(l) {
   $("share").querySelector("span").textContent = tr("share");
   $("cname").textContent = st("name"); $("ctag").textContent = st("tagline") || "";
   $("cowner").textContent = st("creator") ? `by ${st("creator")}` : ""; $("cowner").hidden = !st("creator");
-  $("avch").textContent = STATION.logo ? "" : [...(st("name") || "")][0] || "";
-  document.querySelector(".chan .av .logo").hidden = !STATION.logo;
+  $("programGenre").textContent = STATION.program?.name || "ニュース";
   for (const [act, k] of [["native", "native"], ["link", "copyLink"], ["embed", "copyEmbed"]]) $("shareMenu").querySelector(`[data-act=${act}]`).textContent = tr(k);
   $("sname").title = document.documentElement.classList.contains("embed") ? tr("openPage") : "";
   listEpisodes(); wxRender();
