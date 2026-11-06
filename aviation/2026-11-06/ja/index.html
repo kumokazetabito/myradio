@@ -46,6 +46,10 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #stage>*{position:absolute}
 .brand{left:72px;top:40px;font:800 34px var(--jp);color:var(--yellow);letter-spacing:normal;display:flex;gap:22px;align-items:baseline}
 .brand #sname{font-weight:800;letter-spacing:normal}
+.station-home,.channel-home{color:inherit;text-decoration:none}
+.station-home{display:flex;align-items:center;gap:22px}
+.station-home:hover,.channel-home:hover .nm b{color:var(--teal)}
+.station-home:focus-visible,.channel-home:focus-visible{outline:2px solid var(--teal);outline-offset:5px;border-radius:4px}
 /* the station's logo (one-colour shapes): painted in the station's yellow through a mask, so any logo fits the dark stage */
 .logo{display:inline-block;background:var(--yellow);-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat}
 .logo[hidden]{display:none}
@@ -309,6 +313,7 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #shareMenu button[hidden]{display:none}
 /* under the player, like a video site: the station's icon and name */
 .chan{display:flex;align-items:center;gap:12px;margin:14px 2px 6px}
+.channel-home{display:flex;align-items:center;gap:12px;min-width:0}
 .chan .av{width:44px;height:44px;border-radius:50%;background:#1a1d27;border:1px solid var(--line);display:grid;place-items:center;flex:none;overflow:hidden}
 .chan .av .logo{width:26px;height:24px}
 .chan .av b{font:800 20px var(--jp);color:var(--yellow)}
@@ -514,7 +519,7 @@ html.v #toc button{flex:0 0 100px}
 <main>
   <div id="frame">
     <div id="stage">
-      <div class="brand"><i class="logo" id="slogo" hidden></i><b id="sname">Tabito Radio</b><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
+      <div class="brand"><a class="station-home" id="stationHome" href="./" title="航空ニュースの最新回へ" aria-label="Tabito Radio：航空ニュースの最新回へ"><i class="logo" id="slogo" hidden></i><b id="sname">Tabito Radio</b></a><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
       <div id="programMeta"><b id="programGenre">航空ニュース</b></div>
       <div class="onair" id="onair"><i></i>AVIATION NEWS</div>
       <nav id="toc" aria-label="目次"></nav>
@@ -552,7 +557,7 @@ html.v #toc button{flex:0 0 100px}
     <button id="share" hidden aria-haspopup="menu"><svg viewBox="0 0 24 24"><path d="M18 16.1c-.8 0-1.5.3-2 .8l-7.1-4.2c.1-.2.1-.5.1-.7s0-.5-.1-.7L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .5.1.7L8 9.8C7.5 9.3 6.8 9 6 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.1 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9-1.2-2.9-2.8-2.9z"/></svg><span></span></button></div>
   </div>
   <div class="mnav" id="mnav"></div>
-  <div class="chan"><span class="av" role="img" aria-label="ラジオ"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 10 24 4M5 11h22v17H5zM8 15h16"/><circle cx="12" cy="22" r="3"/><path d="M20 20h3m-3 4h3"/></svg></span><div class="nm"><b id="cname">Tabito Radio</b><small id="ctag">航空ニュース / AVIATION NEWS</small><small id="cowner">by 雲風旅人</small></div>
+  <div class="chan"><a class="channel-home" href="./" title="航空ニュースの最新回へ" aria-label="Tabito Radio：航空ニュースの最新回へ"><span class="av" role="img" aria-label="ラジオ"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 10 24 4M5 11h22v17H5zM8 15h16"/><circle cx="12" cy="22" r="3"/><path d="M20 20h3m-3 4h3"/></svg></span><div class="nm"><b id="cname">Tabito Radio</b><small id="ctag">航空ニュース / AVIATION NEWS</small><small id="cowner">by 雲風旅人</small></div></a>
   </div>
   <div id="now"></div>
   <details id="talkBox" hidden><summary id="talkSum">コメント</summary><p class="talkNote" id="talkNote"></p><div id="talk"></div></details>
@@ -1402,11 +1407,11 @@ $("shareMenu").onclick = async e => {
 };
 document.addEventListener("click", e => { if (!e.target.closest(".sharewrap")) shareMenu(false); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") shareMenu(false); });
-// embedded: the station's name opens the whole page (this episode) in a new tab
-$("sname").addEventListener("click", e => {
-  if (!document.documentElement.classList.contains("embed")) return;
-  e.stopPropagation(); window.open(location.href.split(/[?#]/)[0] + location.hash, "_blank", "noopener");
-});
+// In an embedded player, open the station outside the containing iframe.
+if (document.documentElement.classList.contains("embed")) {
+  $("stationHome").target = "_blank";
+  $("stationHome").rel = "noopener";
+}
 // ---------- comments (station.json "comments": {"giscus": {repo, repoId, category, categoryId}}) ----------
 // one GitHub Discussions thread per day (both languages share it), made by giscus when the first comment comes. Nothing
 // loads from giscus.app until the listener opens the box; the station's giscus.json keeps other sites from using its repo
@@ -1444,7 +1449,6 @@ function setLang(l) {
   $("cowner").textContent = st("creator") ? `by ${st("creator")}` : ""; $("cowner").hidden = !st("creator");
   $("programGenre").textContent = STATION.program?.name || "ニュース";
   for (const [act, k] of [["native", "native"], ["link", "copyLink"], ["embed", "copyEmbed"]]) $("shareMenu").querySelector(`[data-act=${act}]`).textContent = tr(k);
-  $("sname").title = document.documentElement.classList.contains("embed") ? tr("openPage") : "";
   listEpisodes(); wxRender();
 }
 // the episode lists (the picker in the header, the list at the bottom), in the current language
