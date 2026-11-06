@@ -13,7 +13,8 @@
   "character": {
     "pack": "character/character.json",
     "thumbnail": "character/base.png",
-    "male": "character/male/base.png"
+    "male": "character/male/base.png",
+    "male_pack": "character/male/character.json"
   },
   "credits": [
     "音声：VOICEVOX:四国めたん",
