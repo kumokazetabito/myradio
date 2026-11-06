@@ -28,6 +28,6 @@
     "dir": "audio",
     "keep_days": 30
   },
-  "weather": false,
+  "weather": true,
   "repo": "https://github.com/kumokazetabito/myradio"
 }

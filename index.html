@@ -434,6 +434,9 @@ html.phone #share span{display:none}
 #cam.male #charcv{visibility:hidden}.speaker-label{display:inline-block;font-size:11px;font-weight:600;color:var(--teal);margin:8px 0}.source-note{color:var(--muted);font-size:12px;line-height:1.7}#camCredit{background:rgba(0,0,0,.65);padding:7px 12px;border-radius:6px}
 #maleVoice{background:var(--cam);gap:0}#maleVoice img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
 #maleVoice canvas{width:100%;height:100%;object-fit:contain;object-position:center bottom}#maleVoice canvas[hidden],#maleVoice img[hidden]{display:none}
+
+#card{flex-direction:column;gap:10px}#cardSources{display:flex;flex-direction:column;gap:3px;flex:1;min-height:0;overflow-y:auto}#cardSources a{display:block;padding:4px 10px;flex:none;border-radius:7px;border:1px solid var(--line);text-decoration:none;color:var(--text);background:rgba(255,255,255,.025)}#cardSources a:hover,#cardSources a:focus-visible{border-color:var(--yellow);background:rgba(121,229,204,.08)}#cardSources b{display:block;font-size:20px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#cardSources small{display:block;font:12px/1.2 var(--mono);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#card .open{font-size:12px;margin-top:0}
+html.v #cardSources{gap:10px}html.v #cardSources a{padding:14px 16px}html.v #cardSources b{font-size:28px}html.v #cardSources small{font-size:21px}
 </style>
 </head>
 <body>
@@ -445,7 +448,7 @@ html.phone #share span{display:none}
       <div class="onair"><i></i>MORNING BRIEF</div>
       <nav id="toc" aria-label="目次"></nav>
       <div id="panel"></div>
-      <a id="card" target="_blank" rel="noopener noreferrer"><img alt="" referrerpolicy="no-referrer"><div class="txt"><div class="site"></div><div class="ttl"></div><div class="desc"></div><div class="open" id="cardOpen">記事をひらく ↗</div></div></a>
+      <section id="card" aria-label="出典リンク"><div class="site">出典リンク</div><nav id="cardSources" aria-label="このニュースの出典"></nav><span class="open" id="cardOpen">記事をひらく ↗</span></section>
       <div id="wx" hidden><div class="body"></div><div id="wxlist" role="listbox"></div></div>
       <div id="cam">
         <img id="idle" alt="">
@@ -774,7 +777,7 @@ function showPart(i) {
   const el = $("panel"); el.innerHTML = `<div class="fit">${partHtml(ep.segments[i])}</div>`;
   fitPanel();
   el.classList.remove("enter"); void el.offsetWidth; el.classList.add("enter");
-  showCard(ep.segments[i].kind === "news" ? ep.news[ep.segments[i].index].link : null);
+  showCard(ep.segments[i].kind === "news" ? ep.news[ep.segments[i].index] : null);
   document.querySelectorAll("#toc button").forEach(b => b.classList.toggle("cur", +b.dataset.seg === i));
 }
 // jump to a part of the show (a topic)
@@ -818,7 +821,7 @@ $("eplist").onkeydown = e => {
 document.addEventListener("click", e => { if (!e.target.closest("#epsel")) epOpen(false); });
 // a click on the stage away from anything clickable plays or stops, like a video
 $("stage").addEventListener("click", e => {
-  if (e.target.closest("a, button, li.more, [data-seg], #epsel, #wx")) return;
+  if (e.target.closest("a, button, li.more, [data-seg], #epsel, #wx, #card")) return;
   const play = audio.paused;
   toggle();
   const f = $("flash");
@@ -826,29 +829,24 @@ $("stage").addEventListener("click", e => {
   f.classList.remove("go"); void f.offsetWidth; f.classList.add("go");
 });
 
-function showCard(link) {
-  const card = $("card"), stage = $("stage");
-  stage.classList.toggle("has-card", !!link);
-  if (!link) return;
-  const host = (() => { try { return new URL(link.url).hostname; } catch { return ""; } })();
-  const missing = link.status === 404 || link.status === 410;
-  card.href = link.url;
-  card.querySelector(".site").textContent = (link.found_by ? tr("related") + tr("sep") : "") + (link.site || host);
-  card.querySelector(".ttl").textContent = missing ? tr("notFound")(link.status) : (link.title || link.url);
-  card.querySelector(".desc").textContent = missing ? link.url : (link.description || "");
-  // the image, then the site's icon, then text only (the site may move or refuse an image at any time)
-  const img = card.querySelector("img");
-  const tries = [[link.image, false], [link.icon, true]].filter(([u]) => u);
-  const next = () => {
-    const t = tries.shift();
-    card.classList.toggle("noimg", !t);
-    card.classList.toggle("icon", !!t && t[1]);
-    img.src = t ? t[0] : "";
-  };
-  img.onerror = next;
-  next();
+function showCard(news) {
+  const candidates = news?.sources?.length ? news.sources : news?.link ? [news.link] : news?.url ? [{ url: news.url }] : [];
+  const seen = new Set();
+  const links = candidates.filter(link => {
+    try { const u = new URL(link.url); if (!/^https?:$/.test(u.protocol) || seen.has(u.href)) return false; seen.add(u.href); return true; } catch { return false; }
+  });
+  $("stage").classList.toggle("has-card", !!links.length);
+  $("cardSources").replaceChildren();
+  for (const link of links) {
+    const a = document.createElement("a");
+    a.href = link.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+    const title = document.createElement("b"), source = document.createElement("small");
+    title.textContent = link.title || new URL(link.url).hostname;
+    source.textContent = [link.type || link.site, new URL(link.url).hostname].filter(Boolean).join(" · ") + " ↗";
+    a.append(title, source); $("cardSources").append(a);
+  }
 }
-$("card").addEventListener("click", () => audio.pause());
+$("card").addEventListener("click", event => { if (event.target.closest("a")) audio.pause(); });
 
 // Male sprites are composed from the approved base and small localized overlays.
 const MALE = { ready: false, mouth: 0, mouthAt: 0, blinkAt: -1e9, nextBlink: 0, key: null };
