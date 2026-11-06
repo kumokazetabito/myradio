@@ -323,7 +323,8 @@ h1{font-size:15px;margin:22px 0 8px;color:var(--muted);font-weight:600}
 .links .pts{grid-area:pts;list-style:none;margin:10px 0 8px;padding:0 0 0 28px;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.65}
 .links .pts b{display:block;font-weight:700}
 .links .pts span{display:block;color:#c9ccd6}
-.links .srcs{grid-area:srcs}
+.links .srcs{grid-area:srcs;display:flex;flex-direction:column;gap:6px;line-height:1.5}
+.links .srcs small{margin-top:0}
 .links .srcs a{display:block;color:inherit;text-decoration:none}
 .links .srcs a:hover small{color:var(--yellow)}
 @media (max-width:560px){ .links .item:has(.pic){grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-template-areas:"head" "pic" "pts" "srcs" "speaker"}
@@ -333,7 +334,7 @@ h1{font-size:15px;margin:22px 0 8px;color:var(--muted);font-weight:600}
 .links .jump:hover b{color:var(--yellow)}
 .links .jump b{font-weight:inherit}
 .links .jump i{font:normal 12px var(--mono);color:var(--muted)}
-.links .srcs small{padding-left:28px}
+.links .srcs small{padding-left:28px;margin-top:0}
 .links small{display:block;font-size:12px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80vw}
 details{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
 summary{cursor:pointer;color:var(--muted);font-size:14px}
@@ -445,12 +446,18 @@ html:not(.v) #cam,html:not(.v) .has-card #cam{left:1218px;top:253px;width:670px;
 
 /* Program information sits above the caster on desktop; only the station stays at the top. */
 #maleVoice{z-index:2}
-#programMeta{left:1218px;top:145px;width:670px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px}
-#programGenre{width:100%;font:800 32px var(--jp);color:var(--text)}
-#programMeta .epsel{margin:0;max-width:100%}
-#programMeta #sdate{font-size:26px;margin:0}
-#programMeta .langsw{margin:0}
-#programMeta .onair{position:static;font-size:20px;letter-spacing:2px}
+#programMeta{left:1218px;top:145px;width:670px;display:grid;grid-template-columns:max-content 1fr;grid-template-rows:44px 64px 54px;align-items:center;gap:12px 18px;z-index:5}
+#programGenre{grid-column:1 / -1;width:100%;font:800 32px var(--jp);color:var(--text)}
+#programMeta .epsel{grid-column:1 / -1;margin:0;width:100%;max-width:100%;gap:12px}
+#programMeta .epnav{flex:none}
+#programMeta #eplist{left:0;width:100%;max-height:520px}
+#programMeta #eplist button{grid-template-columns:82px minmax(0,1fr) auto;gap:14px;padding:12px}
+#programMeta #eplist .tt{font-size:24px}
+#programMeta #sdate{font-size:26px;margin:0;flex:1;min-width:0;justify-content:space-between}
+#programMeta #sdate span{white-space:nowrap}
+#programMeta #sdate i{flex:none}
+#programMeta .langsw{grid-column:1;margin:0;justify-self:start}
+#programMeta .onair{grid-column:2;justify-self:start;white-space:nowrap;position:static;font-size:20px;letter-spacing:2px}
 .langsw button:disabled{opacity:.35;cursor:default}
 html:not(.v) #cam,html:not(.v) .has-card #cam{top:350px}
 html:not(.v) #panel li{font-size:40px}
@@ -1157,7 +1164,7 @@ async function load(date, lang = LANG, at = 0) {
       + (img ? `<a class="pic" href="${esc(n.link.url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(n.link.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></a>` : "")
       + `<span class="speaker-label">${esc(ep.speakers?.[n.speaker]?.credit || "")}</span>`
       + `<ul class="pts">${n.points.map((x, k) => `<li><b>${esc(x)}</b>${n.details?.[k] ? `<span>${esc(n.details[k])}</span>` : ""}</li>`).join("")}</ul>`
-      + `<div class="srcs">${n.sources?.length ? n.sources.map(x => linkLine(x, (x.type || tr("source")) + tr("colon"))).join("<br>") : src ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div></article>`;
+      + `<div class="srcs">${n.sources?.length ? n.sources.map(x => linkLine(x, (x.type || tr("source")) + tr("colon"))).join("") : src ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div></article>`;
   }).join("");
   $("toc").innerHTML = ep.news.map((n, j) =>
     `<button data-seg="${newsSeg(j)}">${String(j + 1).padStart(2, "0")}<span>${esc(n.label)}</span></button>`).join("");
