@@ -2,9 +2,19 @@
 
 航空ニュースを男女のナレーションで届けるWeb番組です。
 
-[番組を聴く](https://kumokazetabito.github.io/myradio/aviation/2026-11-06/ja/) / [11月6日の記事を読む](docs/aviation-2026-11-06.md)
+[最新の11月7日号を聴く](https://kumokazetabito.github.io/myradio/aviation/2026-11-07/ja/) / [11月7日の記事と台本](docs/aviation-2026-11-07.md) / [11月6日号](https://kumokazetabito.github.io/myradio/aviation/2026-11-06/ja/)
 
-## 11月6日の5件
+## 11月7日の5件
+
+- タイベトジェット：成田〜バンコク線を週11往復へ
+- シンガポール航空：2027年後半からの新客室
+- ANA・IHG：新特典と既存特典の移行期限
+- カタール航空：11月8日までの週末限定セール
+- KLM：既実施分を含む約5,000ポジションの再編
+
+[11月6日の記事・台本](docs/aviation-2026-11-06.md)も保持しています。
+
+## 11月6日の5件（過去回）
 - ポーター：オタワから南国へ4路線
 - ポラリス：モルドバ発の路線展開
 - ブリーズ：米国内・カリブ海方面の拡大
@@ -47,3 +57,13 @@ PAGES_PYTHON=.venv-pages/bin/python tools/publish.sh
 `.venv-pages/` と音声はmainに入れません。`tools/publish.sh` は既存のgh-pages worktreeを使い、force push・履歴リセット・古い音声の自動削除を行いません。`PAGES_WORKTREE` でworktreeの場所を指定できます。既定値はリポジトリの隣の `github-radio-publish` です。公開前に、そのworktreeに未保存の変更がないことを確認します。
 
 新しい台本ツールからは、完成した `episodes/*.json` と `episodes.json`、音声を出力後、`tools/build_pages.py` を呼び出してください。`pages-manifest.json` に生成した公開ファイル一覧があります。
+
+## 台本からの音声生成
+
+VOICEVOX Engineをローカルの127.0.0.1:50021で起動した後に実行します。生成する台本は `editorial/` に保存し、各セリフの `show`（表示文）・`say`（読み方）・`speaker` と、短い `captions` を指定します。
+
+```sh
+python3 tools/generate_voicevox.py editorial/2026-11-07-aviation-script.json
+```
+
+生成した音声の実際の長さとVOICEVOXの音素情報から、章・セリフ・字幕の時刻を作成します。macOSのafconvertでM4Aに変換し、音声はignore対象のaudio/、番組データはepisodes/に保存します。同じ日付の既存回は既定で保護されます。差し替えが明示的に必要なときだけ `--replace` を使います。新しい日付の回は過去回を残して一覧の先頭へ追加します。その後は上記のページ生成・検証・公開手順を実行します。
