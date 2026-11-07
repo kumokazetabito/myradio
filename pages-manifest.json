@@ -1,27 +1,29 @@
 {
   "format": "tabito-pages/1",
   "audio": [
-    "audio/2026-11-06-aviation-ja.m4a",
-    "audio/2026-11-07-aviation-ja.m4a"
+    "audio/aviation/2026-11-06-aviation-ja.m4a",
+    "audio/aviation/2026-11-07-aviation-ja.m4a"
   ],
   "files": [
     "index.html",
     "sitemap.xml",
     "aviation/2026-11-07/ja/index.html",
-    "share/aviation-2026-11-07-ja.png",
+    "share/aviation/aviation-2026-11-07-ja.png",
     "aviation/2026-11-06/ja/index.html",
-    "share/aviation-2026-11-06-ja.png"
+    "share/aviation/aviation-2026-11-06-ja.png"
   ],
   "episodes": [
     {
       "date": "2026-11-07",
       "lang": "ja",
+      "data": "episodes/aviation/2026-11-07-ja.json",
       "program": "aviation",
       "path": "aviation/2026-11-07/ja/"
     },
     {
       "date": "2026-11-06",
       "lang": "ja",
+      "data": "episodes/aviation/2026-11-06-ja.json",
       "program": "aviation",
       "path": "aviation/2026-11-06/ja/"
     }

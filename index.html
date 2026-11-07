@@ -13,7 +13,7 @@
 <meta property="og:title" content="Tabito Radio｜航空ニュース / AVIATION NEWS">
 <meta property="og:description" content="航空ニュースを男女のナレーションで届けるTabito Radio。放送回ごとの音声・台本・記事・出典を掲載しています。">
 <meta property="og:url" content="https://kumokazetabito.github.io/myradio/">
-<meta property="og:image" content="https://kumokazetabito.github.io/myradio/share/aviation-2026-11-07-ja.png">
+<meta property="og:image" content="https://kumokazetabito.github.io/myradio/share/aviation/aviation-2026-11-07-ja.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/png">
@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tabito Radio｜航空ニュース / AVIATION NEWS">
 <meta name="twitter:description" content="航空ニュースを男女のナレーションで届けるTabito Radio。放送回ごとの音声・台本・記事・出典を掲載しています。">
-<meta name="twitter:image" content="https://kumokazetabito.github.io/myradio/share/aviation-2026-11-07-ja.png">
+<meta name="twitter:image" content="https://kumokazetabito.github.io/myradio/share/aviation/aviation-2026-11-07-ja.png">
 <meta name="twitter:image:alt" content="2026-11-07 成田増便と新客室、会員特典の変更 — 11月7日の航空ニュース5件">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Tabito Radio", "url": "https://kumokazetabito.github.io/myradio/"}</script>
 <link rel="icon" id="favicon" href="data:,">
@@ -625,7 +625,7 @@ html.v #toc button{flex:0 0 100px}
   <div class="eps" id="eps"><a href="aviation/2026-11-07/ja/"><span class="d">2026-11-07</span><span>成田増便と新客室、会員特典の変更 — 11月7日の航空ニュース5件</span><span class="len">6:02</span></a><a href="aviation/2026-11-06/ja/"><span class="d">2026-11-06</span><span>冬の新路線と250機発注 — 今朝の航空ニュース5件</span><span class="len">2:49</span></a></div>
   <footer><span id="credits">音声：VOICEVOX:四国めたん ／ 音声：VOICEVOX:玄野武宏 ／ 画面：myradio（MIT） ／ 女性キャラクター：ものラジオ提供・AI生成 ／ 男性キャラクター：AI生成・番組独自デザイン</span> ／ <a href="https://github.com/monoradio102/myradio">myradio</a></footer>
 </main>
-<noscript><style>#frame,.controls,.mnav,#dockSpace{display:none!important}</style><audio controls preload="none" src="audio/2026-11-07-aviation-ja.m4a" aria-label="成田増便と新客室、会員特典の変更 — 11月7日の航空ニュース5件"></audio><p class="nojs-note">記事・台本と出典はこのページで読めます。アニメーション付きの番組再生にはJavaScriptを有効にしてください。</p></noscript>
+<noscript><style>#frame,.controls,.mnav,#dockSpace{display:none!important}</style><audio controls preload="none" src="audio/aviation/2026-11-07-aviation-ja.m4a" aria-label="成田増便と新客室、会員特典の変更 — 11月7日の航空ニュース5件"></audio><p class="nojs-note">記事・台本と出典はこのページで読めます。アニメーション付きの番組再生にはJavaScriptを有効にしてください。</p></noscript>
 <audio id="audio" preload="auto"></audio>
 <script>
 const $ = id => document.getElementById(id);
@@ -1293,7 +1293,7 @@ function updatePageMetadata(home = false) {
   const title = home ? `${st("name")}｜${st("tagline") || "ニュース"}` : `${ep.title} | ${st("name")}`;
   const description = home ? STATION.description : `${ep.date}の${STATION.program?.name || "ニュース"}。` + ep.news.map(n => n.label).join("。") + "。音声・台本・出典を掲載。";
   const url = home ? APP_BASE.href : new URL(episodeUrl(ep.date, LANG), APP_BASE).href;
-  const image = new URL(`share/${programId()}-${ep.date}-${LANG}.png`, APP_BASE).href;
+  const image = new URL(`share/${programId()}/${programId()}-${ep.date}-${LANG}.png`, APP_BASE).href;
   document.title = title;
   function meta(key, value, property = false) {
     const attr = property ? "property" : "name";
@@ -1316,7 +1316,7 @@ async function load(date, lang = LANG, at = 0, navigation = "push") {
   const name = L ? `${date}-${L}` : date;
   savePos(true);   // the episode being left: where it stopped
   try {
-    const response = await fetch(`episodes/${name}.json`, { cache: "no-store" });
+    const response = await fetch(`${STATION.episode_dir || "episodes"}/${name}.json`, { cache: "no-store" });
     if (!response.ok) throw new Error(`Episode HTTP ${response.status}`);
     const next = await response.json();
     if (!Array.isArray(next.lines_timed) || !Array.isArray(next.segments) || !next.segments.length || !Array.isArray(next.news) || !(next.seconds > 0)) throw new Error("Invalid episode");
@@ -1604,6 +1604,12 @@ document.addEventListener("click", e => { if (!e.target.closest("#wx")) wxOpen(f
 setInterval(() => { if (WX.at && Date.now() - WX.at > 30 * 60e3) wxLoad(); }, 60e3);
 async function loadStation() {
   try { STATION = { ...STATION, ...(await (await fetch("station.json", { cache: "no-store" })).json()) }; } catch {}
+  const channel = STATION.default_channel;
+  if (channel && STATION.channels?.[channel]) {
+    const response = await fetch(STATION.channels[channel], { cache: "no-store" });
+    if (!response.ok) throw new Error("Channel settings unavailable");
+    STATION = { ...STATION, ...(await response.json()) };
+  }
   if (STATION.logo) {
     document.documentElement.style.setProperty("--logo", `url("${STATION.logo}")`);
     $("slogo").hidden = false;

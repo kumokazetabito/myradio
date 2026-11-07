@@ -1,15 +1,12 @@
 {
   "format": "myradio/station-1",
   "name": "Tabito Radio",
-  "description": "航空ニュースを男女のナレーションで届けるTabito Radio。放送回ごとの音声・台本・記事・出典を掲載しています。",
-  "tagline": "航空ニュース / AVIATION NEWS",
   "logo": "logo.svg?v=radio-2",
   "url": "https://kumokazetabito.github.io/myradio/",
   "language": "ja",
   "languages": [
     "ja"
   ],
-  "episodes": "episodes.json",
   "character": {
     "pack": "character/female01/character.json",
     "thumbnail": "character/female01/base.png",
@@ -24,15 +21,11 @@
     "男性キャラクター：AI生成・番組独自デザイン"
   ],
   "caster": "VOICEVOX:四国めたん / 玄野武宏",
-  "audio": {
-    "dir": "audio",
-    "keep_days": 30
-  },
   "weather": false,
   "repo": "https://github.com/kumokazetabito/myradio",
-  "program": {
-    "id": "aviation",
-    "name": "航空ニュース"
-  },
-  "creator": "雲風旅人"
+  "creator": "雲風旅人",
+  "default_channel": "aviation",
+  "channels": {
+    "aviation": "channels/aviation.json"
+  }
 }

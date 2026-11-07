@@ -1,0 +1,1228 @@
+{
+  "format": "monoradio/news-1",
+  "date": "2026-11-06",
+  "lang": "ja",
+  "title": "冬の新路線と250機発注 — 今朝の航空ニュース5件",
+  "made_at": "2026-11-06T10:30:00+09:00",
+  "audio": "audio/aviation/2026-11-06-aviation-ja.m4a",
+  "opening": [
+    {
+      "show": "おはようございます。11月6日、今朝チェックした航空ニュースを5件お届けします。",
+      "say": "おはようございます。11月6日、今朝チェックした航空ニュースを5件お届けします。",
+      "speaker": "metan"
+    },
+    {
+      "show": "冬の新路線から、大型の機材発注、季節便の見直しまで。男女のナレーションで順番に見ていきましょう。",
+      "say": "冬の新路線から、大型の機材発注、季節便の見直しまで。男女のナレーションで順番に見ていきましょう。",
+      "speaker": "takehiro"
+    }
+  ],
+  "closing": [
+    {
+      "show": "今朝の航空ニュースは、新路線の拡大、大型発注、そして季節便の見直しをお伝えしました。",
+      "say": "今朝の航空ニュースは、新路線の拡大、大型発注、そして季節便の見直しをお伝えしました。",
+      "speaker": "takehiro"
+    },
+    {
+      "show": "詳しい日程と出典は、画面下の各ニュースから確認できます。運航予定は変更される場合があります。それでは、また次の放送で。",
+      "say": "詳しい日程と出典は、画面下の各ニュースから確認できます。運航予定は変更される場合があります。それでは、また次の放送で。",
+      "speaker": "metan"
+    }
+  ],
+  "news": [
+    {
+      "label": "ポーター、オタワから南国へ4路線",
+      "speaker": "metan",
+      "points": [
+        "アルバ 11/7・モンテゴベイ 11/25",
+        "プロビデンシアレス 12/17・ロスカボス 12/18",
+        "132席のE195-E2で運航"
+      ],
+      "details": [
+        "2026年11月7日にアルバ（AUA）、11月25日にモンテゴベイ（MBJ）へ就航予定。",
+        "2026年12月17日にプロビデンシアレス（PLS）、12月18日にロスカボス（SJD）へ就航予定。",
+        "航空会社の11月5日発表。2席ずつの配列のエンブラエルE195-E2。"
+      ],
+      "lines": [
+        {
+          "show": "最初はカナダのポーター航空です。オタワから、冬の休暇に向けた4つの路線を展開します。",
+          "say": "最初はカナダのポーター航空です。オタワから、冬の休暇に向けた4つの路線を展開します。",
+          "speaker": "metan"
+        },
+        {
+          "show": "アルバは11月7日、モンテゴベイは11月25日に就航予定です。",
+          "say": "アルバは11月7日、モンテゴベイは11月25日に就航予定です。",
+          "speaker": "metan"
+        },
+        {
+          "show": "続いて、プロビデンシアレスは12月17日、ロスカボスは12月18日。機材は132席のエンブラエルE195-E2です。",
+          "say": "続いて、プロビデンシアレスは12月17日、ロスカボスは12月18日。機材は132席のエンブラエル、イーいちきゅうご、イーツーです。",
+          "speaker": "metan"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Porter Airlines｜2026年11月5日発表",
+          "url": "https://www.flyporter.com/en-us/about-porter/media-centre/news-details?title=Porter+celebrates+the+start+of+four+sun+routes+from+Ottawa+2026+11",
+          "type": "航空会社発表"
+        }
+      ],
+      "url": "https://www.flyporter.com/en-us/about-porter/media-centre/news-details?title=Porter+celebrates+the+start+of+four+sun+routes+from+Ottawa+2026+11",
+      "link": {
+        "url": "https://www.flyporter.com/en-us/about-porter/media-centre/news-details?title=Porter+celebrates+the+start+of+four+sun+routes+from+Ottawa+2026+11",
+        "title": "Porter Airlines｜2026年11月5日発表",
+        "site": "航空会社発表",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
+    },
+    {
+      "label": "モルドバのポラリス、路線展開を開始",
+      "speaker": "takehiro",
+      "points": [
+        "キシナウを拠点に欧州・トルコへ",
+        "初期7路線、計11路線の計画と報道",
+        "A321で開始・運航許可取得と報道"
+      ],
+      "details": [
+        "イスタンブールを皮切りに、ボローニャ、ダブリン、プラハ、ローマなどへ。",
+        "AeroRoutesの11月4日記事は初期7路線を列挙。11月5日の現地報道は11〜12月の計11路線計画と説明しているため、全11路線が11月に始まるとは表現していません。",
+        "NewsMakerは航空当局への取材に基づき10月26日のAOC発行を報道。航空当局の公開事業者一覧は更新が古く、今回は報道に基づく情報として扱います。"
+      ],
+      "lines": [
+        {
+          "show": "2つ目は、モルドバの新しい航空会社、ポラリスです。首都キシナウを拠点に、定期便の展開を進めています。",
+          "say": "2つ目は、モルドバの新しい航空会社、ポラリスです。首都キシナウを拠点に、定期便の展開を進めています。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "イスタンブールに加え、ボローニャ、ダブリン、プラハ、ローマなどへ就航する計画です。",
+          "say": "イスタンブールに加え、ボローニャ、ダブリン、プラハ、ローマなどへ就航する計画です。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "初期の7路線に加え、11月から12月にかけて計11路線を展開すると報じられています。",
+          "say": "初期の7路線に加え、11月から12月にかけて計11路線を展開すると報じられています。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "運航許可の取得も報じられており、最初の商業便にはエアバスA321を使用します。",
+          "say": "運航許可の取得も報じられており、最初の商業便にはエアバス、エーさんにいいちを使用します。",
+          "speaker": "takehiro"
+        }
+      ],
+      "sources": [
+        {
+          "title": "AeroRoutes｜初期路線計画（11月4日）",
+          "url": "https://www.aeroroutes.com/eng/261104-z9nw26",
+          "type": "運航計画報道"
+        },
+        {
+          "title": "Telex｜11路線への展開（11月5日）",
+          "url": "https://telex.md/2026/11/05/de-la-chisinau-spre-istanbul-si-spre-roma-cu-39-de-euro-noua-companie-aeriana-polaris-si-a-inceput-zborurile/",
+          "type": "現地報道"
+        },
+        {
+          "title": "NewsMaker｜航空当局への取材・AOC取得",
+          "url": "https://newsmaker.md/ru/podtverjdeno-polaris-poluchila-sertifikat-ekspluatanta-na-kakom-samolete-kompaniya-vypolnit-pervye-reisy",
+          "type": "当局取材報道"
+        }
+      ],
+      "url": "https://www.aeroroutes.com/eng/261104-z9nw26",
+      "link": {
+        "url": "https://www.aeroroutes.com/eng/261104-z9nw26",
+        "title": "AeroRoutes｜初期路線計画（11月4日）",
+        "site": "運航計画報道",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
+    },
+    {
+      "label": "ブリーズ、米国内とカリブ海方面を拡大",
+      "speaker": "metan",
+      "points": [
+        "ラトローブ発 2027年2月・5月に新路線",
+        "タンパ発 12月からカリブ海方面へ",
+        "バッファロー発3路線は2027年6〜7月"
+      ],
+      "details": [
+        "ラトローブ〜マートルビーチ：2027年2月9日。ラトローブ〜オーランド：2027年5月26日。スピリット撤退後の直行便を補う動きとして報じられています。",
+        "タンパ〜セントトーマス：2026年12月16日。モンテゴベイ／カンクン：12月19日。サントドミンゴ：2027年6月18日。複数の時期の発表をまとめています。",
+        "バッファロー〜ローリー・ダーラム：2027年6月29日、マートルビーチ：7月1日、チャールストン：7月2日。"
+      ],
+      "lines": [
+        {
+          "show": "3つ目はアメリカのブリーズ航空。スピリット撤退後の直行便を補う動きと、リゾート路線の拡大です。",
+          "say": "3つ目はアメリカのブリーズ航空。スピリット撤退後の直行便を補う動きと、リゾート路線の拡大です。",
+          "speaker": "metan"
+        },
+        {
+          "show": "ラトローブからマートルビーチへは2027年2月9日、オーランドへは5月26日に就航する予定です。",
+          "say": "ラトローブからマートルビーチへは2027年2月9日、オーランドへは5月26日に就航する予定です。",
+          "speaker": "metan"
+        },
+        {
+          "show": "タンパからは、セントトーマスへ今年12月16日、モンテゴベイとカンクンへ12月19日に就航予定。",
+          "say": "タンパからは、セントトーマスへ今年12月16日、モンテゴベイとカンクンへ12月19日に就航予定。",
+          "speaker": "metan"
+        },
+        {
+          "show": "サントドミンゴへは来年6月18日から。さらに、バッファロー発の3路線も、来年6月から7月に順次始まる計画です。",
+          "say": "サントドミンゴへは来年6月18日から。さらに、バッファロー発の3路線も、来年6月から7月に順次始まる計画です。",
+          "speaker": "metan"
+        }
+      ],
+      "sources": [
+        {
+          "title": "AeroRoutes｜2027年の新路線と就航日",
+          "url": "https://aeroroutes.squarespace.com/eng/261027-mxns27",
+          "type": "運航計画報道"
+        },
+        {
+          "title": "Tampa Airport｜サントドミンゴ線",
+          "url": "https://news.tampaairport.com/tpa-and-breeze-announce-nonstop-flights-to-santo-domingo/",
+          "type": "空港発表"
+        },
+        {
+          "title": "Quintana Roo州政府｜タンパ〜カンクン就航日",
+          "url": "https://qroo.gob.mx/anuncia-mara-lezama-10-nuevas-rutas-aereas-para-fortalecer-la-conectividad-de-cancun/",
+          "type": "政府発表"
+        },
+        {
+          "title": "Aviacionline｜カンクン・セントトーマス線",
+          "url": "https://www.aviacionline.com/espanol/aviacion-comercial/estados-unidos/cancun-y-st-thomas-son-los-nuevos-destinos-de-breeze-airways-desde-tampa_a69fa5a53fd0ce16cd3a996c8",
+          "type": "航空報道"
+        },
+        {
+          "title": "AirMedia24｜モンテゴベイなどの就航予定",
+          "url": "https://airmedia24.com/news/breeze-airways-route-cuts",
+          "type": "航空報道"
+        }
+      ],
+      "url": "https://aeroroutes.squarespace.com/eng/261027-mxns27",
+      "link": {
+        "url": "https://aeroroutes.squarespace.com/eng/261027-mxns27",
+        "title": "AeroRoutes｜2027年の新路線と就航日",
+        "site": "運航計画報道",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
+    },
+    {
+      "label": "アボロン、250機の発注計画が具体化",
+      "speaker": "takehiro",
+      "points": [
+        "737 MAX 10を140機、11/4に確定発表",
+        "A320neo系75機・A330neo 35機",
+        "エアバス機100機の追加オプション"
+      ],
+      "details": [
+        "10月に公表された250機の発注パッケージのうち、ボーイング140機がすべて737-10であることを11月4日に確定発表。",
+        "エアバス分は計110機。A320neoファミリー75機とA330neoファミリー35機です。",
+        "オプション100機は確定発注250機とは別枠。10月9日の発表時点では主要株主の承認条件が付いていました。"
+      ],
+      "lines": [
+        {
+          "show": "4つ目は、航空機リース会社アボロンの大型発注です。",
+          "say": "4つ目は、航空機リース会社アボロンの大型発注です。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "10月に公表された合計250機の発注パッケージのうち、ボーイング140機は、すべて737 MAX 10となることが11月4日に確定発表されました。",
+          "say": "10月に公表された合計250機の発注パッケージのうち、ボーイング140機は、すべて、ななさんなな、マックステンとなることが、11月4日に確定発表されました。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "エアバス分は、A320neoファミリーが75機、A330neoが35機。さらに100機分の追加オプションも設けています。",
+          "say": "エアバス分は、エーさんにいまるネオ、ファミリーが75機、エーさんさんまるネオが35機。さらに100機分の追加オプションも設けています。",
+          "speaker": "takehiro"
+        },
+        {
+          "show": "なお、追加オプションは、確定発注の250機とは別の枠です。",
+          "say": "なお、追加オプションは、確定発注の250機とは別の枠です。",
+          "speaker": "takehiro"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Boeing｜737-10を140機、11月4日に確定",
+          "url": "https://boeing.mediaroom.com/2026-11-04-Avolon-Finalizes-Order-for-140-Boeing-737-10-Jets",
+          "type": "メーカー発表"
+        },
+        {
+          "title": "Avolon｜250機発注パッケージ（10月9日）",
+          "url": "https://avolon.aero/newsrooms/q3-2026-update",
+          "type": "発注元発表"
+        }
+      ],
+      "url": "https://boeing.mediaroom.com/2026-11-04-Avolon-Finalizes-Order-for-140-Boeing-737-10-Jets",
+      "link": {
+        "url": "https://boeing.mediaroom.com/2026-11-04-Avolon-Finalizes-Order-for-140-Boeing-737-10-Jets",
+        "title": "Boeing｜737-10を140機、11月4日に確定",
+        "site": "メーカー発表",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
+    },
+    {
+      "label": "ユナイテッド、アデレード季節便を縮小",
+      "speaker": "metan",
+      "points": [
+        "2026/27年シーズン 49往復→23往復と報道",
+        "運航期間 2026/12/17〜2027/2/8",
+        "サンフランシスコ発・787-9で運航"
+      ],
+      "details": [
+        "運航スケジュールに関する報道に基づく数字です。今回、航空会社の一次発表では同じ数字を確認できていません。",
+        "報道に記載された季節運航の期間。出発地・到着地の現地日付に注意し、予約時は航空会社の最新時刻表を確認してください。",
+        "機材はボーイング787-9。減便の理由について、今回の番組では推測を加えていません。"
+      ],
+      "lines": [
+        {
+          "show": "最後は、ユナイテッド航空のサンフランシスコ、アデレード線です。",
+          "say": "最後は、ユナイテッド航空のサンフランシスコ、アデレード線です。",
+          "speaker": "metan"
+        },
+        {
+          "show": "運航計画に関する報道では、2026年から27年のシーズンは、当初の49往復から23往復へ縮小します。",
+          "say": "運航計画に関する報道では、2026年から27年のシーズンは、当初の49往復から23往復へ縮小します。",
+          "speaker": "metan"
+        },
+        {
+          "show": "運航期間は12月17日から翌年2月8日まで。機材はボーイング787-9です。",
+          "say": "運航期間は12月17日から翌年2月8日まで。機材はボーイング、ななはちなな、ダッシュナインです。",
+          "speaker": "metan"
+        },
+        {
+          "show": "季節便を利用する方は、旅行日程に合う便があるか、予約前に最新の運航予定を確認したいところです。",
+          "say": "季節便を利用する方は、旅行日程に合う便があるか、予約前に最新の運航予定を確認したいところです。",
+          "speaker": "metan"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Aviation Shop｜季節運航の短縮（10月17日報道）",
+          "url": "https://www.aviationshop.com/blogs/news/united-cuts-its-san-francisco-adelaide-787-9-season-to-23-round-trips-for-winter-2026-27",
+          "type": "航空報道・一次発表未確認"
+        },
+        {
+          "title": "Andrew Curran｜当該記事の取材記者による説明",
+          "url": "https://www.linkedin.com/posts/andrew-curran-sydney_airlinenews-aviation-southaustralia-activity-7483685498935345152-NK7L",
+          "type": "記者説明"
+        }
+      ],
+      "url": "https://www.aviationshop.com/blogs/news/united-cuts-its-san-francisco-adelaide-787-9-season-to-23-round-trips-for-winter-2026-27",
+      "link": {
+        "url": "https://www.aviationshop.com/blogs/news/united-cuts-its-san-francisco-adelaide-787-9-season-to-23-round-trips-for-winter-2026-27",
+        "title": "Aviation Shop｜季節運航の短縮（10月17日報道）",
+        "site": "航空報道・一次発表未確認",
+        "description": "出典を開いて、発表・報道内容を確認する"
+      }
+    }
+  ],
+  "speakers": {
+    "metan": {
+      "id": 2,
+      "name": "四国めたん",
+      "credit": "VOICEVOX:四国めたん",
+      "role": "女性ナレーター"
+    },
+    "takehiro": {
+      "id": 11,
+      "name": "玄野武宏",
+      "credit": "VOICEVOX:玄野武宏",
+      "role": "男性ナレーター"
+    }
+  },
+  "lines_timed": [
+    {
+      "start": 0.0,
+      "end": 1.489,
+      "show": "おはようございます。",
+      "speaker": "metan",
+      "part": 0
+    },
+    {
+      "start": 1.489,
+      "end": 2.913,
+      "show": "11月6日、",
+      "speaker": "metan",
+      "part": 0
+    },
+    {
+      "start": 2.913,
+      "end": 4.564,
+      "show": "今朝チェックした航空ニュースを",
+      "speaker": "metan",
+      "part": 0
+    },
+    {
+      "start": 4.564,
+      "end": 5.824,
+      "show": "5件お届けします。",
+      "speaker": "metan",
+      "part": 0
+    },
+    {
+      "start": 5.984,
+      "end": 7.489,
+      "show": "冬の新路線から、",
+      "speaker": "takehiro",
+      "part": 0
+    },
+    {
+      "start": 7.489,
+      "end": 9.161,
+      "show": "大型の機材発注、",
+      "speaker": "takehiro",
+      "part": 0
+    },
+    {
+      "start": 9.161,
+      "end": 10.794,
+      "show": "季節便の見直しまで。",
+      "speaker": "takehiro",
+      "part": 0
+    },
+    {
+      "start": 10.794,
+      "end": 11.765,
+      "show": "男女のナレーションで",
+      "speaker": "takehiro",
+      "part": 0
+    },
+    {
+      "start": 11.765,
+      "end": 13.088,
+      "show": "順番に見ていきましょう。",
+      "speaker": "takehiro",
+      "part": 0
+    },
+    {
+      "start": 13.248,
+      "end": 15.611,
+      "show": "最初はカナダのポーター航空です。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 15.611,
+      "end": 16.547,
+      "show": "オタワから、",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 16.547,
+      "end": 17.716,
+      "show": "冬の休暇に向けた",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 17.716,
+      "end": 19.477,
+      "show": "4つの路線を展開します。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 19.637,
+      "end": 21.559,
+      "show": "アルバは11月7日、",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 21.559,
+      "end": 22.319,
+      "show": "モンテゴベイは",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 22.319,
+      "end": 24.981,
+      "show": "11月25日に就航予定です。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 25.141,
+      "end": 27.404,
+      "show": "続いて、プロビデンシアレスは",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 27.404,
+      "end": 28.917,
+      "show": "12月17日、",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 28.917,
+      "end": 31.402,
+      "show": "ロスカボスは12月18日。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 31.402,
+      "end": 32.924,
+      "show": "機材は132席の",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 32.924,
+      "end": 35.957,
+      "show": "エンブラエルE195-E2です。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 36.117,
+      "end": 37.069,
+      "show": "2つ目は、",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 37.069,
+      "end": 39.171,
+      "show": "モルドバの新しい航空会社、",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 39.171,
+      "end": 40.18,
+      "show": "ポラリスです。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 40.18,
+      "end": 41.752,
+      "show": "首都キシナウを拠点に、",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 41.752,
+      "end": 43.659,
+      "show": "定期便の展開を進めています。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 43.819,
+      "end": 45.459,
+      "show": "イスタンブールに加え、",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 45.459,
+      "end": 48.034,
+      "show": "ボローニャ、ダブリン、プラハ、",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 48.034,
+      "end": 49.835,
+      "show": "ローマなどへ就航する計画です。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 49.995,
+      "end": 51.847,
+      "show": "初期の7路線に加え、",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 51.847,
+      "end": 53.564,
+      "show": "11月から12月にかけて",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 53.564,
+      "end": 55.272,
+      "show": "計11路線を展開すると",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 55.272,
+      "end": 56.267,
+      "show": "報じられています。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 56.427,
+      "end": 58.778,
+      "show": "運航許可の取得も報じられており、",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 58.778,
+      "end": 60.037,
+      "show": "最初の商業便には",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 60.037,
+      "end": 62.485,
+      "show": "エアバスA321を使用します。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 62.645,
+      "end": 65.167,
+      "show": "3つ目はアメリカのブリーズ航空。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 65.167,
+      "end": 66.319,
+      "show": "スピリット撤退後の",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 66.319,
+      "end": 68.415,
+      "show": "直行便を補う動きと、",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 68.415,
+      "end": 70.027,
+      "show": "リゾート路線の拡大です。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 70.187,
+      "end": 70.999,
+      "show": "ラトローブから",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 70.999,
+      "end": 72.02,
+      "show": "マートルビーチへは",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 72.02,
+      "end": 74.22,
+      "show": "2027年2月9日、",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 74.22,
+      "end": 76.198,
+      "show": "オーランドへは5月26日に",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 76.198,
+      "end": 77.589,
+      "show": "就航する予定です。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 77.749,
+      "end": 78.821,
+      "show": "タンパからは、",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 78.821,
+      "end": 79.718,
+      "show": "セントトーマスへ",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 79.718,
+      "end": 81.654,
+      "show": "今年12月16日、",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 81.654,
+      "end": 82.924,
+      "show": "モンテゴベイとカンクンへ",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 82.924,
+      "end": 85.152,
+      "show": "12月19日に就航予定。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 85.312,
+      "end": 86.407,
+      "show": "サントドミンゴへは",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 86.407,
+      "end": 88.496,
+      "show": "来年6月18日から。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 88.496,
+      "end": 90.16,
+      "show": "さらに、バッファロー発の",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 90.16,
+      "end": 91.201,
+      "show": "3路線も、",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 91.201,
+      "end": 92.804,
+      "show": "来年6月から7月に",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 92.804,
+      "end": 94.4,
+      "show": "順次始まる計画です。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 94.56,
+      "end": 95.534,
+      "show": "4つ目は、",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 95.534,
+      "end": 97.088,
+      "show": "航空機リース会社アボロンの",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 97.088,
+      "end": 98.165,
+      "show": "大型発注です。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 98.325,
+      "end": 99.726,
+      "show": "10月に公表された",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 99.726,
+      "end": 100.92,
+      "show": "合計250機の",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 100.92,
+      "end": 102.503,
+      "show": "発注パッケージのうち、",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 102.503,
+      "end": 104.31,
+      "show": "ボーイング140機は、",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 104.31,
+      "end": 107.509,
+      "show": "すべて737 MAX 10となることが",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 107.509,
+      "end": 109.867,
+      "show": "11月4日に確定発表されました。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 110.027,
+      "end": 111.255,
+      "show": "エアバス分は、",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 111.255,
+      "end": 114.221,
+      "show": "A320neoファミリーが75機、",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 114.221,
+      "end": 116.349,
+      "show": "A330neoが35機。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 116.349,
+      "end": 117.241,
+      "show": "さらに100機分の",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 117.241,
+      "end": 118.837,
+      "show": "追加オプションも設けています。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 118.997,
+      "end": 120.969,
+      "show": "なお、追加オプションは、",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 120.969,
+      "end": 122.766,
+      "show": "確定発注の250機とは",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 122.766,
+      "end": 123.616,
+      "show": "別の枠です。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 123.776,
+      "end": 125.83,
+      "show": "最後は、ユナイテッド航空の",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 125.83,
+      "end": 127.103,
+      "show": "サンフランシスコ、",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 127.103,
+      "end": 128.203,
+      "show": "アデレード線です。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 128.363,
+      "end": 130.783,
+      "show": "運航計画に関する報道では、",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 130.783,
+      "end": 133.848,
+      "show": "2026年から27年のシーズンは、",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 133.848,
+      "end": 135.58,
+      "show": "当初の49往復から",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 135.58,
+      "end": 137.6,
+      "show": "23往復へ縮小します。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 137.76,
+      "end": 140.208,
+      "show": "運航期間は12月17日から",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 140.208,
+      "end": 141.892,
+      "show": "翌年2月8日まで。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 141.892,
+      "end": 145.621,
+      "show": "機材はボーイング787-9です。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 145.781,
+      "end": 147.729,
+      "show": "季節便を利用する方は、",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 147.729,
+      "end": 149.931,
+      "show": "旅行日程に合う便があるか、",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 149.931,
+      "end": 152.024,
+      "show": "予約前に最新の運航予定を",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 152.024,
+      "end": 153.419,
+      "show": "確認したいところです。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 153.579,
+      "end": 155.15,
+      "show": "今朝の航空ニュースは、",
+      "speaker": "takehiro",
+      "part": 6
+    },
+    {
+      "start": 155.15,
+      "end": 157.75,
+      "show": "新路線の拡大、大型発注、",
+      "speaker": "takehiro",
+      "part": 6
+    },
+    {
+      "start": 157.75,
+      "end": 159.132,
+      "show": "そして季節便の見直しを",
+      "speaker": "takehiro",
+      "part": 6
+    },
+    {
+      "start": 159.132,
+      "end": 160.011,
+      "show": "お伝えしました。",
+      "speaker": "takehiro",
+      "part": 6
+    },
+    {
+      "start": 160.171,
+      "end": 162.138,
+      "show": "詳しい日程と出典は、",
+      "speaker": "metan",
+      "part": 6
+    },
+    {
+      "start": 162.138,
+      "end": 163.487,
+      "show": "画面下の各ニュースから",
+      "speaker": "metan",
+      "part": 6
+    },
+    {
+      "start": 163.487,
+      "end": 164.713,
+      "show": "確認できます。",
+      "speaker": "metan",
+      "part": 6
+    },
+    {
+      "start": 164.713,
+      "end": 166.81,
+      "show": "運航予定は変更される場合が",
+      "speaker": "metan",
+      "part": 6
+    },
+    {
+      "start": 166.81,
+      "end": 167.515,
+      "show": "あります。",
+      "speaker": "metan",
+      "part": 6
+    },
+    {
+      "start": 167.515,
+      "end": 169.632,
+      "show": "それでは、また次の放送で。",
+      "speaker": "metan",
+      "part": 6
+    }
+  ],
+  "segments": [
+    {
+      "kind": "opening",
+      "start": 0.0,
+      "end": 13.248,
+      "speaker": "metan"
+    },
+    {
+      "kind": "news",
+      "index": 0,
+      "start": 13.248,
+      "end": 36.117,
+      "speaker": "metan"
+    },
+    {
+      "kind": "news",
+      "index": 1,
+      "start": 36.117,
+      "end": 62.645,
+      "speaker": "takehiro"
+    },
+    {
+      "kind": "news",
+      "index": 2,
+      "start": 62.645,
+      "end": 94.56,
+      "speaker": "metan"
+    },
+    {
+      "kind": "news",
+      "index": 3,
+      "start": 94.56,
+      "end": 123.776,
+      "speaker": "takehiro"
+    },
+    {
+      "kind": "news",
+      "index": 4,
+      "start": 123.776,
+      "end": 153.579,
+      "speaker": "metan"
+    },
+    {
+      "kind": "closing",
+      "start": 153.579,
+      "end": 169.792,
+      "speaker": "takehiro"
+    }
+  ],
+  "seconds": 169.792,
+  "speech_timed": [
+    {
+      "start": 0.0,
+      "end": 5.824,
+      "show": "おはようございます。11月6日、今朝チェックした航空ニュースを5件お届けします。",
+      "speaker": "metan",
+      "part": 0
+    },
+    {
+      "start": 5.984,
+      "end": 13.088,
+      "show": "冬の新路線から、大型の機材発注、季節便の見直しまで。男女のナレーションで順番に見ていきましょう。",
+      "speaker": "takehiro",
+      "part": 0
+    },
+    {
+      "start": 13.248,
+      "end": 19.477,
+      "show": "最初はカナダのポーター航空です。オタワから、冬の休暇に向けた4つの路線を展開します。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 19.637,
+      "end": 24.981,
+      "show": "アルバは11月7日、モンテゴベイは11月25日に就航予定です。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 25.141,
+      "end": 35.957,
+      "show": "続いて、プロビデンシアレスは12月17日、ロスカボスは12月18日。機材は132席のエンブラエルE195-E2です。",
+      "speaker": "metan",
+      "part": 1
+    },
+    {
+      "start": 36.117,
+      "end": 43.659,
+      "show": "2つ目は、モルドバの新しい航空会社、ポラリスです。首都キシナウを拠点に、定期便の展開を進めています。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 43.819,
+      "end": 49.835,
+      "show": "イスタンブールに加え、ボローニャ、ダブリン、プラハ、ローマなどへ就航する計画です。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 49.995,
+      "end": 56.267,
+      "show": "初期の7路線に加え、11月から12月にかけて計11路線を展開すると報じられています。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 56.427,
+      "end": 62.485,
+      "show": "運航許可の取得も報じられており、最初の商業便にはエアバスA321を使用します。",
+      "speaker": "takehiro",
+      "part": 2
+    },
+    {
+      "start": 62.645,
+      "end": 70.027,
+      "show": "3つ目はアメリカのブリーズ航空。スピリット撤退後の直行便を補う動きと、リゾート路線の拡大です。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 70.187,
+      "end": 77.589,
+      "show": "ラトローブからマートルビーチへは2027年2月9日、オーランドへは5月26日に就航する予定です。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 77.749,
+      "end": 85.152,
+      "show": "タンパからは、セントトーマスへ今年12月16日、モンテゴベイとカンクンへ12月19日に就航予定。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 85.312,
+      "end": 94.4,
+      "show": "サントドミンゴへは来年6月18日から。さらに、バッファロー発の3路線も、来年6月から7月に順次始まる計画です。",
+      "speaker": "metan",
+      "part": 3
+    },
+    {
+      "start": 94.56,
+      "end": 98.165,
+      "show": "4つ目は、航空機リース会社アボロンの大型発注です。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 98.325,
+      "end": 109.867,
+      "show": "10月に公表された合計250機の発注パッケージのうち、ボーイング140機は、すべて737 MAX 10となることが11月4日に確定発表されました。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 110.027,
+      "end": 118.837,
+      "show": "エアバス分は、A320neoファミリーが75機、A330neoが35機。さらに100機分の追加オプションも設けています。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 118.997,
+      "end": 123.616,
+      "show": "なお、追加オプションは、確定発注の250機とは別の枠です。",
+      "speaker": "takehiro",
+      "part": 4
+    },
+    {
+      "start": 123.776,
+      "end": 128.203,
+      "show": "最後は、ユナイテッド航空のサンフランシスコ、アデレード線です。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 128.363,
+      "end": 137.6,
+      "show": "運航計画に関する報道では、2026年から27年のシーズンは、当初の49往復から23往復へ縮小します。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 137.76,
+      "end": 145.621,
+      "show": "運航期間は12月17日から翌年2月8日まで。機材はボーイング787-9です。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 145.781,
+      "end": 153.419,
+      "show": "季節便を利用する方は、旅行日程に合う便があるか、予約前に最新の運航予定を確認したいところです。",
+      "speaker": "metan",
+      "part": 5
+    },
+    {
+      "start": 153.579,
+      "end": 160.011,
+      "show": "今朝の航空ニュースは、新路線の拡大、大型発注、そして季節便の見直しをお伝えしました。",
+      "speaker": "takehiro",
+      "part": 6
+    },
+    {
+      "start": 160.171,
+      "end": 169.632,
+      "show": "詳しい日程と出典は、画面下の各ニュースから確認できます。運航予定は変更される場合があります。それでは、また次の放送で。",
+      "speaker": "metan",
+      "part": 6
+    }
+  ],
+  "program": "aviation"
+}
