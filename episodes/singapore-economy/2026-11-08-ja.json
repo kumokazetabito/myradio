@@ -1,0 +1,846 @@
+{
+  "format": "monoradio/news-1",
+  "program": "singapore-economy",
+  "date": "2026-11-08",
+  "lang": "ja",
+  "title": "シンガポール経済ニュース 2026年11月8日",
+  "broadcast_date": "2026-11-08",
+  "news_date": "2026-11-07",
+  "made_at": "2026-11-07T17:06:31.434155+00:00",
+  "audio": "audio/singapore-economy/2026-11-08-full.mp3",
+  "seconds": 151.176,
+  "provided_credits": "原稿・音声：Muse",
+  "speakers": {
+    "metan": {
+      "name": "Meticulous Pen",
+      "credit": "音声：Meticulous Pen (Muse)",
+      "role": "女性ナレーター"
+    },
+    "takehiro": {
+      "name": "Helio",
+      "credit": "音声：Helio (Muse)",
+      "role": "男性ナレーター"
+    }
+  },
+  "opening": [
+    {
+      "show": "おはようございます。",
+      "say": "おはようございます。",
+      "speaker": "metan"
+    },
+    {
+      "show": "11月8日日曜日、シンガポール経済ニュースをお伝えします。",
+      "say": "11月8日日曜日、シンガポール経済ニュースをお伝えします。",
+      "speaker": "metan"
+    },
+    {
+      "show": "きのう、11月7日のニュースです。",
+      "say": "きのう、11月7日のニュースです。",
+      "speaker": "metan"
+    }
+  ],
+  "closing": [
+    {
+      "show": "以上、シンガポール経済ニュースをお伝えしました。",
+      "say": "以上、シンガポール経済ニュースをお伝えしました。",
+      "speaker": "takehiro"
+    },
+    {
+      "show": "それではまた次の放送で。",
+      "say": "それではまた次の放送で。",
+      "speaker": "takehiro"
+    },
+    {
+      "show": "Tabito Radioでした。",
+      "say": "タビト・レディオでした。",
+      "speaker": "takehiro"
+    }
+  ],
+  "news": [
+    {
+      "label": "シンガポールポスト、上半期は純利益55.9百万ドルで183.7%増",
+      "points": [
+        "上半期は大幅増益",
+        "店舗売却益と基礎利益の改善が寄与",
+        "売上高はわずかに減少",
+        "中間配当を増配"
+      ],
+      "details": [
+        "純利益は5,590万シンガポールドルとなり、前年同期比183.7%増加しました。決算発表は11月6日です。",
+        "10カ所のHDB郵便局店舗の売却などによる特別利益が純利益を押し上げました。売却益は4,440万ドルで、基礎純利益も2倍超の1,150万ドルに拡大しました。",
+        "売上高は1億8,590万ドルで、前年同期比1.3%減でした。国際収入の減少が響き、利益とは異なる動きになりました。",
+        "中間配当は0.15セントです。利益面では、店舗売却による特別利益に加え、基礎純利益の拡大も報告されています。"
+      ],
+      "speaker": "metan",
+      "lines": [
+        {
+          "say": "まず、郵便の話題です。シンガポールポストは",
+          "show": "まず、郵便の話題です。シンガポールポストは",
+          "speaker": "metan"
+        },
+        {
+          "say": "11月6日、上半期の純利益が前の年より",
+          "show": "11月6日、上半期の純利益が前年比",
+          "speaker": "metan"
+        },
+        {
+          "say": "183.7パーセント増の5590万シンガポールドル",
+          "show": "183.7%増の5,590万シンガポールドル",
+          "speaker": "metan"
+        },
+        {
+          "say": "だったと発表しました。",
+          "show": "だったと発表しました。",
+          "speaker": "metan"
+        },
+        {
+          "say": "10カ所のエイチディービー郵便局店舗の売却益が",
+          "show": "10カ所のHDB郵便局店舗の売却益が",
+          "speaker": "metan"
+        },
+        {
+          "say": "寄与し、基礎純利益も2倍超の",
+          "show": "寄与し、基礎純利益も2倍超の",
+          "speaker": "metan"
+        },
+        {
+          "say": "1150万ドルに拡大しました。",
+          "show": "1,150万ドルに拡大しました。",
+          "speaker": "metan"
+        },
+        {
+          "say": "売上高は1億8590万ドルで1.3パーセント減と",
+          "show": "売上高は1億8,590万ドルで1.3%減と",
+          "speaker": "metan"
+        },
+        {
+          "say": "わずかに減少しました。",
+          "show": "わずかに減少しました。",
+          "speaker": "metan"
+        },
+        {
+          "say": "中間配当は0.15セントに増配です。",
+          "show": "中間配当は0.15セントに増配です。",
+          "speaker": "metan"
+        }
+      ],
+      "sources": [
+        {
+          "site": "CNA",
+          "url": "https://www.channelnewsasia.com/singapore/singpost-results-net-profit-h1-fy2026-2027-6529541"
+        }
+      ],
+      "url": "https://www.channelnewsasia.com/singapore/singpost-results-net-profit-h1-fy2026-2027-6529541"
+    },
+    {
+      "label": "ベンチャー・コーポレーション、第3四半期は売上高26%増、純利益21.9%増",
+      "points": [
+        "第3四半期は増収増益",
+        "売上高の伸びが上半期から加速",
+        "AI関連インフラ向けの需要がけん引",
+        "設計・開発から製造までを担う企業"
+      ],
+      "details": [
+        "売上高は前年同期比26.0%増の7億9,040万ドル、純利益は21.9%増の6,780万ドルでした。売上高・純利益の双方が前年同期を上回りました。",
+        "上半期の増収率7.4%に対し、第3四半期は26.0%でした。一方、決算発表日の株価下落は世界的なハイテク株安と重なっています。",
+        "テスト・計測機器、ネットワーク・通信、半導体関連装置の分野が伸びています。ただし、第3四半期の分野別内訳は確認できていません。",
+        "1984年創業のシンガポール企業です。電子機器の受託製造に加え、設計・開発や技術サービスも手がけます。"
+      ],
+      "speaker": "takehiro",
+      "lines": [
+        {
+          "say": "次に、テクノロジー企業の決算です。",
+          "show": "次に、テクノロジー企業の決算です。",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "ベンチャー・コーポレーションは、",
+          "show": "ベンチャー・コーポレーションは、",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "シンガポールの電子機器の受託製造・",
+          "show": "シンガポールの電子機器受託製造・",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "技術サービス会社です。",
+          "show": "技術サービス会社です。",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "2026年第3四半期の売上高は前の年より",
+          "show": "2026年第3四半期の売上高は前年比",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "26.0パーセント増の7億9040万ドル、純利益は",
+          "show": "26.0%増の7億9,040万ドル、純利益は",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "21.9パーセント増の6780万ドルだったと",
+          "show": "21.9%増の6,780万ドルだったと",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "発表しました。",
+          "show": "発表しました。",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "好調の中心はエーアイ関連インフラ向けの",
+          "show": "好調の中心はAI関連インフラ向けの",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "需要で、テスト・計測機器や",
+          "show": "需要で、テスト・計測機器や",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "ネットワーク・通信、半導体関連装置の",
+          "show": "ネットワーク・通信、半導体関連装置の",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "分野が伸びています。",
+          "show": "分野が伸びています。",
+          "speaker": "takehiro"
+        }
+      ],
+      "sources": [
+        {
+          "site": "SGX提出資料（TradingView/Quartr要約）",
+          "url": "https://www.tradingview.com/news/urn:summary_document_slides:quartr.com:4277424:0-venture-corporation-revenue-rose-26-0-as-demand-and-portfolio-growth-supported-fy2026-expectations/"
+        },
+        {
+          "site": "StockAnalysis",
+          "url": "https://stockanalysis.com/quote/sgx/V03/"
+        }
+      ],
+      "url": "https://www.tradingview.com/news/urn:summary_document_slides:quartr.com:4277424:0-venture-corporation-revenue-rose-26-0-as-demand-and-portfolio-growth-supported-fy2026-expectations/"
+    },
+    {
+      "label": "MAS、10月末の外貨準備高は4,315億米ドルで約19億ドル減",
+      "points": [
+        "10月末の外貨準備を公表",
+        "前月から小幅に減少",
+        "自国通貨換算でも前月を下回る",
+        "高水準だった9月からの変化"
+      ],
+      "details": [
+        "MASが11月6日に公表した残高は4,315億米ドルでした。対象は10月末時点の外貨準備です。",
+        "9月末の4,334億米ドルと比べると、減少額は約19億米ドル、率では約0.4%でした。",
+        "シンガポールドル建てでは5,513億ドルとなり、9月末の5,535億ドルから低下しました。米ドル建てとは通貨の単位が異なります。",
+        "前月は2022年2月以来の高水準でした。今回の減少率は、その高い残高を基準とした1か月の変化です。"
+      ],
+      "speaker": "metan",
+      "lines": [
+        {
+          "say": "続いて、中央銀行の話題です。",
+          "show": "続いて、中央銀行の話題です。",
+          "speaker": "metan"
+        },
+        {
+          "say": "エムエーエスが公表した10月の外貨準備高は、",
+          "show": "MASが公表した10月の外貨準備高は、",
+          "speaker": "metan"
+        },
+        {
+          "say": "10月末で4315億米ドルとなり、",
+          "show": "10月末で4,315億米ドルとなり、",
+          "speaker": "metan"
+        },
+        {
+          "say": "9月末と比べておよそ19億ドル",
+          "show": "9月末と比べておよそ19億ドル",
+          "speaker": "metan"
+        },
+        {
+          "say": "減りました。",
+          "show": "減りました。",
+          "speaker": "metan"
+        },
+        {
+          "say": "シンガポールドル換算では5513億ドル",
+          "show": "シンガポールドル換算では5,513億ドル",
+          "speaker": "metan"
+        },
+        {
+          "say": "でした。",
+          "show": "でした。",
+          "speaker": "metan"
+        },
+        {
+          "say": "減少幅はおよそ0.4パーセントで、9月は",
+          "show": "減少幅はおよそ0.4%で、9月は",
+          "speaker": "metan"
+        },
+        {
+          "say": "2022年2月以来の高水準だったため、",
+          "show": "2022年2月以来の高水準だったため、",
+          "speaker": "metan"
+        },
+        {
+          "say": "水準は高いままです。",
+          "show": "水準は高いままです。",
+          "speaker": "metan"
+        }
+      ],
+      "sources": [
+        {
+          "site": "MAS公式発表（FX Blue）",
+          "url": "https://www.fxblue.com/calendar/item/2ec7a931-1971-420d-b075-d91d147c3afc/17a60b75-7a67-443f-bcac-fa50e84dee02"
+        },
+        {
+          "site": "Binance News",
+          "url": "https://www.binance.com/en/square/post/11-06-2026-singapore-s-october-fx-reserves-at-431-5-billion-versus-previous-433-4-billion-385290736128399"
+        }
+      ],
+      "url": "https://www.fxblue.com/calendar/item/2ec7a931-1971-420d-b075-d91d147c3afc/17a60b75-7a67-443f-bcac-fa50e84dee02"
+    },
+    {
+      "label": "フレイザーズ・ロジスティクス、下期分配金は2.95セントで横ばい",
+      "points": [
+        "下期の分配金は据え置き",
+        "下期・通期ともに増収",
+        "調整後純不動産収入も増加"
+      ],
+      "details": [
+        "下期は1口あたり2.95セントで横ばいでした。通期では5.9セントとなり、前年を0.8%下回りました。",
+        "下期売上高は2億5,520万ドルで前年同期比6.7%増でした。通期は4億9,410万ドルで4.8%増となっています。",
+        "下期の調整後純不動産収入は1億8,060万ドルで、前年同期比9.6%増でした。このほか、下期には売却益1億950万ドルもありました。"
+      ],
+      "speaker": "takehiro",
+      "lines": [
+        {
+          "say": "最後に、不動産投資信託の決算です。",
+          "show": "最後に、不動産投資信託の決算です。",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "フレイザーズ・ロジスティクス・アンド・",
+          "show": "フレイザーズ・ロジスティクス＆",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "コマーシャル・トラストは、",
+          "show": "コマーシャル・トラストは、",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "2026年度しもきの分配金がひとくちあたり",
+          "show": "2026年度下期の分配金が1口あたり",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "2.95セントで横ばい、通期は5.9セントで",
+          "show": "2.95セントで横ばい、通期は5.9セントで",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "前の年より0.8パーセント減だったと発表しました。",
+          "show": "前年比0.8%減だったと発表しました。",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "しもきの売上高は2億5520万ドルで",
+          "show": "下期の売上高は2億5,520万ドルで",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "前の年より6.7パーセント増、通期は4億9410万ドルで",
+          "show": "前年比6.7%増、通期は4億9,410万ドルで",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "4.8パーセント増でした。",
+          "show": "4.8%増でした。",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "調整後の純不動産収入も、しもきは",
+          "show": "調整後の純不動産収入も、下期は",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "1億8060万ドルで9.6パーセント増と",
+          "show": "1億8,060万ドルで9.6%増と",
+          "speaker": "takehiro"
+        },
+        {
+          "say": "伸びています。",
+          "show": "伸びています。",
+          "speaker": "takehiro"
+        }
+      ],
+      "sources": [
+        {
+          "site": "Singapore Business Review",
+          "url": "https://sbr.com.sg/transport-logistics/news/frasers-logistics-dpu-stalls-295-cents-despite-67-revenue-gain"
+        }
+      ],
+      "url": "https://sbr.com.sg/transport-logistics/news/frasers-logistics-dpu-stalls-295-cents-despite-67-revenue-gain"
+    }
+  ],
+  "lines_timed": [
+    {
+      "show": "おはようございます。",
+      "say": "おはようございます。",
+      "start": 0.0,
+      "end": 1.62,
+      "part": 0,
+      "speaker": "metan"
+    },
+    {
+      "show": "11月8日日曜日、シンガポール経済ニュースをお伝えします。",
+      "say": "11月8日日曜日、シンガポール経済ニュースをお伝えします。",
+      "start": 1.62,
+      "end": 6.46,
+      "part": 0,
+      "speaker": "metan"
+    },
+    {
+      "show": "きのう、11月7日のニュースです。",
+      "say": "きのう、11月7日のニュースです。",
+      "start": 6.46,
+      "end": 9.6,
+      "part": 0,
+      "speaker": "metan"
+    },
+    {
+      "show": "まず、郵便の話題です。シンガポールポストは",
+      "say": "まず、郵便の話題です。シンガポールポストは",
+      "start": 9.6,
+      "end": 13.3,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "11月6日、上半期の純利益が前年比",
+      "say": "11月6日、上半期の純利益が前の年より",
+      "start": 13.3,
+      "end": 18.34,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "183.7%増の5,590万シンガポールドル",
+      "say": "183.7パーセント増の5590万シンガポールドル",
+      "start": 18.34,
+      "end": 24.22,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "だったと発表しました。",
+      "say": "だったと発表しました。",
+      "start": 24.22,
+      "end": 26.48,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "10カ所のHDB郵便局店舗の売却益が",
+      "say": "10カ所のエイチディービー郵便局店舗の売却益が",
+      "start": 26.48,
+      "end": 30.0,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "寄与し、基礎純利益も2倍超の",
+      "say": "寄与し、基礎純利益も2倍超の",
+      "start": 30.0,
+      "end": 33.22,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "1,150万ドルに拡大しました。",
+      "say": "1150万ドルに拡大しました。",
+      "start": 33.22,
+      "end": 36.8,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "売上高は1億8,590万ドルで1.3%減と",
+      "say": "売上高は1億8590万ドルで1.3パーセント減と",
+      "start": 36.8,
+      "end": 42.7,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "わずかに減少しました。",
+      "say": "わずかに減少しました。",
+      "start": 42.7,
+      "end": 45.04,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "中間配当は0.15セントに増配です。",
+      "say": "中間配当は0.15セントに増配です。",
+      "start": 45.04,
+      "end": 49.08,
+      "part": 1,
+      "speaker": "metan"
+    },
+    {
+      "show": "次に、テクノロジー企業の決算です。",
+      "say": "次に、テクノロジー企業の決算です。",
+      "start": 49.08,
+      "end": 51.7,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "ベンチャー・コーポレーションは、",
+      "say": "ベンチャー・コーポレーションは、",
+      "start": 51.7,
+      "end": 53.34,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "シンガポールの電子機器受託製造・",
+      "say": "シンガポールの電子機器の受託製造・",
+      "start": 53.34,
+      "end": 55.84,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "技術サービス会社です。",
+      "say": "技術サービス会社です。",
+      "start": 55.84,
+      "end": 57.6,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "2026年第3四半期の売上高は前年比",
+      "say": "2026年第3四半期の売上高は前の年より",
+      "start": 57.6,
+      "end": 61.52,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "26.0%増の7億9,040万ドル、純利益は",
+      "say": "26.0パーセント増の7億9040万ドル、純利益は",
+      "start": 61.52,
+      "end": 66.56,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "21.9%増の6,780万ドルだったと",
+      "say": "21.9パーセント増の6780万ドルだったと",
+      "start": 66.56,
+      "end": 70.68,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "発表しました。",
+      "say": "発表しました。",
+      "start": 70.68,
+      "end": 71.78,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "好調の中心はAI関連インフラ向けの",
+      "say": "好調の中心はエーアイ関連インフラ向けの",
+      "start": 71.78,
+      "end": 74.32,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "需要で、テスト・計測機器や",
+      "say": "需要で、テスト・計測機器や",
+      "start": 74.32,
+      "end": 76.42,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "ネットワーク・通信、半導体関連装置の",
+      "say": "ネットワーク・通信、半導体関連装置の",
+      "start": 76.42,
+      "end": 79.06,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "分野が伸びています。",
+      "say": "分野が伸びています。",
+      "start": 79.06,
+      "end": 80.4,
+      "part": 2,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "続いて、中央銀行の話題です。",
+      "say": "続いて、中央銀行の話題です。",
+      "start": 80.4,
+      "end": 83.72,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "MASが公表した10月の外貨準備高は、",
+      "say": "エムエーエスが公表した10月の外貨準備高は、",
+      "start": 83.72,
+      "end": 87.76,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "10月末で4,315億米ドルとなり、",
+      "say": "10月末で4315億米ドルとなり、",
+      "start": 87.76,
+      "end": 91.92,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "9月末と比べておよそ19億ドル",
+      "say": "9月末と比べておよそ19億ドル",
+      "start": 91.92,
+      "end": 94.94,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "減りました。",
+      "say": "減りました。",
+      "start": 94.94,
+      "end": 96.32,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "シンガポールドル換算では5,513億ドル",
+      "say": "シンガポールドル換算では5513億ドル",
+      "start": 96.32,
+      "end": 100.04,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "でした。",
+      "say": "でした。",
+      "start": 100.04,
+      "end": 101.08,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "減少幅はおよそ0.4%で、9月は",
+      "say": "減少幅はおよそ0.4パーセントで、9月は",
+      "start": 101.08,
+      "end": 105.22,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "2022年2月以来の高水準だったため、",
+      "say": "2022年2月以来の高水準だったため、",
+      "start": 105.22,
+      "end": 109.54,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "水準は高いままです。",
+      "say": "水準は高いままです。",
+      "start": 109.54,
+      "end": 111.6,
+      "part": 3,
+      "speaker": "metan"
+    },
+    {
+      "show": "最後に、不動産投資信託の決算です。",
+      "say": "最後に、不動産投資信託の決算です。",
+      "start": 111.6,
+      "end": 114.88,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "フレイザーズ・ロジスティクス＆",
+      "say": "フレイザーズ・ロジスティクス・アンド・",
+      "start": 114.88,
+      "end": 116.26,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "コマーシャル・トラストは、",
+      "say": "コマーシャル・トラストは、",
+      "start": 116.26,
+      "end": 117.5,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "2026年度下期の分配金が1口あたり",
+      "say": "2026年度しもきの分配金がひとくちあたり",
+      "start": 117.5,
+      "end": 120.42,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "2.95セントで横ばい、通期は5.9セントで",
+      "say": "2.95セントで横ばい、通期は5.9セントで",
+      "start": 120.42,
+      "end": 123.68,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "前年比0.8%減だったと発表しました。",
+      "say": "前の年より0.8パーセント減だったと発表しました。",
+      "start": 123.68,
+      "end": 127.42,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "下期の売上高は2億5,520万ドルで",
+      "say": "しもきの売上高は2億5520万ドルで",
+      "start": 127.42,
+      "end": 130.5,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "前年比6.7%増、通期は4億9,410万ドルで",
+      "say": "前の年より6.7パーセント増、通期は4億9410万ドルで",
+      "start": 130.5,
+      "end": 135.64,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "4.8%増でした。",
+      "say": "4.8パーセント増でした。",
+      "start": 135.64,
+      "end": 138.14,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "調整後の純不動産収入も、下期は",
+      "say": "調整後の純不動産収入も、しもきは",
+      "start": 138.14,
+      "end": 140.62,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "1億8,060万ドルで9.6%増と伸びています。",
+      "say": "1億8060万ドルで9.6パーセント増と伸びています。",
+      "start": 140.62,
+      "end": 144.26,
+      "part": 4,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "以上、シンガポール経済ニュースをお伝えしました。",
+      "say": "以上、シンガポール経済ニュースをお伝えしました。",
+      "start": 144.26,
+      "end": 148.0,
+      "part": 5,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "それではまた次の放送で。",
+      "say": "それではまた次の放送で。",
+      "start": 148.0,
+      "end": 149.88,
+      "part": 5,
+      "speaker": "takehiro"
+    },
+    {
+      "show": "Tabito Radioでした。",
+      "say": "タビト・レディオでした。",
+      "start": 149.88,
+      "end": 150.92,
+      "part": 5,
+      "speaker": "takehiro"
+    }
+  ],
+  "segments": [
+    {
+      "kind": "opening",
+      "start": 0,
+      "end": 9.6,
+      "speaker": "metan"
+    },
+    {
+      "kind": "news",
+      "start": 9.6,
+      "end": 49.08,
+      "speaker": "metan",
+      "index": 0
+    },
+    {
+      "kind": "news",
+      "start": 49.08,
+      "end": 80.4,
+      "speaker": "takehiro",
+      "index": 1
+    },
+    {
+      "kind": "news",
+      "start": 80.4,
+      "end": 111.6,
+      "speaker": "metan",
+      "index": 2
+    },
+    {
+      "kind": "news",
+      "start": 111.6,
+      "end": 144.26,
+      "speaker": "takehiro",
+      "index": 3
+    },
+    {
+      "kind": "closing",
+      "start": 144.26,
+      "end": 151.176,
+      "speaker": "takehiro"
+    }
+  ],
+  "pronunciations": [
+    {
+      "surface": "高付加価値",
+      "reading": "こうふかかち",
+      "wrongReading": "たかふかかち"
+    },
+    {
+      "surface": "マーケット",
+      "reading": "まーけっと",
+      "wrongReading": "みなっと"
+    },
+    {
+      "surface": "前年同期",
+      "reading": "ぜんねんどうき",
+      "wrongReading": "まえねんどうき"
+    },
+    {
+      "surface": "777-9",
+      "reading": "ボーイング・トリプルセブン・ダッシュ・ナイン",
+      "wrongReading": ""
+    }
+  ],
+  "audio_downloadable": true
+}

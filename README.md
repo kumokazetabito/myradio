@@ -2,9 +2,9 @@
 
 航空ニュースとシンガポール経済ニュースを届けるWeb番組です。画面上部の「Aviation World」「Economy (SIN)」でチャンネルを切り替えられます。
 
-[シンガポール経済ニュース11月6日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-06/ja/) / [記事と台本](docs/broadcasts/singapore-economy/singapore-economy-2026-11-06.md)
+[シンガポール経済ニュース11月8日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-08/ja/) / [記事と台本](docs/broadcasts/singapore-economy/singapore-economy-2026-11-08.md) / [11月6日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-06/ja/)
 
-シンガポール経済ニュースの原稿・音声：Muse。音声表記：Aria (Muse) / Helio (Muse)。局共通のキャラクター素材を使用しています。
+シンガポール経済ニュースの原稿・音声：Muse。音声表記：Meticulous Pen (Muse) / Helio (Muse) / Aria (Muse)。局共通のキャラクター素材を使用しています。
 
 [最新の11月7日号を聴く](https://kumokazetabito.github.io/myradio/aviation/2026-11-07/ja/) / [11月7日の記事と台本](docs/broadcasts/aviation/aviation-2026-11-07.md) / [11月6日号](https://kumokazetabito.github.io/myradio/aviation/2026-11-06/ja/)
 

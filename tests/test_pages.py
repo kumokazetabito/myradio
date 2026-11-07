@@ -76,7 +76,7 @@ class StaticPagesTests(unittest.TestCase):
         review_path.write_text(json.dumps(review_ep))
         pages.build(self.root)
         manifest = json.loads((self.root / "pages-manifest.json").read_text())
-        self.assertEqual(len(manifest["episodes"]), 3)
+        self.assertEqual(len(manifest["episodes"]), 2 + len(json.loads((ROOT / "episodes/singapore-economy/index.json").read_text())))
         for entry in manifest["episodes"]:
             self.assertTrue(entry["data"].startswith("episodes/" + entry["program"] + "/"))
             text = (self.root / entry["path"] / "index.html").read_text()
