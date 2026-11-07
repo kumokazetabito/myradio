@@ -17,7 +17,7 @@
 | `tagline` | 番組の短い副題（オープニングに出る） |
 | `schedule` | `{"every": "day", "time": "06:10", "timezone": "Asia/Tokyo"}` など。いつごろ新しい回が出るか |
 | `episodes` | 回の一覧のファイル（`"episodes.json"`） |
-| `character` | `{"pack": "character/character.json", "thumbnail": …, "note": …}` |
+| `character` | `{"pack": "character/female01/character.json", "thumbnail": …, "note": …}` |
 | `credits` | 表示するクレジットの並び（声や素材の利用条件で必要なものは必ず）。ページの下に出る |
 | `caster` | （任意）キャラの枠の右下に小さく出す名札。キャラの名前や、声の名前（例：`声：COEIROINK:リリンちゃん`）など短く。書かなければ何も出ない。言語で変えるときは `i18n` にも |
 | `audio` | `{"dir": "audio", "keep_days": 30}`（`tools/publish.sh` が使う） |
@@ -51,7 +51,7 @@
 | `mouth` | （任意）`{"fps": 30, "levels": "0012210…"}`：口の開き具合（0 閉じ・1 半開き・2 開き）を 1 コマ 1 文字で。ふだんは要らない（音声がこのサイトにあれば、プレーヤーが再生しながら声の大きさから作る）。音声を別のサイトに置くときに使う |
 | `made_at` | 作った時刻（音声のキャッシュ避けにも使う） |
 
-## character/character.json（`myradio/character-1`）
+## character/female01/character.json（`myradio/character-1`）
 
 種類は 2 つあります。
 
