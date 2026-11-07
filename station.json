@@ -11,10 +11,10 @@
   ],
   "episodes": "episodes.json",
   "character": {
-    "pack": "character/character.json",
-    "thumbnail": "character/base.png",
-    "male": "character/male/base.png",
-    "male_pack": "character/male/character.json"
+    "pack": "character/female01/character.json",
+    "thumbnail": "character/female01/base.png",
+    "male": "character/male01/base.png",
+    "male_pack": "character/male01/character.json"
   },
   "credits": [
     "音声：VOICEVOX:四国めたん",

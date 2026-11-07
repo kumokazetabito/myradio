@@ -527,7 +527,7 @@ html.v #toc button{flex:0 0 100px}
       <div id="cam">
         <img id="idle" alt="">
         <canvas id="charcv" hidden></canvas>
-        <div id="maleVoice" hidden aria-label="男性キャスター"><img id="maleFallback" src="character/male/base.png" alt="番組オリジナルの男性キャスター"><canvas id="maleCanvas" role="img" aria-label="口とまばたきが動く男性キャスター" hidden></canvas></div>
+        <div id="maleVoice" hidden aria-label="男性キャスター"><img id="maleFallback" src="character/male01/base.png" alt="番組オリジナルの男性キャスター"><canvas id="maleCanvas" role="img" aria-label="口とまばたきが動く男性キャスター" hidden></canvas></div>
         <video id="va" muted playsinline preload="auto"></video>
         <video id="vb" muted playsinline preload="auto"></video>
         <div class="rec"><i></i>VOICE</div>
@@ -698,18 +698,18 @@ phoneLayout();
 new ResizeObserver(([e]) => { $("stage").style.transform = `scale(${e.contentRect.width / $("stage").offsetWidth})`; }).observe($("frame"));
 
 // ---------- her ----------
-// the character pack (character/character.json):
+// the character pack (character/female01/character.json):
 //   "clips"   short talking clips that start and end in the still's pose (idle), so they chain without a jump
 //   "sprites" a base image with small mouth / eye images laid on it, drawn through WebGL: a depth map turns the head a
 //             little toward the pointer, the body breathes and the back hair sways (a pseudo Live2D)
 let CHAR = { type: "clips", idle: "idle.webp", talk: [], background: "#161a26" };
-const charUrl = f => new URL(f, new URL(STATION.character?.pack || "character/character.json", APP_BASE)).href;
+const charUrl = f => new URL(f, new URL(STATION.character?.pack || "character/female01/character.json", APP_BASE)).href;
 const vids = [$("va"), $("vb")];
 let active = 0, talking = false, lastUnit = "";
 const pickUnit = () => { const c = CHAR.talk.filter(u => u !== lastUnit); lastUnit = c[Math.floor(Math.random() * c.length)] ?? CHAR.talk[0]; return charUrl(lastUnit); };
 function prime(v) { if (CHAR.talk.length) { v.src = pickUnit(); v.load(); } }
 async function loadCharacter() {
-  try { CHAR = { ...CHAR, ...(await (await fetch(STATION.character?.pack || "character/character.json", { cache: "no-store" })).json()) }; } catch {}
+  try { CHAR = { ...CHAR, ...(await (await fetch(STATION.character?.pack || "character/female01/character.json", { cache: "no-store" })).json()) }; } catch {}
   document.documentElement.style.setProperty("--cam", CHAR.background);
   if (CHAR.type === "sprites") { $("idle").hidden = true; vids.forEach(v => v.hidden = true); await initSprites(); }
   else { $("idle").src = charUrl(CHAR.idle); vids.forEach(prime); }
@@ -1030,7 +1030,7 @@ $("card").addEventListener("click", event => { if (event.target.closest("a")) au
 // Male sprites are composed from the approved base and small localized overlays.
 const MALE = { ready: false, mouth: 0, mouthAt: 0, blinkAt: -1e9, nextBlink: 0, key: null };
 async function loadMaleCharacter() {
-  const packUrl = new URL(STATION.character?.male_pack || "character/male/character.json", APP_BASE);
+  const packUrl = new URL(STATION.character?.male_pack || "character/male01/character.json", APP_BASE);
   const response = await fetch(packUrl, { cache: "no-store" });
   if (!response.ok) throw new Error("Male character pack unavailable");
   const pack = await response.json();
