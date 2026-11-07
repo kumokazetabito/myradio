@@ -3,7 +3,8 @@
   "tagline": "航空ニュース / AVIATION NEWS",
   "program": {
     "id": "aviation",
-    "name": "航空ニュース"
+    "name": "航空ニュース",
+    "badge": "AVIATION NEWS"
   },
   "episodes": "episodes/aviation/index.json",
   "audio": {

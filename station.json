@@ -26,6 +26,7 @@
   "creator": "雲風旅人",
   "default_channel": "aviation",
   "channels": {
-    "aviation": "channels/aviation.json"
+    "aviation": "channels/aviation.json",
+    "singapore-economy": "channels/singapore-economy.json"
   }
 }
