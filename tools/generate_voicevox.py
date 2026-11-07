@@ -1,6 +1,6 @@
 """Generate a complete radio episode from an editorial draft using local VOICEVOX.
 
-Usage: python3 tools/generate_voicevox.py editorial/YYYY-MM-DD-aviation-script.json
+Usage: python3 tools/generate_voicevox.py editorial/aviation/YYYY-MM-DD-aviation-script.json
 Each line may contain short captions [{show, say}] which must join to line.show.
 Saves audio only under ignored audio/, and derives chapter/subtitle timing from synthesis.
 Existing published episodes cannot be replaced unless --replace is explicitly supplied.
@@ -67,10 +67,14 @@ def caption_bounds(line,q,duration,client,speaker):
 
 def generate(args):
     ep=json.loads(args.input.read_text());date=ep['date'];lang=ep.get('lang','ja')
-    target=ROOT/'episodes'/f'{date}-{lang}.json'
+    program=ep.get('program','aviation')
+    if not __import__('re').fullmatch(r'[a-z0-9-]+',program):raise ValueError('Invalid program')
+    config_path=ROOT/'channels'/f'{program}.json'
+    config=json.loads(config_path.read_text())
+    target=ROOT/config['episode_dir']/f'{date}-{lang}.json'
     if target.exists() and not args.replace:raise ValueError(f'Existing episode protected: {target}')
     audio_path=ROOT/ep['audio']
-    if not audio_path.resolve().is_relative_to((ROOT/'audio').resolve()):raise ValueError('Audio output must stay in audio/')
+    if not audio_path.resolve().is_relative_to((ROOT/config['audio']['dir']).resolve()):raise ValueError('Audio output must stay in the channel audio directory')
     client=Voicevox(args.engine,args.speed,args.cache)
     speakers=json.loads(urllib.request.urlopen(client.base+'/speakers',timeout=10).read())
     for speaker in ep['speakers'].values():
@@ -102,8 +106,9 @@ def generate(args):
         subprocess.run(['/usr/bin/afconvert','-f','m4af','-d','aac@24000','-b','64000',str(wav_path),str(encoded)],check=True)
         if encoded.stat().st_size<1000:raise ValueError('Encoded audio is empty')
         encoded.replace(audio_path)
+    target.parent.mkdir(parents=True,exist_ok=True)
     target.write_text(json.dumps(ep,ensure_ascii=False,indent=2)+'\n')
-    index_path=ROOT/'episodes.json';entries=json.loads(index_path.read_text())
+    index_path=ROOT/config['episodes'];entries=json.loads(index_path.read_text())
     entry=next((x for x in entries if x['date']==date),None)
     if entry is None:entry={'date':date};entries.append(entry)
     entry[lang]={'title':ep['title'],'seconds':ep['seconds']}

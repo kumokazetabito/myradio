@@ -1,3 +1,5 @@
+> 現在のTabito Radioの構成：局共通設定は station.json、航空ニュース設定は channels/aviation.json。番組一覧は episodes/aviation/index.json、放送データは episodes/aviation/、制作台本は editorial/aviation/、音声は audio/aviation/、SNS画像は share/aviation/、文書は docs/broadcasts/aviation/。tools/build_pages.py でページを生成し、tools/publish.sh で公開する。公開URLは従来どおり。下記は原作者の案内を含むため、古いフォルダ構成や「ビルドなし」の記述より、この構成と現行READMEを優先する。GitHub送信・公開は、変更内容の提示後、ユーザーの承認を得てから行う。
+
 # AGENTS.md — myradio の局を開く・運用する AI へ
 
 このリポジトリは「局」です。`index.html`（プレーヤー）が、局の中身（`station.json`、`episodes/`、`character/`、音声）を読んで、HTML の番組として再生します。ビルドの仕組みはありません。置いてあるものを読むだけです。

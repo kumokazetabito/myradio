@@ -1,0 +1,14 @@
+{
+  "description": "航空ニュースを男女のナレーションで届けるTabito Radio。放送回ごとの音声・台本・記事・出典を掲載しています。",
+  "tagline": "航空ニュース / AVIATION NEWS",
+  "program": {
+    "id": "aviation",
+    "name": "航空ニュース"
+  },
+  "episodes": "episodes/aviation/index.json",
+  "audio": {
+    "dir": "audio/aviation",
+    "keep_days": 30
+  },
+  "episode_dir": "episodes/aviation"
+}

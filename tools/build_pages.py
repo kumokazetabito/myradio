@@ -116,7 +116,7 @@ def metadata(ep, station, base, episodes, front=False):
     route = route_for(ep, station); canonical = base if front else urljoin(base, route)
     title = station["name"] + "｜" + station.get("tagline", "ニュース") if front else ep["title"] + " | " + station["name"]
     desc = station.get("description") if front else description(ep, station)
-    stem = route.rstrip("/").replace("/", "-"); image = urljoin(base, f"share/{stem}.png")
+    stem = route.rstrip("/").replace("/", "-"); image = urljoin(base, f"share/{route.split('/')[0]}/{stem}.png")
     lang = ep.get("lang", "ja")
     tags = [f'<title>{E(title)}</title>', f'<meta name="description" content="{E(desc)}">', f'<link rel="canonical" href="{E(canonical)}">', f'<link rel="sitemap" type="application/xml" href="{E(urljoin(base, "sitemap.xml"))}">']
     props = {"og:type": "website" if front else "article", "og:site_name": station["name"], "og:title": title, "og:description": desc, "og:url": canonical, "og:image": image, "og:image:width": "1200", "og:image:height": "630", "og:image:type": "image/png", "og:image:alt": f"{ep['date']} {ep['title']}", "og:locale": "ja_JP" if lang == "ja" else "en_US"}
@@ -149,6 +149,9 @@ def render(template, ep, station, episodes, base, front=False):
 
 def build(root):
     station = json.loads((root / "station.json").read_text())
+    channel_path = station.get("channels", {}).get(station.get("default_channel"))
+    if channel_path:
+        station.update(json.loads((root / channel_path).read_text()))
     base = station["url"].rstrip("/") + "/"
     if not safe_url(base):
         raise ValueError("station.url must be an absolute HTTP(S) URL")
@@ -159,7 +162,7 @@ def build(root):
         langs = [k for k, v in entry.items() if k != "date" and isinstance(v, dict) and "title" in v]
         for lang in langs or [None]:
             filename = f"{entry['date']}-{lang}.json" if lang else f"{entry['date']}.json"
-            ep = json.loads((root / "episodes" / filename).read_text())
+            ep = json.loads((root / station.get("episode_dir", "episodes") / filename).read_text())
             if ep["date"] != entry["date"] or (lang and ep.get("lang") != lang):
                 raise ValueError(f"Episode/list mismatch: {filename}")
             route_for(ep, station)
@@ -176,8 +179,8 @@ def build(root):
         out = root / route / "index.html"; out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(render(template, ep, station, episodes, base))
         stem = route.rstrip("/").replace("/", "-")
-        card(ep, station, root / "fonts/NotoSansJP.ttf", root / "share" / f"{stem}.png")
-        files += [str(out.relative_to(root)), f"share/{stem}.png"]
+        card(ep, station, root / "fonts/NotoSansJP.ttf", root / "share" / route.split("/")[0] / f"{stem}.png")
+        files += [str(out.relative_to(root)), f"share/{route.split('/')[0]}/{stem}.png"]
     newest = next((ep for ep in episodes if ep.get("lang") == station.get("language")), episodes[0])
     (root / "index.html").write_text(render(template, newest, station, episodes, base, front=True))
     sitemap = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
@@ -187,15 +190,22 @@ def build(root):
         ET.SubElement(url, "lastmod").text = ep.get("made_at", ep["date"])
     ET.indent(sitemap)
     (root / "sitemap.xml").write_bytes(ET.tostring(sitemap, encoding="utf-8", xml_declaration=True))
-    (root / "pages-manifest.json").write_text(json.dumps({"format": "tabito-pages/1", "audio": sorted({ep["audio"] for ep in episodes if not urlparse(ep["audio"]).scheme}), "files": ["index.html", "sitemap.xml", *files], "episodes": [{"date": ep["date"], "lang": ep.get("lang", "ja"), "program": ep.get("program", station.get("program", {}).get("id")), "path": route_for(ep, station)} for ep in episodes]}, ensure_ascii=False, indent=2) + "\n")
+    (root / "pages-manifest.json").write_text(json.dumps({"format": "tabito-pages/1", "audio": sorted({ep["audio"] for ep in episodes if not urlparse(ep["audio"]).scheme}), "files": ["index.html", "sitemap.xml", *files], "episodes": [{"date": ep["date"], "lang": ep.get("lang", "ja"), "data": str(Path(station.get("episode_dir", "episodes")) / f"{ep['date']}-{ep.get('lang', 'ja')}.json"), "program": ep.get("program", station.get("program", {}).get("id")), "path": route_for(ep, station)} for ep in episodes]}, ensure_ascii=False, indent=2) + "\n")
     print(f"Built {len(episodes)} episode pages, social cards, homepage and sitemap")
 
 
 def sync_public_files(root, destination):
     """Overlay only public files. Preserve deployed audio and previously published archives."""
     manifest = json.loads((root / "pages-manifest.json").read_text())
-    files = set(manifest["files"]) | {"pages-manifest.json", "station.json", "episodes.json", "logo.svg", "LICENSE"}
-    files.update("episodes/" + ep["date"] + "-" + ep["lang"] + ".json" for ep in manifest["episodes"])
+    station = json.loads((root / "station.json").read_text())
+    configs = station.get("channels", {})
+    files = set(manifest["files"]) | {"pages-manifest.json", "station.json", "logo.svg", "LICENSE"}
+    files.update(configs.values())
+    if configs:
+        files.update(json.loads((root / path).read_text())["episodes"] for path in configs.values())
+    else:
+        files.add(station.get("episodes", "episodes.json"))
+    files.update(ep["data"] for ep in manifest["episodes"])
     for folder in ("character",):
         files.update(str(path.relative_to(root)) for path in (root / folder).rglob("*") if path.is_file())
     for relative in sorted(files):
@@ -204,7 +214,7 @@ def sync_public_files(root, destination):
             raise ValueError("Path outside site directory")
         target.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(source, target)
     for item in manifest["episodes"]:
-        path = root / "episodes" / f"{item['date']}-{item['lang']}.json"
+        path = root / item["data"]
         ep = json.loads(path.read_text()); audio = ep.get("audio")
         if not audio or urlparse(audio).scheme:
             continue

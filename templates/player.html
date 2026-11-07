@@ -1213,7 +1213,7 @@ function updatePageMetadata(home = false) {
   const title = home ? `${st("name")}｜${st("tagline") || "ニュース"}` : `${ep.title} | ${st("name")}`;
   const description = home ? STATION.description : `${ep.date}の${STATION.program?.name || "ニュース"}。` + ep.news.map(n => n.label).join("。") + "。音声・台本・出典を掲載。";
   const url = home ? APP_BASE.href : new URL(episodeUrl(ep.date, LANG), APP_BASE).href;
-  const image = new URL(`share/${programId()}-${ep.date}-${LANG}.png`, APP_BASE).href;
+  const image = new URL(`share/${programId()}/${programId()}-${ep.date}-${LANG}.png`, APP_BASE).href;
   document.title = title;
   function meta(key, value, property = false) {
     const attr = property ? "property" : "name";
@@ -1236,7 +1236,7 @@ async function load(date, lang = LANG, at = 0, navigation = "push") {
   const name = L ? `${date}-${L}` : date;
   savePos(true);   // the episode being left: where it stopped
   try {
-    const response = await fetch(`episodes/${name}.json`, { cache: "no-store" });
+    const response = await fetch(`${STATION.episode_dir || "episodes"}/${name}.json`, { cache: "no-store" });
     if (!response.ok) throw new Error(`Episode HTTP ${response.status}`);
     const next = await response.json();
     if (!Array.isArray(next.lines_timed) || !Array.isArray(next.segments) || !next.segments.length || !Array.isArray(next.news) || !(next.seconds > 0)) throw new Error("Invalid episode");
@@ -1524,6 +1524,12 @@ document.addEventListener("click", e => { if (!e.target.closest("#wx")) wxOpen(f
 setInterval(() => { if (WX.at && Date.now() - WX.at > 30 * 60e3) wxLoad(); }, 60e3);
 async function loadStation() {
   try { STATION = { ...STATION, ...(await (await fetch("station.json", { cache: "no-store" })).json()) }; } catch {}
+  const channel = STATION.default_channel;
+  if (channel && STATION.channels?.[channel]) {
+    const response = await fetch(STATION.channels[channel], { cache: "no-store" });
+    if (!response.ok) throw new Error("Channel settings unavailable");
+    STATION = { ...STATION, ...(await response.json()) };
+  }
   if (STATION.logo) {
     document.documentElement.style.setProperty("--logo", `url("${STATION.logo}")`);
     $("slogo").hidden = false;

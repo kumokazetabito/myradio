@@ -18,25 +18,26 @@ pages = importlib.util.module_from_spec(spec); spec.loader.exec_module(pages)
 class StaticPagesTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name) / "source"; self.root.mkdir()
-        for folder in ("templates", "fonts", "episodes"):
-            (self.root / folder).mkdir()
+        self.root = Path(self.temp.name) / "source"; self.root.mkdir(parents=True, exist_ok=True)
+        for folder in ("templates", "fonts", "episodes/aviation", "channels"):
+            (self.root / folder).mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / "templates/player.html", self.root / "templates/player.html")
         (self.root / "fonts/NotoSansJP.ttf").symlink_to(ROOT / "fonts/NotoSansJP.ttf")
         for filename in ("LICENSE", "logo.svg"):
             shutil.copy2(ROOT / filename, self.root / filename)
         self.station = json.loads((ROOT / "station.json").read_text())
+        shutil.copy2(ROOT / "channels/aviation.json", self.root / "channels/aviation.json")
         self.station["url"] = "https://example.test/myradio/"
         (self.root / "station.json").write_text(json.dumps(self.station))
-        self.first = json.loads((ROOT / "episodes/2026-11-06-ja.json").read_text())
+        self.first = json.loads((ROOT / "episodes/aviation/2026-11-06-ja.json").read_text())
         self.second = copy.deepcopy(self.first)
         self.second.update(date="2026-11-07", title="次の放送回", made_at="2026-11-07T09:00:00+09:00")
         self.write_episodes()
 
     def write_episodes(self):
         for ep in (self.first, self.second):
-            (self.root / "episodes" / f"{ep['date']}-ja.json").write_text(json.dumps(ep))
-        (self.root / "episodes.json").write_text(json.dumps([{"date": ep["date"], "ja": {"title": ep["title"], "seconds": ep["seconds"]}} for ep in (self.second, self.first)]))
+            (self.root / "episodes/aviation" / f"{ep['date']}-ja.json").write_text(json.dumps(ep))
+        (self.root / "episodes/aviation/index.json").write_text(json.dumps([{"date": ep["date"], "ja": {"title": ep["title"], "seconds": ep["seconds"]}} for ep in (self.second, self.first)]))
 
     def test_pages_are_readable_without_javascript_and_have_unique_metadata(self):
         pages.build(self.root)
@@ -57,7 +58,7 @@ class StaticPagesTests(unittest.TestCase):
             structured = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)[1])
             self.assertEqual(structured["url"], canonical)
             self.assertEqual(structured["headline"], ep["title"])
-            png = self.root / "share" / (route.rstrip('/').replace('/', '-') + '.png')
+            png = self.root / "share/aviation" / (route.rstrip('/').replace('/', '-') + '.png')
             from PIL import Image
             with Image.open(png) as image:
                 self.assertEqual(image.size, (1200, 630))
@@ -83,7 +84,7 @@ class StaticPagesTests(unittest.TestCase):
     def test_publication_preserves_audio_and_excludes_build_dependencies(self):
         (self.root / 'episodes/draft.json').write_text('{"title":"unpublished draft"}')
         pages.build(self.root)
-        public = Path(self.temp.name) / 'public'; public.mkdir()
+        public = Path(self.temp.name) / 'public'; public.mkdir(parents=True, exist_ok=True)
         audio = public / self.first['audio']; audio.parent.mkdir(parents=True); audio.write_bytes(b'existing deployed audio')
         archive = public / 'old-archive.html'; archive.write_text('keep this')
         pages.sync_public_files(self.root, public)

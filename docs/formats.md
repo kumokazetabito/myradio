@@ -1,3 +1,16 @@
+## Tabito Radioのフォルダ構成
+
+局共通の設定は `station.json`、航空ニュース固有の設定は `channels/aviation.json` に保存します。新チャンネルはまだ登録していません。
+
+- `episodes/aviation/`：番組データと放送一覧 `index.json`
+- `editorial/aviation/`：制作用台本
+- `audio/aviation/`：音声（mainには保存しない）
+- `share/aviation/`：SNS用画像
+- `docs/broadcasts/aviation/`：記事・台本の文書
+- `character/female01/`、`character/male01/`：局共通のキャラクター素材
+
+公開ページのURLは `/aviation/日付/言語/` のままです。新チャンネル追加時には、その設定・放送一覧・ページ生成と画面切り替えの対応が別途必要です。フォルダ整理だけで新チャンネルが自動開設されるわけではありません。
+
 # JSON の決まり（この局のプレーヤーが読む形）
 
 局どうしでそろえる必要はありません。ここに書いてあるのは、このリポジトリの `index.html` が読む形です。形を変えたら、プレーヤーも合わせて直してください。
@@ -16,7 +29,7 @@
 | `languages` | 回を出している言語の並び（`["ja", "en"]`）。2 つ以上あると、プレーヤーに言語の切り替えが出る |
 | `tagline` | 番組の短い副題（オープニングに出る） |
 | `schedule` | `{"every": "day", "time": "06:10", "timezone": "Asia/Tokyo"}` など。いつごろ新しい回が出るか |
-| `episodes` | 回の一覧のファイル（`"episodes.json"`） |
+| `episodes` | 回の一覧のファイル（`"episodes/aviation/index.json"`） |
 | `character` | `{"pack": "character/female01/character.json", "thumbnail": …, "note": …}` |
 | `credits` | 表示するクレジットの並び（声や素材の利用条件で必要なものは必ず）。ページの下に出る |
 | `caster` | （任意）キャラの枠の右下に小さく出す名札。キャラの名前や、声の名前（例：`声：COEIROINK:リリンちゃん`）など短く。書かなければ何も出ない。言語で変えるときは `i18n` にも |
@@ -25,15 +38,15 @@
 | `comments` | （任意）回ごとのコメント欄。`{"giscus": {"repo", "repoId", "category", "categoryId"}}`。同じ日の回（言語ちがいも）で 1 つの GitHub Discussions のスレッドを使い、最初のコメントで giscus が自動で立てる。見る人が「コメント」を開くまで giscus.app は読みこまない。値は https://giscus.app で調べられる。書かなければコメント欄は出ない |
 | `i18n` | 言語ごとに差し替える欄：`{"en": {"name", "tagline", "description", "credits", "caster"}}`（声が言語で違えば、クレジットも言語ごとに） |
 
-## episodes.json
+## episodes/aviation/index.json
 
 新しい順の一覧。日付ごとに、ある言語の題と長さ：`[{"date": "2026-11-04", "ja": {"title": "…", "seconds": 79.5}, "en": {"title": "…", "seconds": 77.3}}, …]`
 
 1 つの言語だけの局は、`[{"date": "2026-11-04", "title": "…", "seconds": 79.5}, …]` でもよい（そのときのファイル名は言語なしの `<日付>.json`、`<日付>.mp3`）。
 
-## episodes/<YYYY-MM-DD>-<言語>.json（ものラジオの形：`monoradio/news-1`）
+## episodes/aviation/<YYYY-MM-DD>-<言語>.json（ものラジオの形：`monoradio/news-1`）
 
-言語ごとに 1 つ（`2026-11-04-ja.json`、`2026-11-04-en.json`）。声は `audio/<日付>-<言語>.mp3`。`lang` 欄にその言語が入る。
+言語ごとに 1 つ（`2026-11-04-ja.json`、`2026-11-04-en.json`）。声は `audio/aviation/<日付>-<言語>.mp3`。`lang` 欄にその言語が入る。
 
 | 欄 | 中身 |
 |---|---|
@@ -47,7 +60,7 @@
 | `seconds` | 声の長さ（秒） |
 | `lines_timed[]` | `{"start", "end", "show", "part"}`：文ごとの開始・終了の秒（声に合わせる） |
 | `segments[]` | `{"kind": "opening" \| "news" \| "closing", "index", "start", "end"}`：パートの区切り |
-| `audio` | （任意）声の URL。なければ `audio/<日付>.mp3` |
+| `audio` | （任意）声の URL。なければ `audio/aviation/<日付>.mp3` |
 | `mouth` | （任意）`{"fps": 30, "levels": "0012210…"}`：口の開き具合（0 閉じ・1 半開き・2 開き）を 1 コマ 1 文字で。ふだんは要らない（音声がこのサイトにあれば、プレーヤーが再生しながら声の大きさから作る）。音声を別のサイトに置くときに使う |
 | `made_at` | 作った時刻（音声のキャッシュ避けにも使う） |
 
