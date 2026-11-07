@@ -55,9 +55,9 @@ def transcript(ep):
     return "\n".join(rows)
 
 
-def articles(ep):
+def articles(ep, station):
     rows = [f'<h1>{E(ep["title"])}</h1><p class="episode-date"><time datetime="{E(ep["date"])}">{E(ep["date"])}</time> / {E(ep.get("lang", "ja").upper())}</p>',
-            '<p class="source-note">発表日と運航開始日は異なります。運航予定は変更される場合があります。各記事の出典もご確認ください。</p>']
+            f'<p class="source-note">{E(station.get("source_note", "発表日と運航開始日は異なります。運航予定は変更される場合があります。各記事の出典もご確認ください。"))}</p>']
     for i, item in enumerate(ep["news"], 1):
         points = "".join(f'<li><b>{E(point)}</b>' + (f'<span>{E(item["details"][k])}</span>' if k < len(item.get("details", [])) else "") + '</li>' for k, point in enumerate(item.get("points", [])))
         sources = item.get("sources") or ([item["link"]] if item.get("link") else [])
@@ -128,6 +128,11 @@ def metadata(ep, station, base, episodes, front=False):
         if not front and variant["date"] == ep["date"] and variant.get("program") == ep.get("program"):
             tags.append(f'<link rel="alternate" hreflang="{E(variant.get("lang", "ja"))}" href="{E(urljoin(base, route_for(variant, station)))}">')
     graph = {"@context": "https://schema.org", "@type": "WebSite", "name": station["name"], "url": base} if front else {"@context": "https://schema.org", "@type": "Article", "headline": ep["title"], "description": desc, "datePublished": ep.get("made_at", ep["date"]), "inLanguage": lang, "url": canonical, "mainEntityOfPage": canonical, "image": image, "author": {"@type": "Person", "name": station.get("creator", station["name"])}, "publisher": {"@type": "Organization", "name": station["name"]}, "associatedMedia": {"@type": "AudioObject", "name": ep["title"], "contentUrl": urljoin(base, ep["audio"]), "encodingFormat": "audio/mp4" if ep["audio"].split("?")[0].endswith(".m4a") else "audio/mpeg", "duration": f"PT{ep['seconds']}S", "inLanguage": lang}}
+    if ep.get("preview"):
+        graph.pop("associatedMedia", None)
+        tags.append('<meta name="robots" content="noindex,nofollow">')
+    if ep.get("local_review"):
+        tags.append('<meta name="robots" content="noindex,nofollow">')
     tags.append('<script type="application/ld+json">' + json_html(graph) + '</script>')
     return "\n".join(tags)
 
@@ -136,53 +141,77 @@ def render(template, ep, station, episodes, base, front=False):
     path = "" if front else route_for(ep, station)
     root_link = "./" if front else "../" * len(path.strip("/").split("/"))
     past = "".join(f'<a href="{E(route_for(other, station))}"><span class="d">{E(other["date"])}</span><span>{E(other["title"])}</span><span class="len">{int(other["seconds"]) // 60}:{int(other["seconds"]) % 60:02d}</span></a>' for other in episodes)
-    values = {"PAGE_METADATA": metadata(ep, station, base, episodes, front), "PAGE_ARTICLES": articles(ep), "PAGE_SCRIPT": E(transcript(ep)), "PAGE_EPISODES": past, "STATION_NAME": E(station["name"]), "STATION_TAGLINE": E(station.get("tagline")), "STATION_OWNER": E("by " + station["creator"]) if station.get("creator") else "", "STATION_CREDITS": E(" ／ ".join(station.get("credits", [])))}
+    values = {"PAGE_METADATA": metadata(ep, station, base, episodes, front), "PAGE_ARTICLES": articles(ep, station), "PAGE_SCRIPT": E(transcript(ep)), "PAGE_EPISODES": past, "STATION_NAME": E(station["name"]), "STATION_TAGLINE": E(station.get("tagline")), "STATION_OWNER": E("by " + station["creator"]) if station.get("creator") else "", "STATION_CREDITS": E(" ／ ".join(station.get("credits", [])))}
+    values["PROGRAM_NAME"] = E(station.get("program", {}).get("name", "ニュース"))
+    values["PROGRAM_BADGE"] = "PREVIEW / 音声未生成" if ep.get("preview") else E(station.get("program", {}).get("badge", station.get("program", {}).get("name", "NEWS")))
+    channel_links = station.get("channel_links", [])
+    channel_labels = {"aviation": "Aviation World", "singapore-economy": "Economy (SIN)"}
+    values["CHANNEL_NAV"] = '<nav class="channel-nav" aria-label="チャンネル切替">' + "".join(
+        f'<a href="{E(item["path"])}" title="{E(item["name"])}"' + (' aria-current="true"' if item["id"] == station["program"]["id"] else '') + f'>{E(channel_labels.get(item["id"], item["name"]))}</a>' for item in channel_links) + '</nav>'
+    values["PREVIEW_NOTE"] = '<p class="preview-note">手元の試作・台本確認用 ／ 音声未生成。日付と内容は画面確認用で、ニュース配信ではありません。</p>' if ep.get("preview") else ''
     result = template.replace('<base href="./">', f'<base href="{root_link}">').replace('<html lang="ja">', f'<html lang="{E(ep.get("lang", "ja"))}">')
     for key, value in values.items():
         marker = f"<!-- {key} -->"
         if marker not in result:
             raise ValueError(f"Missing template marker: {key}")
         result = result.replace(marker, value)
+    latest = E(route_for(episodes[0], station))
+    result = result.replace('id="stationHome" href="./"', f'id="stationHome" href="{latest}"').replace('class="channel-home" href="./"', f'class="channel-home" href="{latest}"')
+    result = "\n".join(line.rstrip() for line in result.split("\n"))
+    if ep.get("preview"):
+        return result
     result = result.replace('<noscript><p class="nojs-note">', f'<noscript><style>#frame,.controls,.mnav,#dockSpace{{display:none!important}}</style><audio controls preload="none" src="{E(ep["audio"])}" aria-label="{E(ep["title"])}"></audio><p class="nojs-note">')
     return result
 
 
 def build(root):
     station = json.loads((root / "station.json").read_text())
-    channel_path = station.get("channels", {}).get(station.get("default_channel"))
-    if channel_path:
-        station.update(json.loads((root / channel_path).read_text()))
+    common = station.copy()
     base = station["url"].rstrip("/") + "/"
     if not safe_url(base):
         raise ValueError("station.url must be an absolute HTTP(S) URL")
     template = (root / "templates/player.html").read_text()
-    index = json.loads((root / station.get("episodes", "episodes.json")).read_text())
-    episodes = []
-    for entry in index:
-        langs = [k for k, v in entry.items() if k != "date" and isinstance(v, dict) and "title" in v]
-        for lang in langs or [None]:
-            filename = f"{entry['date']}-{lang}.json" if lang else f"{entry['date']}.json"
-            ep = json.loads((root / station.get("episode_dir", "episodes") / filename).read_text())
-            if ep["date"] != entry["date"] or (lang and ep.get("lang") != lang):
-                raise ValueError(f"Episode/list mismatch: {filename}")
-            route_for(ep, station)
-            episodes.append(ep)
+    episodes = []; settings = {}
+    for channel, config_path in station.get("channels", {"aviation": None}).items():
+        config = {**common, **(json.loads((root / config_path).read_text()) if config_path else {})}
+        if config.get("program", {}).get("id", channel) != channel:
+            raise ValueError("Channel/config mismatch")
+        settings[channel] = config
+        index = json.loads((root / config.get("episodes", "episodes.json")).read_text())
+        for entry in index:
+            langs = [k for k, v in entry.items() if k != "date" and isinstance(v, dict) and "title" in v]
+            for lang in langs or [None]:
+                filename = f"{entry['date']}-{lang}.json" if lang else f"{entry['date']}.json"
+                ep = json.loads((root / config.get("episode_dir", "episodes") / filename).read_text())
+                if ep["date"] != entry["date"] or (lang and ep.get("lang") != lang) or ep.get("program", channel) != channel:
+                    raise ValueError(f"Episode/list/channel mismatch: {filename}")
+                ep.setdefault("program", channel)
+                route_for(ep, config)
+                episodes.append(ep)
+    for config in settings.values():
+        config["channel_links"] = [{"id": channel, "name": cfg.get("program", {}).get("name", channel),
+            "path": route_for(next(ep for ep in sorted(episodes, key=lambda ep: ep["date"], reverse=True) if ep["program"] == channel), cfg)}
+            for channel, cfg in settings.items() if any(ep["program"] == channel for ep in episodes)]
     if not episodes:
         raise ValueError("No published episodes")
     episodes.sort(key=lambda ep: (ep["date"], ep.get("lang", "")), reverse=True)
     urls = set(); files = []
     for ep in episodes:
+        station = settings[ep["program"]]
+        channel_episodes = [other for other in episodes if other["program"] == ep["program"]]
         route = route_for(ep, station)
         if route in urls:
             raise ValueError(f"Duplicate route: {route}")
         urls.add(route)
         out = root / route / "index.html"; out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(render(template, ep, station, episodes, base))
+        out.write_text(render(template, ep, station, channel_episodes, base))
         stem = route.rstrip("/").replace("/", "-")
         card(ep, station, root / "fonts/NotoSansJP.ttf", root / "share" / route.split("/")[0] / f"{stem}.png")
         files += [str(out.relative_to(root)), f"share/{route.split('/')[0]}/{stem}.png"]
-    newest = next((ep for ep in episodes if ep.get("lang") == station.get("language")), episodes[0])
-    (root / "index.html").write_text(render(template, newest, station, episodes, base, front=True))
+    station = settings[common.get("default_channel", "aviation")]
+    default_episodes = [ep for ep in episodes if ep["program"] == station["program"]["id"]]
+    newest = next((ep for ep in default_episodes if ep.get("lang") == station.get("language")), default_episodes[0])
+    (root / "index.html").write_text(render(template, newest, station, default_episodes, base, front=True))
     sitemap = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
     for route, ep in [("", newest), *[(route_for(ep, station), ep) for ep in episodes]]:
         url = ET.SubElement(sitemap, "url")
@@ -190,14 +219,18 @@ def build(root):
         ET.SubElement(url, "lastmod").text = ep.get("made_at", ep["date"])
     ET.indent(sitemap)
     (root / "sitemap.xml").write_bytes(ET.tostring(sitemap, encoding="utf-8", xml_declaration=True))
-    (root / "pages-manifest.json").write_text(json.dumps({"format": "tabito-pages/1", "audio": sorted({ep["audio"] for ep in episodes if not urlparse(ep["audio"]).scheme}), "files": ["index.html", "sitemap.xml", *files], "episodes": [{"date": ep["date"], "lang": ep.get("lang", "ja"), "data": str(Path(station.get("episode_dir", "episodes")) / f"{ep['date']}-{ep.get('lang', 'ja')}.json"), "program": ep.get("program", station.get("program", {}).get("id")), "path": route_for(ep, station)} for ep in episodes]}, ensure_ascii=False, indent=2) + "\n")
+    (root / "pages-manifest.json").write_text(json.dumps({"format": "tabito-pages/1", "audio": sorted({ep["audio"] for ep in episodes if ep.get("audio") and not ep.get("preview") and not urlparse(ep["audio"]).scheme}), "files": ["index.html", "sitemap.xml", *files], "episodes": [{"date": ep["date"], "lang": ep.get("lang", "ja"), "data": str(Path(settings[ep["program"]].get("episode_dir", "episodes")) / f"{ep['date']}-{ep.get('lang', 'ja')}.json"), "program": ep.get("program", station.get("program", {}).get("id")), "path": route_for(ep, station)} for ep in episodes]}, ensure_ascii=False, indent=2) + "\n")
     print(f"Built {len(episodes)} episode pages, social cards, homepage and sitemap")
 
 
 def sync_public_files(root, destination):
     """Overlay only public files. Preserve deployed audio and previously published archives."""
     manifest = json.loads((root / "pages-manifest.json").read_text())
+    if any(json.loads((root / item["data"]).read_text()).get("preview") for item in manifest["episodes"]):
+        raise ValueError("Preview episodes cannot be published; approve scripts and generate final audio first")
     station = json.loads((root / "station.json").read_text())
+    if any(json.loads((root / item["data"]).read_text()).get("local_review") for item in manifest["episodes"]):
+        raise ValueError("Local review episodes cannot be published")
     configs = station.get("channels", {})
     files = set(manifest["files"]) | {"pages-manifest.json", "station.json", "logo.svg", "LICENSE"}
     files.update(configs.values())

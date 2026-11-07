@@ -27,6 +27,7 @@ class StaticPagesTests(unittest.TestCase):
             shutil.copy2(ROOT / filename, self.root / filename)
         self.station = json.loads((ROOT / "station.json").read_text())
         shutil.copy2(ROOT / "channels/aviation.json", self.root / "channels/aviation.json")
+        self.station["channels"] = {"aviation": "channels/aviation.json"}
         self.station["url"] = "https://example.test/myradio/"
         (self.root / "station.json").write_text(json.dumps(self.station))
         self.first = json.loads((ROOT / "episodes/aviation/2026-11-06-ja.json").read_text())
@@ -64,6 +65,37 @@ class StaticPagesTests(unittest.TestCase):
                 self.assertEqual(image.size, (1200, 630))
         urls = ET.parse(self.root / "sitemap.xml").findall('.//{*}loc')
         self.assertEqual({el.text for el in urls}, {self.station["url"], *[urljoin(self.station["url"], pages.route_for(ep, self.station)) for ep in (self.first, self.second)]})
+
+    def test_two_channels_have_isolated_lists_assets_and_review_guard(self):
+        self.station["channels"]["singapore-economy"] = "channels/singapore-economy.json"
+        (self.root / "station.json").write_text(json.dumps(self.station))
+        shutil.copy2(ROOT / "channels/singapore-economy.json", self.root / "channels/singapore-economy.json")
+        shutil.copytree(ROOT / "episodes/singapore-economy", self.root / "episodes/singapore-economy")
+        review_path = self.root / 'episodes/singapore-economy/2026-11-06-ja.json'
+        review_ep = json.loads(review_path.read_text()); review_ep['local_review'] = True
+        review_path.write_text(json.dumps(review_ep))
+        pages.build(self.root)
+        manifest = json.loads((self.root / "pages-manifest.json").read_text())
+        self.assertEqual(len(manifest["episodes"]), 3)
+        for entry in manifest["episodes"]:
+            self.assertTrue(entry["data"].startswith("episodes/" + entry["program"] + "/"))
+            text = (self.root / entry["path"] / "index.html").read_text()
+            past = text.split('<div class="eps" id="eps">')[1].split('</div>')[0]
+            other = "aviation" if entry["program"] == "singapore-economy" else "singapore-economy"
+            self.assertNotIn('href="' + other + '/', past)
+        self.assertIn("audio/singapore-economy/2026-11-06-full-v5.mp3", manifest["audio"])
+        sg = (self.root / 'singapore-economy/2026-11-06/ja/index.html').read_text()
+        self.assertIn('noindex,nofollow', sg)
+        self.assertIn('"associatedMedia"', sg)
+        public = Path(self.temp.name) / "public"
+        with self.assertRaisesRegex(ValueError, "Local review episodes cannot be published"):
+            pages.sync_public_files(self.root, public)
+        self.assertFalse(public.exists())
+        ep_path = self.root / 'episodes/singapore-economy/2026-11-06-ja.json'
+        ep = json.loads(ep_path.read_text()); ep['program'] = 'aviation'
+        ep_path.write_text(json.dumps(ep))
+        with self.assertRaisesRegex(ValueError, "channel mismatch"):
+            pages.build(self.root)
 
     def test_build_is_repeatable_and_escapes_script_injection(self):
         self.second['title'] = '</script><script>alert("test")</script>'

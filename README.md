@@ -1,6 +1,10 @@
 # Tabito Radio
 
-航空ニュースを男女のナレーションで届けるWeb番組です。
+航空ニュースとシンガポール経済ニュースを届けるWeb番組です。画面上部の「Aviation World」「Economy (SIN)」でチャンネルを切り替えられます。
+
+[シンガポール経済ニュース11月6日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-06/ja/) / [記事と台本](docs/broadcasts/singapore-economy/singapore-economy-2026-11-06.md)
+
+シンガポール経済ニュースの原稿・音声：Muse。音声表記：Aria (Muse) / Helio (Muse)。局共通のキャラクター素材を使用しています。
 
 [最新の11月7日号を聴く](https://kumokazetabito.github.io/myradio/aviation/2026-11-07/ja/) / [11月7日の記事と台本](docs/broadcasts/aviation/aviation-2026-11-07.md) / [11月6日号](https://kumokazetabito.github.io/myradio/aviation/2026-11-06/ja/)
 
@@ -67,3 +71,7 @@ python3 tools/generate_voicevox.py editorial/aviation/2026-11-07-aviation-script
 ```
 
 生成した音声の実際の長さとVOICEVOXの音素情報から、章・セリフ・字幕の時刻を作成します。macOSのafconvertでM4Aに変換し、音声はignore対象のaudio/aviation/、番組データはepisodes/aviation/に保存します。同じ日付の既存回は既定で保護されます。差し替えが明示的に必要なときだけ `--replace` を使います。新しい日付の回は過去回を残して一覧の先頭へ追加します。その後は上記のページ生成・検証・公開手順を実行します。
+
+## 複数チャンネル
+
+局共通設定はstation.json、各チャンネル設定はchannels/に保存します。放送一覧・字幕付きデータはepisodes/<channel>/、原稿はeditorial/<channel>/、文書はdocs/broadcasts/<channel>/、音声はaudio/<channel>/（mainには保存しない）、SNS画像はshare/<channel>/です。配信画面の修正元はtemplates/player.html、生成はtools/build_pages.pyです。放送一覧と再生位置はチャンネルごとに分離します。previewまたはlocal_reviewの回は公開処理が拒否します。

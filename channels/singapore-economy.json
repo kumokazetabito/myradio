@@ -1,0 +1,22 @@
+{
+  "description": "シンガポールの経済・企業・金融ニュースを届けます。",
+  "tagline": "シンガポール経済ニュース / SINGAPORE ECONOMY",
+  "program": {
+    "id": "singapore-economy",
+    "name": "シンガポール経済ニュース"
+  },
+  "episodes": "episodes/singapore-economy/index.json",
+  "episode_dir": "episodes/singapore-economy",
+  "audio": {
+    "dir": "audio/singapore-economy",
+    "keep_days": 30
+  },
+  "source_note": "ニュースの発表日・対象期間・予定は記事ごとに異なります。各項目の出典もご確認ください。",
+  "caster": "音声：Aria (Muse) / 音声：Helio (Muse)",
+  "credits": [
+    "音声：Aria (Muse) / 音声：Helio (Muse)",
+    "画面：myradio（MIT）",
+    "女性キャラクター：ものラジオ提供・AI生成",
+    "男性キャラクター：AI生成・番組独自デザイン"
+  ]
+}

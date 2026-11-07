@@ -245,7 +245,7 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 /* caption and progress */
 #cap{left:60px;right:60px;top:952px;height:84px;display:flex;align-items:center;justify-content:center;text-align:center}
 #cap span{font-size:46px;font-weight:800;line-height:1.3;padding:8px 26px;border-radius:10px;background:rgba(0,0,0,.5);
-  text-shadow:0 2px 0 #000;white-space:nowrap;max-width:1800px;transition:opacity .15s}
+  text-shadow:0 2px 0 #000;white-space:normal;overflow-wrap:anywhere;box-sizing:border-box;max-width:100%;transition:opacity .15s}
 #cap span:empty{opacity:0}
 #bar{left:0;right:0;bottom:0;height:8px;background:rgba(255,255,255,.08)}
 #bar b{display:block;height:100%;width:0;background:var(--yellow)}
@@ -255,7 +255,7 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #cover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:3%;background:rgba(7,8,12,.45);pointer-events:none}
 #cover button{pointer-events:auto;cursor:pointer;border:0}
 #stage{cursor:pointer}
-#cover[hidden]{display:none}
+#cover[hidden],#cover .play[hidden]{display:none}
 /* where the viewer stopped last time: the play button goes on from there; "from the start" beside it */
 #cover .resume{position:absolute;left:50%;top:calc(50% + 9.5%);transform:translateX(-50%);display:flex;align-items:center;gap:12px;
   padding:6px 6px 6px 16px;border-radius:999px;background:rgba(7,8,12,.75);border:1px solid var(--line);color:var(--text);
@@ -511,15 +511,27 @@ html.v #toc button{flex:0 0 100px}
 #panel .opening-pages button:focus-visible{outline:2px solid var(--yellow)}
 .nojs-note{color:var(--muted);font-size:14px}
 .links .item h2{grid-area:head;margin:0;font-size:20px}.episode-date{font-size:14px;color:var(--muted)}
+.brand{align-items:center;gap:32px}
+.channel-nav{display:flex;align-items:center;gap:10px;font:700 26px var(--jp);letter-spacing:normal}
+.channel-nav a{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:240px;height:62px;padding:10px 14px;border:2px solid #38464d;border-radius:8px;background:#151c23;color:#a5b0b9;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.channel-nav a[aria-current]{background:#79e5cc;color:#0c1718;border-color:#79e5cc}
+.channel-nav a:hover{border-color:#79e5cc;color:#79e5cc}
+.channel-nav a[aria-current]:hover{color:#0c1718;background:#a0efdd}
+.channel-nav a:focus-visible{outline:3px solid #79e5cc;outline-offset:5px}
+html.v .brand{gap:28px}
+html.v .channel-nav{font-size:28px;gap:12px}
+html.v .channel-nav a{width:250px;height:68px;padding:12px 14px}
+.preview-note{padding:12px 16px;background:#30291c;color:#ffe2a0;border:1px solid #78653e;border-radius:8px;font-size:13px}button:disabled{cursor:default}
 </style>
 </head>
 <body>
 <main>
+
   <div id="frame">
     <div id="stage">
-      <div class="brand"><a class="station-home" id="stationHome" href="./" title="航空ニュースの最新回へ" aria-label="Tabito Radio：航空ニュースの最新回へ"><i class="logo" id="slogo" hidden></i><b id="sname">Tabito Radio</b></a><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
+      <div class="brand"><a class="station-home" id="stationHome" href="aviation/2026-11-07/ja/" title="このチャンネルの最新回へ" aria-label="このチャンネルの最新回へ"><i class="logo" id="slogo" hidden></i><b id="sname">Tabito Radio</b></a><nav class="channel-nav" aria-label="チャンネル切替"><a href="aviation/2026-11-07/ja/" title="航空ニュース" aria-current="true">Aviation World</a><a href="singapore-economy/2026-11-06/ja/" title="シンガポール経済ニュース">Economy (SIN)</a></nav><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
       <div id="programMeta"><b id="programGenre">航空ニュース</b></div>
-      <div class="onair" id="onair"><i></i>AVIATION NEWS</div>
+      <div class="onair" id="onair"><i></i><span id="programBadge">AVIATION NEWS</span></div>
       <nav id="toc" aria-label="目次"></nav>
       <div id="panel"></div>
       <section id="card" aria-label="出典リンク"><div class="site">出典リンク</div><nav id="cardSources" aria-label="このニュースの出典"></nav><span class="open" id="cardOpen">記事をひらく ↗</span></section>
@@ -555,7 +567,7 @@ html.v #toc button{flex:0 0 100px}
     <button id="share" hidden aria-haspopup="menu"><svg viewBox="0 0 24 24"><path d="M18 16.1c-.8 0-1.5.3-2 .8l-7.1-4.2c.1-.2.1-.5.1-.7s0-.5-.1-.7L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .5.1.7L8 9.8C7.5 9.3 6.8 9 6 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.1 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9-1.2-2.9-2.8-2.9z"/></svg><span></span></button></div>
   </div>
   <div class="mnav" id="mnav"></div>
-  <div class="chan"><a class="channel-home" href="./" title="航空ニュースの最新回へ" aria-label="Tabito Radio：航空ニュースの最新回へ"><span class="av" role="img" aria-label="ラジオ"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 10 24 4M5 11h22v17H5zM8 15h16"/><circle cx="12" cy="22" r="3"/><path d="M20 20h3m-3 4h3"/></svg></span><div class="nm"><b id="cname">Tabito Radio</b><small id="ctag">航空ニュース / AVIATION NEWS</small><small id="cowner">by 雲風旅人</small></div></a>
+  <div class="chan"><a class="channel-home" href="aviation/2026-11-07/ja/" title="このチャンネルの最新回へ" aria-label="このチャンネルの最新回へ"><span class="av" role="img" aria-label="ラジオ"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 10 24 4M5 11h22v17H5zM8 15h16"/><circle cx="12" cy="22" r="3"/><path d="M20 20h3m-3 4h3"/></svg></span><div class="nm"><b id="cname">Tabito Radio</b><small id="ctag">航空ニュース / AVIATION NEWS</small><small id="cowner">by 雲風旅人</small></div></a>
   </div>
   <div id="now"></div>
   <details id="talkBox" hidden><summary id="talkSum">コメント</summary><p class="talkNote" id="talkNote"></p><div id="talk"></div></details>
@@ -923,6 +935,15 @@ $("panel").addEventListener("click", async e => {
 });
 // open one point's detail under it, closing any other (a new part on screen starts with all closed)
 // the panel's words shrink a little when they do not fit (a longer language, an opened detail)
+function fitCaption() {
+  const box = $("cap"), text = box.firstChild;
+  text.style.fontSize = "";
+  let size = parseFloat(getComputedStyle(text).fontSize);
+  while ((text.offsetHeight > box.clientHeight || text.scrollWidth > box.clientWidth) && size > 18) {
+    size -= 2; text.style.fontSize = size + "px";
+  }
+}
+new ResizeObserver(fitCaption).observe($("cap"));
 function fitPanel() {
   const el = $("panel"), f = el.querySelector(".fit"); if (!f || f.classList.contains("opening-fit")) return;
   let z = 1; f.style.zoom = z;
@@ -1133,11 +1154,11 @@ function tick(now) {
     showSpeaker(line?.speaker || ep.segments[curPart]?.speaker || "metan");
     if (activeSpeakerKey === "takehiro") maleFrame(now, speakingAt(t));
     const cap = line ? line.show : "";
-    if ($("cap").firstChild.textContent !== cap) { $("cap").firstChild.textContent = cap; $("now").textContent = cap; }
+    if ($("cap").firstChild.textContent !== cap) { $("cap").firstChild.textContent = cap; fitCaption(); $("now").textContent = cap; }
     if (CHAR.type !== "sprites") setTalking(speakingAt(t));
     $("bar").firstChild.style.width = (t / dur * 100) + "%";
     if (!seeking) $("seek").value = Math.round(t / dur * 1000);
-    $("time").textContent = `${mmss(t)} / ${mmss(dur)}`;
+    $("time").textContent = ep.preview ? "音声未生成" : `${mmss(t)} / ${mmss(dur)}`;
   }
   requestAnimationFrame(tick);
 }
@@ -1145,13 +1166,13 @@ requestAnimationFrame(tick);
 
 // ---------- controls ----------
 let seeking = false;
-function toggle() { if (!ep) return; audio.paused ? audio.play().catch(() => { $("loading").textContent = "音声を再生できませんでした。もう一度再生を押してください。"; }) : audio.pause(); }
+function toggle() { if (!ep || ep.preview) return; audio.paused ? audio.play().catch(() => { $("loading").textContent = "音声を再生できませんでした。もう一度再生を押してください。"; }) : audio.pause(); }
 $("cover").querySelector(".play").onclick = toggle; $("pp").onclick = toggle;
 audio.addEventListener("play", () => { $("cover").hidden = true; $("resume").hidden = true; $("frame").classList.add("playing"); $("ppIcon").innerHTML = PAUSE; });
 audio.addEventListener("pause", () => { $("frame").classList.remove("playing"); $("ppIcon").innerHTML = PLAY; });
 audio.addEventListener("ended", () => { $("cover").hidden = false; });
 // audio is kept for a while only (the script stays): tell the viewer instead of failing silently
-audio.addEventListener("error", () => { if (ep) $("loading").textContent = tr("expired"); });
+audio.addEventListener("error", () => { if (ep && !ep.preview) $("loading").textContent = tr("expired"); });
 function applyPendingSeek() {
   if (pendingSeek === null || audio.readyState < 1 || !Number.isFinite(audio.duration)) return;
   const target = Math.min(pendingSeek, Math.max(0, audio.duration - .01));
@@ -1182,14 +1203,14 @@ const RATES = [1, 1.25, 1.5, 0.75];
 function setRate(r) {
   audio.playbackRate = audio.defaultPlaybackRate = r;
   $("rate").textContent = r + "×"; $("rate").classList.toggle("on", r !== 1);
-  try { localStorage.setItem("aviation-rate", r); } catch {}
+  try { localStorage.setItem(`${programId()}-rate`, r); } catch {}
 }
 $("rate").onclick = () => setRate(RATES[(RATES.indexOf(audio.playbackRate) + 1) % RATES.length] || 1);
 // where the viewer stopped, per episode and language, and the episodes heard to the end (in this browser only)
-const store = (k, v) => { try { if (v === undefined) return JSON.parse(localStorage.getItem("news-radio:" + k) || "{}"); localStorage.setItem("news-radio:" + k, JSON.stringify(v)); } catch { return {}; } };
+const store = (k, v) => { try { if (v === undefined) return JSON.parse(localStorage.getItem("news-radio:" + (programId() === "aviation" ? "" : programId() + ":") + k) || "{}"); localStorage.setItem("news-radio:" + (programId() === "aviation" ? "" : programId() + ":") + k, JSON.stringify(v)); } catch { return {}; } };
 let curName = null, savedAt = 0;
 function savePos(force) {
-  if (!ep || !curName || (!force && performance.now() - savedAt < 2000)) return;
+  if (!ep || ep.preview || !curName || (!force && performance.now() - savedAt < 2000)) return;
   savedAt = performance.now();
   const t = audio.currentTime, pos = store("pos"), heard = store("heard");
   const closing = ep.segments.find(s => s.kind === "closing");
@@ -1342,7 +1363,7 @@ async function load(date, lang = LANG, at = 0, navigation = "push") {
   pendingSeek = null; seeking = false;
   let source = audioUrl.href, nextObjectUrl = null;
   // A complete local media resource makes seeking reliable in iPhone in-app browsers.
-  if (PHONE.matches) {
+  if (PHONE.matches && !ep.preview) {
     try {
       const response = await fetch(source);
       if (!response.ok) throw new Error(`Audio HTTP ${response.status}`);
@@ -1353,7 +1374,10 @@ async function load(date, lang = LANG, at = 0, navigation = "push") {
   }
   if (serial !== loadSerial) { if (nextObjectUrl) URL.revokeObjectURL(nextObjectUrl); return; }
   const previousObjectUrl = audioObjectUrl; audioObjectUrl = nextObjectUrl;
-  audio.src = source; audio.load();
+  if (ep.preview) { audio.removeAttribute("src"); } else { audio.src = source; }
+  audio.load();
+  for (const id of ["pp", "seek", "rate"]) $(id).disabled = !!ep.preview;
+  $("cover").querySelector(".play").hidden = !!ep.preview;
   if (previousObjectUrl) URL.revokeObjectURL(previousObjectUrl);
   $("sdate").querySelector("span").textContent = dateFmt(date);
   $("langsw").hidden = false;
@@ -1369,7 +1393,7 @@ async function load(date, lang = LANG, at = 0, navigation = "push") {
   const linkLine = (l, label) => { const bad = l.status === 404 || l.status === 410, host = (() => { try { return new URL(l.url).hostname; } catch { return l.url; } })();
     return `<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer"><small>${label}${esc(l.site || host)}${bad ? tr("sep") + "⚠ " + tr("notFound")(l.status) : l.title ? tr("sep") + esc(l.title) : ""}</small></a>`; };
   // the news to read: headline (jumps the player there), the points with their details, the sources, the share image
-  $("links").innerHTML = `<h1>${esc(ep.title)}</h1><p class="episode-date">${esc(dateFmt(ep.date))}</p><p class="source-note">発表日と運航開始日は異なります。運航予定は変更される場合があります。各記事の出典もご確認ください。</p>` + ep.news.map((n, j) => {
+  $("links").innerHTML = `<h1>${esc(ep.title)}</h1><p class="episode-date">${esc(dateFmt(ep.date))}</p><p class="source-note">${esc(STATION.source_note || "発表日と運航開始日は異なります。運航予定は変更される場合があります。各記事の出典もご確認ください。")}</p>` + ep.news.map((n, j) => {
     const src = srcOf(n), img = n.link?.image && n.link.status !== 404;
     return `<article class="item"><button class="jump" data-seg="${newsSeg(j)}" title="${tr("jump")}"><span class="d">${String(j + 1).padStart(2, "0")}</span><b>${esc(n.label)}</b><i>${mmss(ep.segments[newsSeg(j)]?.start || 0)}</i></button>`
       + (img ? `<a class="pic" href="${esc(n.link.url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(n.link.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></a>` : "")
@@ -1385,7 +1409,7 @@ async function load(date, lang = LANG, at = 0, navigation = "push") {
   // switching the language keeps the place in the show: the same part, from its start
   if (at > 0 && ep.segments[at]) { seekTo(ep.segments[at].start); $("cover").hidden = true; }
   else {
-    $("cover").hidden = false;
+    $("cover").hidden = !!ep.preview;
     // stopped partway last time: the play button goes on from there
     const back = store("pos")[name];
     $("resume").hidden = !(back > 3 && back < ep.seconds - 3);
@@ -1401,7 +1425,7 @@ async function load(date, lang = LANG, at = 0, navigation = "push") {
     history[navigation === "replace" ? "replaceState" : "pushState"](null, "", page);
   updatePageMetadata(navigation === "home");
   SHARE = new URL(episodeUrl(date, L), APP_BASE).href;
-  $("share").hidden = false;
+  $("share").hidden = !!ep.preview;
 }
 // share: a small menu - the phone's share sheet (where there is one), copy the link, copy the code to embed the player
 let SHARE = "";
@@ -1467,6 +1491,7 @@ function setLang(l) {
   $("cname").textContent = st("name"); $("ctag").textContent = st("tagline") || "";
   $("cowner").textContent = st("creator") ? `by ${st("creator")}` : ""; $("cowner").hidden = !st("creator");
   $("programGenre").textContent = STATION.program?.name || "ニュース";
+  $("programBadge").textContent = ep?.preview ? "PREVIEW / 音声未生成" : STATION.program?.badge || STATION.program?.name || "NEWS";
   for (const [act, k] of [["native", "native"], ["link", "copyLink"], ["embed", "copyEmbed"]]) $("shareMenu").querySelector(`[data-act=${act}]`).textContent = tr(k);
   listEpisodes(); wxRender();
 }
@@ -1604,7 +1629,8 @@ document.addEventListener("click", e => { if (!e.target.closest("#wx")) wxOpen(f
 setInterval(() => { if (WX.at && Date.now() - WX.at > 30 * 60e3) wxLoad(); }, 60e3);
 async function loadStation() {
   try { STATION = { ...STATION, ...(await (await fetch("station.json", { cache: "no-store" })).json()) }; } catch {}
-  const channel = STATION.default_channel;
+  const channel = parseEpisodeLocation().program;
+  if (!Object.hasOwn(STATION.channels || {}, channel)) throw new Error("Unknown channel");
   if (channel && STATION.channels?.[channel]) {
     const response = await fetch(STATION.channels[channel], { cache: "no-store" });
     if (!response.ok) throw new Error("Channel settings unavailable");
@@ -1621,14 +1647,15 @@ async function init() {
   await loadStation();
   await Promise.all([loadCharacter().catch(e => console.warn("character", e)), loadMaleCharacter().catch(e => console.warn("male character", e))]);
   wxLoad();
-  let r = 1; try { r = +localStorage.getItem("aviation-rate") || 1; } catch {}
+  let r = 1; try { r = +localStorage.getItem(`${programId()}-rate`) || 1; } catch {}
   setRate(RATES.includes(r) ? r : 1);
   $("loading").textContent = tr("loading");
   let eps = [];
   try { eps = await (await fetch(STATION.episodes || "episodes.json", { cache: "no-store" })).json(); } catch {}
   if (!eps.length) { $("loading").textContent = tr("empty"); $("cover").hidden = true; return; }
   $("sdate").disabled = eps.length < 2;
-  EPS = eps; $("epPrev").hidden = $("epNext").hidden = eps.length < 2;
+  EPS = eps.sort((a, b) => b.date.localeCompare(a.date));
+  for (const link of document.querySelectorAll(".channel-home, #stationHome")) link.href = episodeUrl(EPS[0].date, STATION.language); $("epPrev").hidden = $("epNext").hidden = eps.length < 2;
   // Accept both #program/date/lang and old #date/lang links.
   const route = parseEpisodeLocation();
   if (route.program !== programId()) {
@@ -1644,14 +1671,15 @@ function followLocation(navigation) {
   if (!EPS.length) return;
   const route = parseEpisodeLocation();
   if (route.program !== programId()) {
-    audio.pause(); $("loading").textContent = "このジャンルの番組はまだありません。"; return;
+    savePos(true); location.reload(); return;
   }
   const date = EPS.some(e => e.date === route.date) ? route.date : EPS[0].date;
   load(date, route.lang || LANG, 0, route.date ? navigation : "home");
 }
 window.addEventListener("hashchange", () => followLocation("replace"));
 window.addEventListener("popstate", () => followLocation("none"));
-init();
+window.addEventListener("pagehide", () => savePos(true));
+init().catch(error => { $("loading").textContent = "チャンネルを読み込めませんでした。"; console.warn(error); });
 </script>
 </body>
 </html>
