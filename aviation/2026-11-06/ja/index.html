@@ -235,6 +235,7 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #cam video{opacity:0;transition:opacity .16s linear}
 #cam video.on{opacity:1}
 #cam canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:6px}
+#cam #charcv,#cam #idle{object-fit:contain;object-position:center bottom}
 #cam [hidden]{display:none}
 #cam .corner{position:absolute;width:44px;height:44px;border:4px solid var(--yellow)}
 #cam .c1{left:-14px;top:-14px;border-right:0;border-bottom:0}#cam .c2{right:-14px;top:-14px;border-left:0;border-bottom:0}
@@ -1046,7 +1047,7 @@ async function loadMaleCharacter() {
   const parts = Object.fromEntries(await Promise.all(Object.entries(pack.parts).map(async ([name, part]) => [name, { ...part, img: await img(part.src) }])));
   const canvas = $("maleCanvas"); [canvas.width, canvas.height] = pack.size;
   const comp = Object.assign(document.createElement("canvas"), { width: pack.size[0], height: pack.size[1] });
-  const depth = maleDepthMap();
+  const depth = pack.depth ? await img(pack.depth) : maleDepthMap();
   Object.assign(MALE, { base, parts, pack, canvas, comp, ctx: comp.getContext("2d"), look: [0, 0], ready: true },
     createSpriteRenderer(canvas, depth, CHAR.background || "#161a26"));
   if (!MALE.gl) MALE.output = canvas.getContext("2d");
@@ -1081,13 +1082,16 @@ function maleFrame(now, speaking) {
     MALE.mouth += Math.sign(want - MALE.mouth); MALE.mouthAt = now;
   }
   if (now > MALE.nextBlink) { MALE.blinkAt = now; MALE.nextBlink = now + 2500 + Math.random() * 3500; }
-  const blink = now - MALE.blinkAt < 140;
-  const key = `${MALE.mouth}:${blink}`;
+  const bt = now - MALE.blinkAt, half = MALE.pack.eye?.half;
+  const eye = half ? (bt < 40 ? half : bt < 120 ? MALE.pack.eye?.blink : bt < 170 ? half : null)
+    : (bt < 140 ? MALE.pack.eye?.blink : null);
+  const blink = Boolean(eye);
+  const key = `${MALE.mouth}:${eye || ""}`;
   const c = MALE.ctx, canvas = MALE.canvas;
   if (key !== MALE.key) {
     MALE.key = key;
     c.clearRect(0, 0, canvas.width, canvas.height); c.drawImage(MALE.base, 0, 0, canvas.width, canvas.height);
-    const layers = [blink ? "blink" : null, MALE.pack.mouth[MALE.mouth]].filter(Boolean);
+    const layers = [eye, MALE.pack.mouth[MALE.mouth]].filter(Boolean);
     for (const name of layers) { const part = MALE.parts[name]; if (part) c.drawImage(part.img, part.x, part.y); }
     if (MALE.gl) {
       const gl = MALE.gl; gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, MALE.colTex);
@@ -1109,6 +1113,8 @@ function maleFrame(now, speaking) {
   }
   canvas.dataset.mouth = String(MALE.mouth); canvas.dataset.blink = String(blink);
   canvas.dataset.lookX = MALE.look[0].toFixed(3); canvas.dataset.lookY = MALE.look[1].toFixed(3);
+  canvas.dataset.eye = eye || "open";
+  canvas.dataset.depth = MALE.pack.depth || "generated";
   canvas.dataset.renderer = MALE.gl ? "webgl" : "2d";
 }
 let activeSpeakerKey = null;

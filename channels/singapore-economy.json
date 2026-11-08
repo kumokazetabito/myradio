@@ -16,7 +16,13 @@
   "credits": [
     "音声：Meticulous Pen (Muse) / 音声：Helio (Muse) / 音声：Aria (Muse)",
     "画面：myradio（MIT）",
-    "女性キャラクター：ものラジオ提供・AI生成",
+    "女性キャラクター：AI生成（female02）",
     "男性キャラクター：AI生成・番組独自デザイン"
-  ]
+  ],
+  "character": {
+    "pack": "character/female02/character.json",
+    "thumbnail": "character/female02/base.png",
+    "male": "character/male02/base.png",
+    "male_pack": "character/male02/character.json"
+  }
 }

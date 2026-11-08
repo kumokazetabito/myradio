@@ -4,7 +4,7 @@
 
 [シンガポール経済ニュース11月8日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-08/ja/) / [記事と台本](docs/broadcasts/singapore-economy/singapore-economy-2026-11-08.md) / [11月6日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-06/ja/)
 
-シンガポール経済ニュースの原稿・音声：Muse。音声表記：Meticulous Pen (Muse) / Helio (Muse) / Aria (Muse)。局共通のキャラクター素材を使用しています。
+シンガポール経済ニュースの原稿・音声：Muse。音声表記：Meticulous Pen (Muse) / Helio (Muse) / Aria (Muse)。キャラクターは猫の女性（female02）とライオンの男性（male02）を使用しています。航空ニュースはfemale01・male01を継続使用します。
 
 [最新の11月7日号を聴く](https://kumokazetabito.github.io/myradio/aviation/2026-11-07/ja/) / [11月7日の記事と台本](docs/broadcasts/aviation/aviation-2026-11-07.md) / [11月6日号](https://kumokazetabito.github.io/myradio/aviation/2026-11-06/ja/)
 
@@ -28,7 +28,7 @@
 音声はVOICEVOX:四国めたん（1・3・5件）／VOICEVOX:玄野武宏（2・4件）。各記事に出典、字幕、補足を掲載しています。番組は約2分50秒です。
 
 ## 素材とライセンス
-画面の元ソース：[monoradio102/myradio](https://github.com/monoradio102/myradio)。プログラムはMIT（LICENSE参照）。女性キャラは元作者がREADMEで許諾した範囲で利用。男性キャラはこの番組用のAI生成画像です。画像と音声の公式キャラクターは別です。男性は音声連動の口（閉じ・半開き・開き）と自然なまばたきに対応しています。
+画面の元ソース：[monoradio102/myradio](https://github.com/monoradio102/myradio)。プログラムはMIT（LICENSE参照）。女性キャラは元作者がREADMEで許諾した範囲で利用。男性キャラはこの番組用のAI生成画像です。画像と音声の公式キャラクターは別です。男性は音声連動の口（閉じ・半開き・開き）と自然なまばたきに対応しています。経済ニュースのfemale02・male02は専用の奥行き画像を使い、呼吸・顔と上半身の向き・髪の揺れにも対応しています。
 
 [VOICEVOX](https://voicevox.hiroshiba.jp/term/)／[四国めたん音源規約](https://www.zunko.jp/con_ongen_kiyaku.html)／[玄野武宏音源規約](https://www.virvoxproject.com/voicevoxの利用規約)
 
