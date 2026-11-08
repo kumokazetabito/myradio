@@ -143,9 +143,9 @@ def render(template, ep, station, episodes, base, front=False):
     past = "".join(f'<a href="{E(route_for(other, station))}"><span class="d">{E(other["date"])}</span><span>{E(other["title"])}</span><span class="len">{int(other["seconds"]) // 60}:{int(other["seconds"]) % 60:02d}</span></a>' for other in episodes)
     values = {"PAGE_METADATA": metadata(ep, station, base, episodes, front), "PAGE_ARTICLES": articles(ep, station), "PAGE_SCRIPT": E(transcript(ep)), "PAGE_EPISODES": past, "STATION_NAME": E(station["name"]), "STATION_TAGLINE": E(station.get("tagline")), "STATION_OWNER": E("by " + station["creator"]) if station.get("creator") else "", "STATION_CREDITS": E(" ／ ".join(station.get("credits", [])))}
     values["PROGRAM_NAME"] = E(station.get("program", {}).get("name", "ニュース"))
-    values["PROGRAM_BADGE"] = "PREVIEW / 音声未生成" if ep.get("preview") else E(station.get("program", {}).get("badge", station.get("program", {}).get("name", "NEWS")))
+    values["PROGRAM_BADGE"] = "PREVIEW / 音声未生成" if ep.get("preview") else "ON Air"
     channel_links = station.get("channel_links", [])
-    channel_labels = {"aviation": "Aviation World", "singapore-economy": "Economy (SIN)"}
+    channel_labels = {"aviation": "航空ニュース", "singapore-economy": "経済ニュース(SIN)"}
     values["CHANNEL_NAV"] = '<nav class="channel-nav" aria-label="チャンネル切替">' + "".join(
         f'<a href="{E(item["path"])}" title="{E(item["name"])}"' + (' aria-current="true"' if item["id"] == station["program"]["id"] else '') + f'>{E(channel_labels.get(item["id"], item["name"]))}</a>' for item in channel_links) + '</nav>'
     values["PREVIEW_NOTE"] = '<p class="preview-note">手元の試作・台本確認用 ／ 音声未生成。日付と内容は画面確認用で、ニュース配信ではありません。</p>' if ep.get("preview") else ''

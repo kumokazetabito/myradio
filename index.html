@@ -239,6 +239,7 @@ main{max-width:1280px;margin:0 auto;padding:16px}
 #cam .c3{left:-14px;bottom:-14px;border-right:0;border-top:0}#cam .c4{right:-14px;bottom:-14px;border-left:0;border-top:0}
 #cam .rec{left:24px;top:20px;position:absolute;font:700 22px var(--mono);letter-spacing:3px;color:var(--text);display:flex;gap:10px;align-items:center;opacity:.85}
 #cam .rec i{width:12px;height:12px;border-radius:50%;background:var(--red)}
+.playing #cam .rec i{animation:blink 1.2s infinite}
 /* a short name tag on the caster's picture (station.json "caster": her name or her voice); it travels with embeds and screenshots */
 #cam .credit{position:absolute;right:14px;bottom:10px;max-width:calc(100% - 28px);font:500 21px/1.3 var(--jp);color:rgba(233,235,242,.55);text-shadow:0 1px 3px rgba(0,0,0,.8);text-align:right;pointer-events:none}
 .has-card #cam .credit{right:10px;bottom:7px;font-size:16px}
@@ -473,18 +474,16 @@ html:not(.v) #cam,html:not(.v) .has-card #cam{left:1218px;top:253px;width:670px;
 /* Program information sits above the caster on desktop; only the station stays at the top. */
 #maleVoice{z-index:2}
 #cam .rec,#cam .credit,#cam .corner{z-index:3}
-#programMeta{left:1218px;top:145px;width:670px;display:grid;grid-template-columns:max-content 1fr;grid-template-rows:44px 64px 54px;align-items:center;gap:12px 18px;z-index:5}
+#programMeta{left:1218px;top:145px;width:670px;display:grid;grid-template-columns:max-content 1fr;grid-template-rows:60px 60px;align-items:center;gap:12px 18px;z-index:5}
 #programGenre{grid-column:1 / -1;width:100%;font:800 32px var(--jp);color:var(--text)}
 #programMeta .epsel{grid-column:1 / -1;margin:0;width:100%;max-width:100%;gap:12px}
-#programMeta .epnav{flex:none}
+#programMeta .epnav{flex:none;box-sizing:border-box;width:60px;height:60px}
 #programMeta #eplist{left:0;width:100%;max-height:520px}
 #programMeta #eplist button{grid-template-columns:82px minmax(0,1fr) auto;gap:14px;padding:12px}
 #programMeta #eplist .tt{font-size:24px}
-#programMeta #sdate{font-size:26px;margin:0;flex:1;min-width:0;justify-content:space-between}
+#programMeta #sdate{font-size:26px;margin:0;flex:1;min-width:0;justify-content:space-between;box-sizing:border-box;height:60px;padding:8px 10px 8px 22px}
 #programMeta #sdate span{white-space:nowrap}
 #programMeta #sdate i{flex:none}
-#programMeta .langsw{grid-column:1;margin:0;justify-self:start}
-#programMeta .onair{grid-column:2;justify-self:start;white-space:nowrap;position:static;font-size:20px;letter-spacing:2px}
 .langsw button:disabled{opacity:.35;cursor:default}
 html:not(.v) #cam,html:not(.v) .has-card #cam{top:350px}
 html:not(.v) #panel li{font-size:40px}
@@ -492,7 +491,6 @@ html:not(.v) #panel button.head{font-size:54px}
 html:not(.phone) .links .item .jump{font-size:20px}
 .chan .av svg{width:30px;height:30px;fill:none;stroke:var(--yellow);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 html.phone #programMeta{display:none}
-html.phone .langsw.single-language{display:none}
 
 /* Chapter controls stay within the stage as episodes grow. */
 html:not(.v) #toc{width:88px;height:780px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--muted) transparent}
@@ -511,16 +509,19 @@ html.v #toc button{flex:0 0 100px}
 #panel .opening-pages button:focus-visible{outline:2px solid var(--yellow)}
 .nojs-note{color:var(--muted);font-size:14px}
 .links .item h2{grid-area:head;margin:0;font-size:20px}.episode-date{font-size:14px;color:var(--muted)}
-.brand{align-items:center;gap:32px}
-.channel-nav{display:flex;align-items:center;gap:10px;font:700 26px var(--jp);letter-spacing:normal}
-.channel-nav a{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:240px;height:62px;padding:10px 14px;border:2px solid #38464d;border-radius:8px;background:#151c23;color:#a5b0b9;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+/* Channel selection belongs to the information area above the caster. */
+.channel-nav{grid-column:1 / -1;display:flex;align-items:center;gap:12px;font:700 28px var(--jp);letter-spacing:normal;width:100%}
+.channel-nav a{display:flex;align-items:center;justify-content:center;flex:1;min-width:0;box-sizing:border-box;height:60px;padding:10px 18px;border:2px solid #38464d;border-radius:999px;background:#151c23;color:#a5b0b9;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
 .channel-nav a[aria-current]{background:#79e5cc;color:#0c1718;border-color:#79e5cc}
 .channel-nav a:hover{border-color:#79e5cc;color:#79e5cc}
 .channel-nav a[aria-current]:hover{color:#0c1718;background:#a0efdd}
 .channel-nav a:focus-visible{outline:3px solid #79e5cc;outline-offset:5px}
-html.v .brand{gap:28px}
-html.v .channel-nav{font-size:28px;gap:12px}
-html.v .channel-nav a{width:250px;height:68px;padding:12px 14px}
+html.phone #programMeta{display:grid;grid-template-rows:60px;top:260px}
+html.v #programMeta{left:150px;top:1032px;width:780px;grid-template-rows:64px;gap:0}
+html.v .channel-nav{font-size:32px;gap:16px}
+html.v .channel-nav a{height:64px}
+html.v #cover .play{position:absolute;top:30%;left:38%}
+html.v #cam,html.v .has-card #cam,html.phone.v #cam,html.phone.v .has-card #cam{left:206px;top:1120px;width:668px;height:572px}
 .preview-note{padding:12px 16px;background:#30291c;color:#ffe2a0;border:1px solid #78653e;border-radius:8px;font-size:13px}button:disabled{cursor:default}
 </style>
 </head>
@@ -529,9 +530,9 @@ html.v .channel-nav a{width:250px;height:68px;padding:12px 14px}
 
   <div id="frame">
     <div id="stage">
-      <div class="brand"><a class="station-home" id="stationHome" href="aviation/2026-11-07/ja/" title="このチャンネルの最新回へ" aria-label="このチャンネルの最新回へ"><i class="logo" id="slogo" hidden></i><b id="sname">Tabito Radio</b></a><nav class="channel-nav" aria-label="チャンネル切替"><a href="aviation/2026-11-07/ja/" title="航空ニュース" aria-current="true">Aviation World</a><a href="singapore-economy/2026-11-08/ja/" title="シンガポール経済ニュース">Economy (SIN)</a></nav><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
-      <div id="programMeta"><b id="programGenre">航空ニュース</b></div>
-      <div class="onair" id="onair"><i></i><span id="programBadge">AVIATION NEWS</span></div>
+      <div class="brand"><a class="station-home" id="stationHome" href="aviation/2026-11-07/ja/" title="このチャンネルの最新回へ" aria-label="このチャンネルの最新回へ"><i class="logo" id="slogo" hidden></i><b id="sname">Tabito Radio</b></a><div class="epsel" id="epsel"><button class="epnav" id="epPrev" aria-label="前の回" title="前の回" hidden></button><button id="sdate" aria-haspopup="listbox" aria-expanded="false" aria-controls="eplist"><span></span><i></i></button><button class="epnav" id="epNext" aria-label="次の回" title="次の回" hidden></button><div id="eplist" role="listbox" aria-label="放送日"></div></div><div class="langsw" id="langsw" hidden></div></div>
+      <div id="programMeta"><nav class="channel-nav" aria-label="チャンネル切替"><a href="aviation/2026-11-07/ja/" title="航空ニュース" aria-current="true">航空ニュース</a><a href="singapore-economy/2026-11-08/ja/" title="シンガポール経済ニュース">経済ニュース(SIN)</a></nav><b id="programGenre" hidden>航空ニュース</b></div>
+      <div class="onair" id="onair"><i></i><span id="programBadge">ON Air</span></div>
       <nav id="toc" aria-label="目次"></nav>
       <div id="panel"></div>
       <section id="card" aria-label="出典リンク"><div class="site">出典リンク</div><nav id="cardSources" aria-label="このニュースの出典"></nav><span class="open" id="cardOpen">記事をひらく ↗</span></section>
@@ -542,7 +543,7 @@ html.v .channel-nav a{width:250px;height:68px;padding:12px 14px}
         <div id="maleVoice" hidden aria-label="男性キャスター"><img id="maleFallback" src="character/male01/base.png" alt="番組オリジナルの男性キャスター"><canvas id="maleCanvas" role="img" aria-label="口とまばたきが動く男性キャスター" hidden></canvas></div>
         <video id="va" muted playsinline preload="auto"></video>
         <video id="vb" muted playsinline preload="auto"></video>
-        <div class="rec"><i></i>VOICE</div>
+        <div class="rec"><i></i>Live</div>
         <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
         <div class="credit" id="camCredit" hidden></div>
       </div>
@@ -683,11 +684,12 @@ function phoneLayout() {
   root.classList.toggle("phone", PHONE.matches);
   if (!PHONE.matches && docked) { docked = false; root.classList.remove("dock"); }
   root.classList.toggle("v", PHONE.matches && !docked);
-  // the episode picker and the language: under the player on a phone (the language at the end of the station's row),
-  // in the stage's header otherwise
-  if (PHONE.matches && !root.classList.contains("embed")) { $("mnav").append($("epsel")); document.querySelector(".chan").append($("langsw")); }
-  else $("programMeta").append($("epsel"), $("langsw"));
-  if (PHONE.matches) $("stage").append($("onair")); else $("programMeta").append($("onair"));
+  // Language stays beside the station name; the status stays at the far right.
+  // Only the episode picker moves below the player on a phone.
+  if (PHONE.matches && !root.classList.contains("embed")) $("mnav").append($("epsel"));
+  else $("programMeta").append($("epsel"));
+  document.querySelector(".brand").append($("langsw"));
+  $("stage").append($("onair"));
 }
 function dockCheck() {
   if (!PHONE.matches || document.documentElement.classList.contains("embed")) return;
@@ -1491,7 +1493,7 @@ function setLang(l) {
   $("cname").textContent = st("name"); $("ctag").textContent = st("tagline") || "";
   $("cowner").textContent = st("creator") ? `by ${st("creator")}` : ""; $("cowner").hidden = !st("creator");
   $("programGenre").textContent = STATION.program?.name || "ニュース";
-  $("programBadge").textContent = ep?.preview ? "PREVIEW / 音声未生成" : STATION.program?.badge || STATION.program?.name || "NEWS";
+  $("programBadge").textContent = ep?.preview ? "PREVIEW / 音声未生成" : "ON Air";
   for (const [act, k] of [["native", "native"], ["link", "copyLink"], ["embed", "copyEmbed"]]) $("shareMenu").querySelector(`[data-act=${act}]`).textContent = tr(k);
   listEpisodes(); wxRender();
 }

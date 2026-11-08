@@ -1,6 +1,6 @@
 # Tabito Radio
 
-航空ニュースとシンガポール経済ニュースを届けるWeb番組です。画面上部の「Aviation World」「Economy (SIN)」でチャンネルを切り替えられます。
+航空ニュースとシンガポール経済ニュースを届けるWeb番組です。キャラクター上の「航空ニュース」「経済ニュース(SIN)」でチャンネルを切り替えられます。言語切替は上段の局名右隣、ON Air表示は上段右端に配置しています。
 
 [シンガポール経済ニュース11月8日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-08/ja/) / [記事と台本](docs/broadcasts/singapore-economy/singapore-economy-2026-11-08.md) / [11月6日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-06/ja/)
 
