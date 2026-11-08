@@ -1,0 +1,41 @@
+{
+  "format": "myradio/character-1",
+  "type": "sprites",
+  "size": [
+    1199,
+    1312
+  ],
+  "background": "#161a26",
+  "base": "base.png",
+  "parts": {
+    "mouth_half": {
+      "src": "mouth_half.png",
+      "x": 568,
+      "y": 575
+    },
+    "mouth_open": {
+      "src": "mouth_open.png",
+      "x": 568,
+      "y": 575
+    },
+    "half_blink": {
+      "src": "half_blink.png",
+      "x": 420,
+      "y": 475
+    },
+    "blink": {
+      "src": "blink.png",
+      "x": 420,
+      "y": 475
+    }
+  },
+  "mouth": {
+    "1": "mouth_half",
+    "2": "mouth_open"
+  },
+  "eye": {
+    "half": "half_blink",
+    "blink": "blink"
+  },
+  "note": "AI生成の猫の女性キャラクター。採用されたbase.pngをそのまま保持し、目と口のAI生成差分だけを指定座標に重ねる。"
+}
