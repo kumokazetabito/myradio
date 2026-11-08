@@ -1,0 +1,42 @@
+{
+  "format": "myradio/character-1",
+  "type": "sprites",
+  "size": [
+    1199,
+    1312
+  ],
+  "background": "#161a26",
+  "base": "base.png",
+  "depth": "depth.png",
+  "parts": {
+    "mouth_half": {
+      "src": "mouth_half.png",
+      "x": 552,
+      "y": 515
+    },
+    "mouth_open": {
+      "src": "mouth_open.png",
+      "x": 552,
+      "y": 515
+    },
+    "half_blink": {
+      "src": "half_blink.png",
+      "x": 443,
+      "y": 403
+    },
+    "blink": {
+      "src": "blink.png",
+      "x": 443,
+      "y": 403
+    }
+  },
+  "mouth": {
+    "1": "mouth_half",
+    "2": "mouth_open"
+  },
+  "eye": {
+    "half": "half_blink",
+    "blink": "blink"
+  },
+  "note": "AI生成の黄褐色ライオン男性。採用された基準画像を保持し、目と口の局所差分と専用の奥行き画像で動作。"
+}

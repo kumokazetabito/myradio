@@ -11,5 +11,11 @@
     "dir": "audio/aviation",
     "keep_days": 30
   },
-  "episode_dir": "episodes/aviation"
+  "episode_dir": "episodes/aviation",
+  "character": {
+    "pack": "character/female01/character.json",
+    "thumbnail": "character/female01/base.png",
+    "male": "character/male01/base.png",
+    "male_pack": "character/male01/character.json"
+  }
 }
