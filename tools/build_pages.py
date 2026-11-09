@@ -63,7 +63,8 @@ def articles(ep, station):
         sources = item.get("sources") or ([item["link"]] if item.get("link") else [])
         links = "".join(f'<a href="{E(url)}" target="_blank" rel="noopener noreferrer"><small>{E(link.get("type", "出典"))}：{E(link.get("title") or link.get("site") or urlparse(url).hostname)}</small></a>' for link in sources if (url := safe_url(link.get("url"))))
         credit = ep.get("speakers", {}).get(item.get("speaker"), {}).get("credit", "")
-        rows.append(f'<article class="item" id="story-{i}"><h2><span class="d">{i:02d}</span> {E(item["label"])}</h2><ul class="pts">{points}</ul><div class="srcs">{links}</div><span class="speaker-label">{E(credit)}</span></article>')
+        note = ('<aside class="owner-note"><h3>雲風旅人のひとこと</h3><p>' + E(item['ownerNote']) + '</p></aside>') if item.get('ownerNote') else ''
+        rows.append(f'<article class="item" id="story-{i}"><h2><span class="d">{i:02d}</span> {E(item["label"])}</h2><ul class="pts">{points}</ul><div class="srcs">{links}</div><span class="speaker-label">{E(credit)}</span>{note}</article>')
     return "\n".join(rows)
 
 

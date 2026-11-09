@@ -1,0 +1,512 @@
+{
+  "created_at": "2026-11-09T21:53:11.355744+09:00",
+  "source_json": "singapore-economy-2026-11-09-ja-v4.json",
+  "source_sha256": "1c78e548720ea451c1ec2a73269f2e0b9d44bcbe97dc0196f2744b7c559235d4",
+  "engine_version": "0.26.1",
+  "speed": 1.0,
+  "sample_rate": 24000,
+  "seconds_pcm": 211.62266666666667,
+  "subtitle_lines": 71,
+  "bytes": 3387308,
+  "sha256": "50a5e06c0d976c3c96084983cbf6787fba6a41d756e0bc49085a32192c5811b4",
+  "audio": "singapore-economy-2026-11-09-voicevox-v4-r2.mp3",
+  "line_records": [
+    {
+      "line": 1,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "92fdd22fe1d89449a3bcbf10f842ba08d34a6d89b38c1c3c19b824338df5440b.wav",
+      "frames": 75008
+    },
+    {
+      "line": 2,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "b1d0f443760b0737844ce255711fb71f26424e3423e8f2cc227a10f4d3cafd41.wav",
+      "frames": 66304
+    },
+    {
+      "line": 3,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "ce671f137ec258dfa78f1f6698365f4f6bbf8142db60072991bb781ff7328838.wav",
+      "frames": 61952
+    },
+    {
+      "line": 4,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "358a1085e45c8b4cfe469f00642ba1db00f25964e980d6ebcb54921153840b42.wav",
+      "frames": 70912
+    },
+    {
+      "line": 5,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "0e5e8ec75cd5f03cf01cd46a5d4f8ba9145a2225566cbe1b5fcf6a0c7ba51fbe.wav",
+      "frames": 55808
+    },
+    {
+      "line": 6,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "ceb074668c667c2092951cb5ba089fa8915acb99ddfc28dfb3f3429505f6a2fb.wav",
+      "frames": 49664
+    },
+    {
+      "line": 7,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "dffcf86cd71da86125cd773060567c129f61c2d56ba0b41f3b89ac29d7e623b7.wav",
+      "frames": 45312
+    },
+    {
+      "line": 8,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "eea75c30692a46e7765db50385aaa1e5835411ab6b34ffdbdd43d86bcd8a76fe.wav",
+      "frames": 50432
+    },
+    {
+      "line": 9,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "cb886b6653f8b7bb202a82ccaba3c76a1ecf76b3d7e1752502a7fce2850e35a2.wav",
+      "frames": 56576
+    },
+    {
+      "line": 10,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "6ec69ce2bbc632a46e9117f3f2256b6aaca8e01887ce9ed64600248a837f9420.wav",
+      "frames": 50688
+    },
+    {
+      "line": 11,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "e8ae37d29097fa0fbfda3ffc2cc788cd6efc46a03fd38ba2474e59e84767562a.wav",
+      "frames": 80384
+    },
+    {
+      "line": 12,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "80f8b88ef09f8150f9e570647f8fd3a9327a0c29678b0260cd6f98a414154419.wav",
+      "frames": 51456
+    },
+    {
+      "line": 13,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "9c390760d2ad7814af330cabd1fe3713fc09585013e97b02944421aba9652e11.wav",
+      "frames": 76800
+    },
+    {
+      "line": 14,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "663aadefb07452442f72cd7b44e7987fb96093e8e2d08bb202903b56f5f1fd1c.wav",
+      "frames": 60928
+    },
+    {
+      "line": 15,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "8f8ea335f460ee56e826978e7ed001d4f3b7c43f5a89ef8a1fab3b587d5c335f.wav",
+      "frames": 88576
+    },
+    {
+      "line": 16,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "a8e6e607eb977ba2e3929f48e535118261198327327da5d79d9a75a1990648be.wav",
+      "frames": 77312
+    },
+    {
+      "line": 17,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "524f3803905ce24b2887b5c1813bb5dbd7253853f8ab077bca3f4176b239266c.wav",
+      "frames": 83200
+    },
+    {
+      "line": 18,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "df47742c2902dc18646a0f993cccd60e9cbb5d64e0e97c0567cc66864865977f.wav",
+      "frames": 55296
+    },
+    {
+      "line": 19,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "6f0c4ceb0c4ca67fef5217bc8a028260e75afca05f05f45f7e2a785dfb17e8c0.wav",
+      "frames": 70144
+    },
+    {
+      "line": 20,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "31b87f8c40450937adbb6a40b38d9581e78b0223be9cb6566acb1a076d8330f5.wav",
+      "frames": 117504
+    },
+    {
+      "line": 21,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "f0bcb2a3c645b7db2db27b5987d194847bd242a9b64daad36e041c2f1e03643f.wav",
+      "frames": 94720
+    },
+    {
+      "line": 22,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "4c1099c296ac2cc8d50fc1803688e10f43767d433bde346a2deb591ae4f8fe6d.wav",
+      "frames": 48384
+    },
+    {
+      "line": 23,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "27cc15953d49248f58312faefb1145a1d82c1f14103fb315997f01ad23aec217.wav",
+      "frames": 90112
+    },
+    {
+      "line": 24,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "38256667b2ae3eda8853c6d68287ddf1ab7b34393a03d6e657b3637d117862a4.wav",
+      "frames": 70656
+    },
+    {
+      "line": 25,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "3793c25b42aa99a181b35a063657416b36f574720af09bafc6e0f77e93994b22.wav",
+      "frames": 70144
+    },
+    {
+      "line": 26,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "b794cc4c7b1b18aafdf357c395d5db0b7a29e2a84f07be5c8a5e37331867fda4.wav",
+      "frames": 87552
+    },
+    {
+      "line": 27,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "77b898b69aa339bf27ef618fb63cb8fc19eee56999df030d5d5f089a8b7de647.wav",
+      "frames": 115712
+    },
+    {
+      "line": 28,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "58e8bf184e6f4e7c292405cd51053f4ba5d19004e6fdf8401a6d76104be322c5.wav",
+      "frames": 46080
+    },
+    {
+      "line": 29,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "a450d2094c4fd9baef541657aeea0c6aa162b472d564cbbf15796a48645292ec.wav",
+      "frames": 47360
+    },
+    {
+      "line": 30,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "07a775918dbaa6dcee97cd8d5548ef3015bc76a572f759c25beffcc60771bbce.wav",
+      "frames": 95232
+    },
+    {
+      "line": 31,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "8cdf8db78ccf490ee4c5bad05afd2500d052614733354a8909a9629f90415a89.wav",
+      "frames": 62720
+    },
+    {
+      "line": 32,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "22310a0c5a9665a943324e413345e5f8a70f7478ea36fa33a208116679af8d0f.wav",
+      "frames": 49408
+    },
+    {
+      "line": 33,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "529b35ed81f7124baaf81505ec2914c07b1591f4c35c53dcbec11c98a0b1ac01.wav",
+      "frames": 73728
+    },
+    {
+      "line": 34,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "b71d22ab1d884b936fa95a52528c800e5d507d8d58c2eb6b07373d4bf172fb23.wav",
+      "frames": 65536
+    },
+    {
+      "line": 35,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "9748b9326e26eb9d229dab5c9aa4e6f02eaffb4b8c6fcb94a09faf38e755b13e.wav",
+      "frames": 83456
+    },
+    {
+      "line": 36,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "c440dd0d3eede1ed0f77443ca4db40be68bf94b1428cedffa532ee565b767604.wav",
+      "frames": 68096
+    },
+    {
+      "line": 37,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "1119dac8e7018bebf25ec348fd448acc01f3d60759687d9f4392c2fad826672a.wav",
+      "frames": 54528
+    },
+    {
+      "line": 38,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "5398d9bb2cda2997b0c36c84d92faefa9ab62174fbe2965c531336ef9ae9c836.wav",
+      "frames": 87808
+    },
+    {
+      "line": 39,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "170a4c68ec49bba99d3643fac48ba7e7df2c543c9c0770263eb934a60e0d3e68.wav",
+      "frames": 57088
+    },
+    {
+      "line": 40,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "be5ec2d1afa861bc67d5a940bcbf4d7e53d3fa6879f14391b666992c16fb6649.wav",
+      "frames": 64000
+    },
+    {
+      "line": 41,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "19ea8a6e98ee0a126d1f2d233e6eee11beefb54afd108fba26d8ae058f430eaf.wav",
+      "frames": 63232
+    },
+    {
+      "line": 42,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "d11c7e3cc0228ee0872f2b86c3cd74754be02c9fd488b1a83797e821b5b68298.wav",
+      "frames": 73984
+    },
+    {
+      "line": 43,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "4dc63c6d6f0c6c66e210a5414828ba57553fbbda9e833bfcfe55916831fd388f.wav",
+      "frames": 71424
+    },
+    {
+      "line": 44,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "485bdf0768773a62a82b703daa6bbf82c924204bf23fed45a1b1a84a7946a84c.wav",
+      "frames": 44544
+    },
+    {
+      "line": 45,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "862196ae6176dbaefb2c8785a310458fe190cca8b5dde6392386f7d64cf0e9b8.wav",
+      "frames": 75008
+    },
+    {
+      "line": 46,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "a7a9eb0326bccd78858bf829fda3bf76c8d9b0999e75a7b4bd65deeca29977b5.wav",
+      "frames": 63744
+    },
+    {
+      "line": 47,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "875e34ea38e5758d45b306270ce6c01e9708e2d6ed2f77880343f35beacd28ed.wav",
+      "frames": 72704
+    },
+    {
+      "line": 48,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "b9dbfc71c3f0a9f43ba6db9c29b5939ff48e099e70c341a04013f7c6cdb7a34a.wav",
+      "frames": 54528
+    },
+    {
+      "line": 49,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "e2794b5d13786dd7ada1398827056418736dfbc2f60b49c24f8d3559eeb5bc87.wav",
+      "frames": 67072
+    },
+    {
+      "line": 50,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "4c4d55084a9535707e049198415be9a10da5b7655c193a291890155a38ce5bd7.wav",
+      "frames": 59136
+    },
+    {
+      "line": 51,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "6e1c06a81f4d37439e138e5e2e650fbbf10892fa1caa313a968deb61507811f4.wav",
+      "frames": 52224
+    },
+    {
+      "line": 52,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "8c76c8d5329d05e05ce402dfbccd6c19ed2805d890343fb37dcf581aa2d25f0f.wav",
+      "frames": 64256
+    },
+    {
+      "line": 53,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "6388d131b71ac226edc238c38bdcd5534344d79ef0032c86a2d46078bfc9cb38.wav",
+      "frames": 64256
+    },
+    {
+      "line": 54,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "ca4594f3503ce0b5aa261b39ccba79e6fad5fe4de2dfed7b2eab607868d147fb.wav",
+      "frames": 67584
+    },
+    {
+      "line": 55,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "9f7b661ccd7dae6dab0774183272374c39c8ba37276c0d128f0e751475142229.wav",
+      "frames": 60160
+    },
+    {
+      "line": 56,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "aa6ace7de71bade05c7e9cdcd7694ee43e1c364fe42da9d0114659e34b0a8183.wav",
+      "frames": 58624
+    },
+    {
+      "line": 57,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "9262abf687875fb388fe39e110105879ff39063a748a9cc2531cdf4a31c9d022.wav",
+      "frames": 40704
+    },
+    {
+      "line": 58,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "dbc03b5ea5f6ef35c624c70a9aea487bb1ac977f2d6727854aa22b1ebcf3fbd8.wav",
+      "frames": 82944
+    },
+    {
+      "line": 59,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "d9090d0a571f62513771d28f6eba81c69c8e117d957ea84705f305fd4886b5b8.wav",
+      "frames": 67072
+    },
+    {
+      "line": 60,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "a94b0f5a8de4d26b81e6bf61afc7e46375e3f5f8c97f5b665f41ada96885441e.wav",
+      "frames": 99840
+    },
+    {
+      "line": 61,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "146245bee1f1fc9e2c72fff4f7d3973bf587b898062554d367ac282261bdfa88.wav",
+      "frames": 78592
+    },
+    {
+      "line": 62,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "8135b5064e4da904fbe0f5e8fb87cca937b49f1954f0f4c3d51bc226a65fd974.wav",
+      "frames": 58368
+    },
+    {
+      "line": 63,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "55dcb3bf4f71cd22791d1e645374904863b16d4cfeb33a03171b8201ee598bdd.wav",
+      "frames": 53504
+    },
+    {
+      "line": 64,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "4c88fb0062ea52d2707c1b7e25d7285488f7296697494813325b630493d1dc1a.wav",
+      "frames": 48128
+    },
+    {
+      "line": 65,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "b3ba6f661022eb4e86763725b65ff6cd2514c5c5d946cc75f263a9059c7c3566.wav",
+      "frames": 81408
+    },
+    {
+      "line": 66,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "1ed9037aca098e367b7c2b0499b87fbaca19d72203daeda4023e832a1756bd08.wav",
+      "frames": 69376
+    },
+    {
+      "line": 67,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "4c56c95d75110a899f92b6953cef780fda9406acd2aa30021b141dcf5892688f.wav",
+      "frames": 49408
+    },
+    {
+      "line": 68,
+      "speaker": "玄野武宏",
+      "speaker_id": 11,
+      "cache": "cf4dec414a50462cbab2ea07cd0c40dbf042981b63fa293422585a4262d4848d.wav",
+      "frames": 78848
+    },
+    {
+      "line": 69,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "7a1ff6cd75b033cfd66a07fb5c3982ec92e04a09577a8a8bf012804f28bc92fc.wav",
+      "frames": 86528
+    },
+    {
+      "line": 70,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "9a209841086feefe74d3f95c75eff449a86831909cb01438edd99b0dfebe0614.wav",
+      "frames": 54784
+    },
+    {
+      "line": 71,
+      "speaker": "四国めたん",
+      "speaker_id": 2,
+      "cache": "9318f11a08b88088385a6c04cfd64243192a7fe4f8ab2f7aae56cbd6547af2fa.wav",
+      "frames": 31744
+    }
+  ]
+}

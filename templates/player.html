@@ -505,7 +505,7 @@ html.v #cover .play{position:absolute;top:30%;left:38%}
 html.v #cam,html.v .has-card #cam,html.phone.v #cam,html.phone.v .has-card #cam{left:206px;top:1120px;width:668px;height:572px}
 .preview-note{padding:12px 16px;background:#30291c;color:#ffe2a0;border:1px solid #78653e;border-radius:8px;font-size:13px}button:disabled{cursor:default}
 </style>
-</head>
+<style>.owner-note{margin:20px 0 0;padding:16px;border-left:3px solid #79e5cc;background:#171e2b;line-height:1.9}.owner-note h3{font-size:16px;margin:0 0 8px}.owner-note p{white-space:pre-line;margin:0}</style></head>
 <body>
 <main>
   <!-- PREVIEW_NOTE -->
@@ -1327,7 +1327,7 @@ async function load(date, lang = LANG, at = 0, navigation = "push") {
       + (img ? `<a class="pic" href="${esc(n.link.url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(n.link.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></a>` : "")
       + `<span class="speaker-label">${esc(ep.speakers?.[n.speaker]?.credit || "")}</span>`
       + `<ul class="pts">${n.points.map((x, k) => `<li><b>${esc(x)}</b>${n.details?.[k] ? `<span>${esc(n.details[k])}</span>` : ""}</li>`).join("")}</ul>`
-      + `<div class="srcs">${n.sources?.length ? n.sources.map(x => linkLine(x, (x.type || tr("source")) + tr("colon"))).join("") : src ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div></article>`;
+      + `<div class="srcs">${n.sources?.length ? n.sources.map(x => linkLine(x, (x.type || tr("source")) + tr("colon"))).join("") : src ? linkLine(src, tr("source") + tr("colon")) : ""}${n.link?.found_by ? linkLine(n.link, tr("related") + tr("colon")) : ""}</div>${n.ownerNote ? `<aside class="owner-note"><h3>雲風旅人のひとこと</h3><p>${esc(n.ownerNote)}</p></aside>` : ""}</article>`;
   }).join("");
   $("toc").innerHTML = ep.news.map((n, j) =>
     `<button title="${esc(n.label)}" data-seg="${newsSeg(j)}">${String(j + 1).padStart(2, "0")}<span>${esc(n.label)}</span></button>`).join("");

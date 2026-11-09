@@ -2,6 +2,10 @@
 
 航空ニュースとシンガポール経済ニュースを届けるWeb番組です。キャラクター上の「航空ニュース」「経済ニュース(SIN)」でチャンネルを切り替えられます。言語切替は上段の局名右隣、ON Air表示は上段右端に配置しています。
 
+[シンガポール経済ニュース11月9日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-09/ja/) / [記事と台本](docs/broadcasts/singapore-economy/singapore-economy-2026-11-09.md)
+
+11月9日号はMuse v4の台本を使用し、音声はVOICEVOX:四国めたん／玄野武宏（締め修正版r2）。「雲風旅人のひとこと」は文章のみ掲載しています。
+
 [シンガポール経済ニュース11月8日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-08/ja/) / [記事と台本](docs/broadcasts/singapore-economy/singapore-economy-2026-11-08.md) / [11月6日号](https://kumokazetabito.github.io/myradio/singapore-economy/2026-11-06/ja/)
 
 シンガポール経済ニュースの原稿・音声：Muse。音声表記：Meticulous Pen (Muse) / Helio (Muse) / Aria (Muse)。キャラクターは猫の女性（female02）とライオンの男性（male02）を使用しています。航空ニュースはfemale01・male01を継続使用します。
