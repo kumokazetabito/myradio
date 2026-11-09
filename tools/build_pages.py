@@ -69,6 +69,17 @@ def articles(ep, station):
 
 def card(ep, station, font_path, out):
     """Text-only radio artwork; all words are drawn from this episode's published data."""
+    if ep.get("share_image"):
+        root = font_path.parent.parent.resolve()
+        source = (root / ep["share_image"]).resolve()
+        if not source.is_relative_to(root):
+            raise ValueError("Share image outside site directory")
+        with Image.open(source) as artwork:
+            if artwork.size != (1200, 630) or artwork.format != "PNG":
+                raise ValueError("Share image must be a 1200x630 PNG")
+        out.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, out)
+        return
     im = Image.new("RGB", (1200, 630), "#0c0e14")
     d = ImageDraw.Draw(im)
     mint, white, muted = "#79e5cc", "#f2f3f7", "#a5adbf"

@@ -6,7 +6,13 @@
 
 シンガポール経済ニュースの原稿・音声：Muse。音声表記：Meticulous Pen (Muse) / Helio (Muse) / Aria (Muse)。キャラクターは猫の女性（female02）とライオンの男性（male02）を使用しています。航空ニュースはfemale01・male01を継続使用します。
 
-[最新の11月7日号を聴く](https://kumokazetabito.github.io/myradio/aviation/2026-11-07/ja/) / [11月7日の記事と台本](docs/broadcasts/aviation/aviation-2026-11-07.md) / [11月6日号](https://kumokazetabito.github.io/myradio/aviation/2026-11-06/ja/)
+[11月7日号を聴く](https://kumokazetabito.github.io/myradio/aviation/2026-11-07/ja/) / [11月7日の記事と台本](docs/broadcasts/aviation/aviation-2026-11-07.md) / [11月6日号](https://kumokazetabito.github.io/myradio/aviation/2026-11-06/ja/)
+
+## 11月8日号
+
+[11月8日号を聴く](https://kumokazetabito.github.io/myradio/aviation/2026-11-08/ja/) / [記事と台本](docs/broadcasts/aviation/aviation-2026-11-08.md)
+
+空港アクセスと年末年始の増便などを収録。原稿・音声はMuse（Meticulous Pen / Helio）。音声は収録版をそのまま使用。FAA項目は2025年の資料で、記事に年の混同を訂正しています。
 
 ## 11月7日の5件
 

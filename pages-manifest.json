@@ -3,12 +3,15 @@
   "audio": [
     "audio/aviation/2026-11-06-aviation-ja.m4a",
     "audio/aviation/2026-11-07-aviation-ja.m4a",
+    "audio/aviation/2026-11-08-latest.mp3",
     "audio/singapore-economy/2026-11-06-full-v5.mp3",
     "audio/singapore-economy/2026-11-08-full.mp3"
   ],
   "files": [
     "index.html",
     "sitemap.xml",
+    "aviation/2026-11-08/ja/index.html",
+    "share/aviation/aviation-2026-11-08-ja.png",
     "singapore-economy/2026-11-08/ja/index.html",
     "share/singapore-economy/singapore-economy-2026-11-08-ja.png",
     "aviation/2026-11-07/ja/index.html",
@@ -19,6 +22,13 @@
     "share/singapore-economy/singapore-economy-2026-11-06-ja.png"
   ],
   "episodes": [
+    {
+      "date": "2026-11-08",
+      "lang": "ja",
+      "data": "episodes/aviation/2026-11-08-ja.json",
+      "program": "aviation",
+      "path": "aviation/2026-11-08/ja/"
+    },
     {
       "date": "2026-11-08",
       "lang": "ja",
